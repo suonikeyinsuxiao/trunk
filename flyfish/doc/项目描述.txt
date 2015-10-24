@@ -1,0 +1,24 @@
+
+目录结构
+|-- Makefile
+|-- audio
+|-- doc
+|   |-- API.c
+|   `-- 项目描述.txt
+|-- include
+|   |-- barrier.h
+|   |-- debug.h
+|   |-- fish.h
+|   |-- image.h
+|   |-- keyevent.h
+|   |-- music.h
+|   `-- public.h
+|-- picture
+|-- src
+|   |-- barrier.c
+|   |-- fish.c
+|   |-- image.c
+|   |-- main.c
+|   `-- music.c
+`-- tags
+

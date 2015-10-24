@@ -1,0 +1,95 @@
+								项目需求
+										时间:20150827   作者:徐远志
+
+一	组长：徐远志	分配：
+	组员：			分配：	
+
+二	项目描述
+	
+三  目录结构
+|-- assignment
+|-- audio
+|-- include
+|   |-- barrier.h
+|   |-- debug.h
+|   |-- fish.h
+|   |-- image.h
+|   |-- keyevent.h
+|   |-- music.h
+|   `-- public.h
+|-- picture
+|-- src
+|   |-- barrier.c
+|   |-- fish.c
+|   |-- image.c
+|   |-- main.c
+|   `-- music.c
+|-- tags
+`-- 架构.txt
+
+
+三	接口定义
+
+四	变量名定义
+
+五
+	int main()
+	{
+		while(1)
+		{
+			//
+			case : init
+			{
+				initSDL();
+				loadPic();
+				loadAudio();
+			}
+			case: menu
+			{
+				drawPic();//显示主窗口
+				operMenu();//操作主菜单，开始按钮，退出按钮
+			}
+			case :start
+			{
+			    while(GameState == START)
+				{
+					1.画游戏界面，画鱼；
+					2.创建障碍控制线程；	
+					threadbarrier
+					{
+						moveSprite(SPRITE_S* psSprite, int nOffet, int nDirect);	
+					}
+					
+					3.创建fish控制线程；
+					threadfish;
+					{
+						while(pollevent())	
+						{
+							switch(eventtype)
+							{
+								case UP:
+								{
+									moveSprite(SPRITE_S* psSprite, int nOffet, int nDirect);	
+								}
+								case DOWN:
+								{
+									moveSprite(SPRITE_S* psSprite, int nOffet, int nDirect);	
+								}
+							}
+						}
+					}
+				}
+
+			}
+			case : esc
+			{
+				destorySDL();
+				destoryPicSur();
+				destoryMusic();
+			}
+		}
+	
+		return 0;
+	}
+	
+
