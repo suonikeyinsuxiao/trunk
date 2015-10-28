@@ -14,10 +14,10 @@
 
 PRINT_F printf = (void*)0x43E11434;
 
-//#define LEDTEST
+#define LEDTEST
 //#define BUZZERTEST
 //#define UARTTEST
-#define KEYTEST
+//#define KEYTEST
 
 int _start(void)
 {
@@ -26,25 +26,28 @@ int _start(void)
 
 	//led
 #ifdef LEDTEST 
-	struct tiny4412_gpio_bank* psBank = GPM4CON_ADDR; 
-	gpio_direction_output(psBank, 0, 1);//GPM4:0 output
-	gpio_direction_output(psBank, 1, 1);//GPM4:1 output
-	gpio_direction_output(psBank, 2, 1);//GPM4:2 output
-	gpio_direction_output(psBank, 3, 1);//GPM4:3 output
+	//struct tiny4412_gpio_bank* psBank = GPM4CON_ADDR; 
+	//gpio_direction_output(psBank, 0, 1);//GPM4:0 output
+	//gpio_direction_output(psBank, 1, 1);//GPM4:1 output
+	//gpio_direction_output(psBank, 2, 1);//GPM4:2 output
+	//gpio_direction_output(psBank, 3, 1);//GPM4:3 output
 
 	while(1)
 	{
-		gpio_set_value(psBank, 0 ,0);
-		gpio_set_value(psBank, 1 ,0);
-		gpio_set_value(psBank, 2 ,0);
-		gpio_set_value(psBank, 3 ,0);
+		//gpio_set_value(psBank, 0 ,0);
+		//gpio_set_value(psBank, 1 ,0);
+		//gpio_set_value(psBank, 2 ,0);
+		//gpio_set_value(psBank, 3 ,0);
+		ledOn(0);
 
 		delay();
 
-		gpio_set_value(psBank, 0 , 1);
-		gpio_set_value(psBank, 1 , 1);
-		gpio_set_value(psBank, 2 , 1);
-		gpio_set_value(psBank, 3 , 1);
+		ledOff(0);
+
+		//gpio_set_value(psBank, 0 , 1);
+		//gpio_set_value(psBank, 1 , 1);
+		//gpio_set_value(psBank, 2 , 1);
+		//gpio_set_value(psBank, 3 , 1);
 			
 		delay();
 	}

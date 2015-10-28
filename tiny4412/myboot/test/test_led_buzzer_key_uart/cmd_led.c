@@ -31,3 +31,19 @@ void ledAllOff(void)
 	gpio_set_value(psBank, 2 ,1);
 	gpio_set_value(psBank, 3 ,1);
 }
+
+void ledOn(int which)
+{
+	if (which < 0 || which >3)
+		return;
+	struct tiny4412_gpio_bank* psBank = (struct tiny4412_gpio_bank*)GPM4CON_ADDR; 
+	gpio_set_value(psBank, which ,0);
+}
+
+void ledOff(int which)
+{
+	if (which < 0 || which >3)
+		return;
+	struct tiny4412_gpio_bank* psBank = (struct tiny4412_gpio_bank*)GPM4CON_ADDR; 
+	gpio_set_value(psBank, which ,1);
+}
