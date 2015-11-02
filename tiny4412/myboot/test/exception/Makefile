@@ -9,4 +9,4 @@ all:
 
 
 clean:
-	rm -rf *.o  test.bin  
+	rm -rf *.o  test.bin  test

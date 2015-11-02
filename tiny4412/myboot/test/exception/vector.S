@@ -24,8 +24,8 @@ reset:
 undefined_instruction:
 	stmfd sp!, {r0-r12, lr}
 
-	ldr r0, =0x51000004
-	ldr r1, [r0]
+	ldr r0, =0x51000000
+	ldr r1, [r0, #4]
 
 	mov lr, pc
 	mov pc, r1
@@ -35,8 +35,8 @@ undefined_instruction:
 svc:
 	stmfd sp!, {r0-r12, lr}
 
-	ldr r0, =0x51000008
-	ldr r1, [r0]
+	ldr r0, =0x51000000
+	ldr r1, [r0, #8]
 
 	mov lr, pc
 	mov pc, r1
@@ -46,8 +46,8 @@ svc:
 prefetchAbt:
 	stmfd sp!, {r0-r12, lr}
 
-	ldr r0, =0x5100000c
-	ldr r1, [r0]
+	ldr r0, =0x51000000
+	ldr r1, [r0, #0xc]
 
 	mov lr, pc
 	mov pc, r1
@@ -57,8 +57,8 @@ prefetchAbt:
 dataAbt:
 	stmfd sp!, {r0-r12, lr}
 
-	ldr r0, =0x51000010
-	ldr r1, [r0]
+	ldr r0, =0x51000000
+	ldr r1, [r0, #0x10]
 
 	mov lr, pc
 	mov pc, r1
@@ -68,8 +68,8 @@ dataAbt:
 irq:
 	stmfd sp!, {r0-r12, lr}
 
-	ldr r0, =0x51000014
-	ldr r1, [r0]
+	ldr r0, =0x51000000
+	ldr r1, [r0, #0x14]
 
 	mov lr, pc
 	mov pc, r1
@@ -79,40 +79,13 @@ irq:
 fiq:
 	stmfd sp!, {r0-r12, lr}
 
-	ldr r0, =0x51000018
-	ldr r1, [r0]
+	ldr r0, =0x51000000
+	ldr r1, [r0, #0x18]
 
 	mov lr, pc
 	mov pc, r1
 
 	ldmfd sp!, {r0-r12, pc}^
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	b	undefined_instruction
-	b   svc
-	b   prefetchAbt
-	b   dataAbt
-	nop
-	b   irq
-	b   fiq
 
 .global _end_vector
 _end_vector:
