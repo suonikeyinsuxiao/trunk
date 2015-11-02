@@ -3,5 +3,7 @@
 *.out
 *.bin
 *.swp
+*.elf
+*.dis
 zImage
 tags
