@@ -10,7 +10,7 @@ SECTIONS
 
 	.text :
 	{
-		adc.o(*) ; 
+		test.o(*) ; 
 		*.o(*)
 	}
 	
