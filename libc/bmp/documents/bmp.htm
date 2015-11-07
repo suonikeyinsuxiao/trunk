@@ -1,0 +1,3319 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0037)http://en.wikipedia.org/wiki/BMP_file -->
+<HTML dir=ltr lang=en xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>BMP file format - Wikipedia, the free encyclopedia</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META content=text/css http-equiv=Content-Style-Type>
+<META name=GENERATOR content="MSHTML 8.00.6001.19019"><LINK rel=canonical 
+href="/wiki/BMP_file_format"><LINK title="Edit this page" rel=alternate 
+type=application/x-wiki 
+href="/w/index.php?title=BMP_file_format&amp;action=edit"><LINK 
+title="Edit this page" rel=edit 
+href="/w/index.php?title=BMP_file_format&amp;action=edit"><LINK 
+rel=apple-touch-icon href="http://en.wikipedia.org/apple-touch-icon.png"><LINK 
+rel="shortcut icon" href="/favicon.ico"><LINK title="Wikipedia (en)" rel=search 
+type=application/opensearchdescription+xml href="/w/opensearch_desc.php"><LINK 
+rel=EditURI type=application/rsd+xml 
+href="http://en.wikipedia.org/w/api.php?action=rsd"><LINK rel=copyright 
+href="http://creativecommons.org/licenses/by-sa/3.0/"><LINK 
+title="Wikipedia Atom feed" rel=alternate type=application/atom+xml 
+href="/w/index.php?title=Special:RecentChanges&amp;feed=atom"><LINK 
+rel=stylesheet type=text/css href="bmp_files/load.css" media=all>
+<META name=ResourceLoaderDynamicStyles content=""><LINK rel=stylesheet 
+type=text/css href="bmp_files/load(1).css" media=all>
+<STYLE type=text/css media=all>A.new {
+	COLOR: #ba0000
+}
+#quickbar A.new {
+	COLOR: #ba0000
+}
+</STYLE>
+
+<STYLE type=text/css>.source-c {
+	LINE-HEIGHT: normal
+}
+.source-c LI {
+	BORDER-BOTTOM: white 0px; BORDER-LEFT: white 0px; LINE-HEIGHT: normal; BORDER-TOP: white 0px; BORDER-RIGHT: white 0px
+}
+.source-c PRE {
+	BORDER-BOTTOM: white 0px; BORDER-LEFT: white 0px; LINE-HEIGHT: normal; BORDER-TOP: white 0px; BORDER-RIGHT: white 0px
+}
+.source-c.c .de1 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT: 1em/1.2em monospace; BACKGROUND: none transparent scroll repeat 0% 0%; VERTICAL-ALIGN: top; PADDING-TOP: 0px
+}
+.source-c.c .de2 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT: 1em/1.2em monospace; BACKGROUND: none transparent scroll repeat 0% 0%; VERTICAL-ALIGN: top; PADDING-TOP: 0px
+}
+.source-c.c {
+	FONT-FAMILY: monospace
+}
+.source-c.c .imp {
+	COLOR: red; FONT-WEIGHT: bold
+}
+.source-c.c LI {
+	VERTICAL-ALIGN: top; FONT-WEIGHT: normal
+}
+.source-c.c .li1 {
+	VERTICAL-ALIGN: top; FONT-WEIGHT: normal
+}
+.source-c.c .ln {
+	TEXT-ALIGN: right; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 2px; WIDTH: 1px; PADDING-RIGHT: 2px; VERTICAL-ALIGN: top; PADDING-TOP: 0px
+}
+.source-c.c .li2 {
+	VERTICAL-ALIGN: top; FONT-WEIGHT: bold
+}
+.source-c.c .kw1 {
+	COLOR: #b1b100
+}
+.source-c.c .kw2 {
+	COLOR: #000000; FONT-WEIGHT: bold
+}
+.source-c.c .kw3 {
+	COLOR: #000066
+}
+.source-c.c .kw4 {
+	COLOR: #993333
+}
+.source-c.c .co1 {
+	FONT-STYLE: italic; COLOR: #666666
+}
+.source-c.c .co2 {
+	COLOR: #339933
+}
+.source-c.c .coMULTI {
+	FONT-STYLE: italic; COLOR: #808080
+}
+.source-c.c .es0 {
+	COLOR: #000099; FONT-WEIGHT: bold
+}
+.source-c.c .es1 {
+	COLOR: #000099; FONT-WEIGHT: bold
+}
+.source-c.c .es2 {
+	COLOR: #660099; FONT-WEIGHT: bold
+}
+.source-c.c .es3 {
+	COLOR: #660099; FONT-WEIGHT: bold
+}
+.source-c.c .es4 {
+	COLOR: #660099; FONT-WEIGHT: bold
+}
+.source-c.c .es5 {
+	COLOR: #006699; FONT-WEIGHT: bold
+}
+.source-c.c .br0 {
+	COLOR: #009900
+}
+.source-c.c .sy0 {
+	COLOR: #339933
+}
+.source-c.c .st0 {
+	COLOR: #ff0000
+}
+.source-c.c .nu0 {
+	COLOR: #0000dd
+}
+.source-c.c .nu6 {
+	COLOR: #208080
+}
+.source-c.c .nu8 {
+	COLOR: #208080
+}
+.source-c.c .nu12 {
+	COLOR: #208080
+}
+.source-c.c .nu16 {
+	COLOR: #800080
+}
+.source-c.c .nu17 {
+	COLOR: #800080
+}
+.source-c.c .nu18 {
+	COLOR: #800080
+}
+.source-c.c .nu19 {
+	COLOR: #800080
+}
+.source-c.c .me1 {
+	COLOR: #202020
+}
+.source-c.c .me2 {
+	COLOR: #202020
+}
+.source-c.c .ln-xtra {
+	BACKGROUND-COLOR: #ffc
+}
+.source-c.c LI.ln-xtra {
+	BACKGROUND-COLOR: #ffc
+}
+.source-c.c DIV.ln-xtra {
+	BACKGROUND-COLOR: #ffc
+}
+.source-c.c SPAN.xtra {
+	DISPLAY: block
+}
+</STYLE>
+
+<STYLE type=text/css>@import url( /w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400 );
+</STYLE>
+
+<SCRIPT type=text/javascript>wgNamespaceNumber=0;wgAction="view";wgPageName="BMP_file_format";wgMainPageTitle="Main Page";wgWikimediaMobileUrl="http:\/\/en.m.wikipedia.org\/wiki";</SCRIPT>
+
+<SCRIPT type=text/javascript src="bmp_files/MobileRedirect.js"></SCRIPT>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/skins-1.17/vector/csshover.min.htc")}</style><![endif]--></HEAD>
+<BODY class="mediawiki ltr ns-0 ns-subject page-BMP_file_format skin-vector">
+<DIV id=mw-page-base class=noprint></DIV>
+<DIV id=mw-head-base class=noprint></DIV><!-- content -->
+<DIV id=content><A id=top></A>
+<DIV style="DISPLAY: none" id=mw-js-message></DIV><!-- sitenotice -->
+<DIV id=siteNotice><!-- centralNotice loads here -->
+<SCRIPT type=text/javascript>
+/* <![CDATA[ */
+document.writeln("\x3cdiv id=\"localNotice\"\x3e\x3cp\x3e\x3c/p\x3e\n\x3c/div\x3e");
+/* ]]> */
+</SCRIPT>
+</DIV><!-- /sitenotice --><!-- firstHeading -->
+<H1 id=firstHeading class=firstHeading>BMP file format</H1><!-- /firstHeading --><!-- bodyContent -->
+<DIV id=bodyContent><!-- tagline -->
+<DIV id=siteSub>From Wikipedia, the free encyclopedia</DIV><!-- /tagline --><!-- subtitle -->
+<DIV id=contentSub>&nbsp;&nbsp;(Redirected from <A title="BMP file" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file&amp;redirect=no">BMP 
+file</A>)</DIV><!-- /subtitle --><!-- jumpto -->
+<DIV id=jump-to-nav>Jump to: <A 
+href="http://en.wikipedia.org/wiki/BMP_file#mw-head">navigation</A>, <A 
+href="http://en.wikipedia.org/wiki/BMP_file#p-search">search</A> </DIV><!-- /jumpto --><!-- bodytext -->
+<TABLE style="WIDTH: 22em" class=infobox cellSpacing=5>
+  <CAPTION>Windows Bitmap</CAPTION>
+  <TBODY>
+  <TR>
+    <TH style="TEXT-ALIGN: left" scope=row><A 
+      href="http://en.wikipedia.org/wiki/Filename_extension">Filename 
+      extension</A></TH>
+    <TD><CODE>.bmp or .dib</CODE></TD></TR>
+  <TR>
+    <TH style="TEXT-ALIGN: left" scope=row><A 
+      href="http://en.wikipedia.org/wiki/Internet_media_type">Internet media 
+      type</A></TH>
+    <TD>
+      <P><CODE>image/x-ms-bmp</CODE> (unofficial) or</P><TT>image/x-bmp</TT> 
+      (unofficial)</TD></TR>
+  <TR>
+    <TH style="TEXT-ALIGN: left" scope=row><A 
+      href="http://en.wikipedia.org/wiki/Type_code">Type code</A></TH>
+    <TD><TT>'BMP '</TT><BR><TT>'BMPf'</TT><BR><TT>'BMPp'</TT></TD></TR>
+  <TR>
+    <TH style="TEXT-ALIGN: left" scope=row><A 
+      href="http://en.wikipedia.org/wiki/Uniform_Type_Identifier">Uniform Type 
+      Identifier</A></TH>
+    <TD>com.microsoft.bmp</TD></TR>
+  <TR>
+    <TH style="TEXT-ALIGN: left" scope=row>Type of format</TH>
+    <TD><A href="http://en.wikipedia.org/wiki/Raster_graphics">Raster 
+      graphics</A></TD></TR></TBODY></TABLE>
+<P>The <B>BMP File Format</B>, also known as <B>Bitmap Image File</B> or 
+<B>Device Independent Bitmap (DIB) file format</B> or simply a <B>Bitmap</B>, is 
+a <A href="http://en.wikipedia.org/wiki/Raster_graphics">Raster graphics</A> <A 
+class=mw-redirect title="Image file format" 
+href="http://en.wikipedia.org/wiki/Image_file_format">image file format</A> used 
+to store <A href="http://en.wikipedia.org/wiki/Bitmap">bitmap</A> <A 
+title="Digital image" href="http://en.wikipedia.org/wiki/Digital_image">digital 
+images</A>, independently of the <A 
+href="http://en.wikipedia.org/wiki/Display_device">display device</A> (such as a 
+<A title="Video card" href="http://en.wikipedia.org/wiki/Video_card">graphics 
+adapter</A>), especially on <A 
+href="http://en.wikipedia.org/wiki/Microsoft_Windows">Microsoft Windows</A> and 
+<A href="http://en.wikipedia.org/wiki/OS/2">OS/2</A> operating systems.</P>
+<P>The BMP File Format is capable of storing 2D <A title="Digital image" 
+href="http://en.wikipedia.org/wiki/Digital_image">digital images</A> of 
+arbitrary width, height, and resolution, both <A 
+href="http://en.wikipedia.org/wiki/Monochrome">monochrome</A> and color, in 
+various <A title="Color depth" 
+href="http://en.wikipedia.org/wiki/Color_depth">color depths</A>, and optionally 
+with <A href="http://en.wikipedia.org/wiki/Data_compression">data 
+compression</A>, <A title="Alpha compositing" 
+href="http://en.wikipedia.org/wiki/Alpha_compositing">alpha channels</A>, and <A 
+title="Color management" 
+href="http://en.wikipedia.org/wiki/Color_management">color profiles</A>.</P>
+<TABLE id=toc class=toc>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV id=toctitle>
+      <H2>Contents</H2></DIV>
+      <UL>
+        <LI class="toclevel-1 tocsection-1"><A 
+        href="http://en.wikipedia.org/wiki/BMP_file#Device-independent_bitmaps_and_BMP_file_format"><SPAN 
+        class=tocnumber>1</SPAN> <SPAN class=toctext>Device-independent bitmaps 
+        and BMP file format</SPAN></A> 
+        <LI class="toclevel-1 tocsection-2"><A 
+        href="http://en.wikipedia.org/wiki/BMP_file#File_Structure"><SPAN 
+        class=tocnumber>2</SPAN> <SPAN class=toctext>File Structure</SPAN></A> 
+        <UL>
+          <LI class="toclevel-2 tocsection-3"><A 
+          href="http://en.wikipedia.org/wiki/BMP_file#DIBs_in_memory"><SPAN 
+          class=tocnumber>2.1</SPAN> <SPAN class=toctext>DIBs in 
+          memory</SPAN></A> 
+          <LI class="toclevel-2 tocsection-4"><A 
+          href="http://en.wikipedia.org/wiki/BMP_file#Bitmap_file_header"><SPAN 
+          class=tocnumber>2.2</SPAN> <SPAN class=toctext>Bitmap file 
+          header</SPAN></A> 
+          <LI class="toclevel-2 tocsection-5"><A 
+          href="http://en.wikipedia.org/wiki/BMP_file#DIB_Header_.28Bitmap_Information_Header.29"><SPAN 
+          class=tocnumber>2.3</SPAN> <SPAN class=toctext>DIB Header (Bitmap 
+          Information Header)</SPAN></A> 
+          <LI class="toclevel-2 tocsection-6"><A 
+          href="http://en.wikipedia.org/wiki/BMP_file#Color_Table"><SPAN 
+          class=tocnumber>2.4</SPAN> <SPAN class=toctext>Color Table</SPAN></A> 
+          <LI class="toclevel-2 tocsection-7"><A 
+          href="http://en.wikipedia.org/wiki/BMP_file#Pixel_Storage"><SPAN 
+          class=tocnumber>2.5</SPAN> <SPAN class=toctext>Pixel 
+          Storage</SPAN></A> 
+          <UL>
+            <LI class="toclevel-3 tocsection-8"><A 
+            href="http://en.wikipedia.org/wiki/BMP_file#Pixel_Array_.28bitmap_data.29"><SPAN 
+            class=tocnumber>2.5.1</SPAN> <SPAN class=toctext>Pixel Array (bitmap 
+            data)</SPAN></A> 
+            <LI class="toclevel-3 tocsection-9"><A 
+            href="http://en.wikipedia.org/wiki/BMP_file#Compression"><SPAN 
+            class=tocnumber>2.5.2</SPAN> <SPAN 
+            class=toctext>Compression</SPAN></A> 
+            <LI class="toclevel-3 tocsection-10"><A 
+            href="http://en.wikipedia.org/wiki/BMP_file#Pixel_Format"><SPAN 
+            class=tocnumber>2.5.3</SPAN> <SPAN class=toctext>Pixel 
+            Format</SPAN></A> </LI></UL>
+          <LI class="toclevel-2 tocsection-11"><A 
+          href="http://en.wikipedia.org/wiki/BMP_file#Example_of_a_2.C3.972_Pixel.2C_24-Bit_Bitmap_.28Windows_DIB_Header_BITMAPINFOHEADER.29"><SPAN 
+          class=tocnumber>2.6</SPAN> <SPAN class=toctext>Example of a 2×2 Pixel, 
+          24-Bit Bitmap (Windows DIB Header BITMAPINFOHEADER)</SPAN></A> 
+          <LI class="toclevel-2 tocsection-12"><A 
+          href="http://en.wikipedia.org/wiki/BMP_file#Example_of_a_4.C3.972_Pixel.2C_32-Bit_Bitmap_with_Opacity_Values_in_the_Alpha_Channel_.28Windows_DIB_Header_BITMAPV4HEADER.29"><SPAN 
+          class=tocnumber>2.7</SPAN> <SPAN class=toctext>Example of a 4×2 Pixel, 
+          32-Bit Bitmap with Opacity Values in the Alpha Channel (Windows DIB 
+          Header BITMAPV4HEADER)</SPAN></A> </LI></UL>
+        <LI class="toclevel-1 tocsection-13"><A 
+        href="http://en.wikipedia.org/wiki/BMP_file#Usage_of_BMP_format"><SPAN 
+        class=tocnumber>3</SPAN> <SPAN class=toctext>Usage of BMP 
+        format</SPAN></A> 
+        <LI class="toclevel-1 tocsection-14"><A 
+        href="http://en.wikipedia.org/wiki/BMP_file#Related_formats"><SPAN 
+        class=tocnumber>4</SPAN> <SPAN class=toctext>Related formats</SPAN></A> 
+        <LI class="toclevel-1 tocsection-15"><A 
+        href="http://en.wikipedia.org/wiki/BMP_file#See_also"><SPAN 
+        class=tocnumber>5</SPAN> <SPAN class=toctext>See also</SPAN></A> 
+        <LI class="toclevel-1 tocsection-16"><A 
+        href="http://en.wikipedia.org/wiki/BMP_file#References"><SPAN 
+        class=tocnumber>6</SPAN> <SPAN class=toctext>References</SPAN></A> 
+        <LI class="toclevel-1 tocsection-17"><A 
+        href="http://en.wikipedia.org/wiki/BMP_file#External_links"><SPAN 
+        class=tocnumber>7</SPAN> <SPAN class=toctext>External links</SPAN></A> 
+        </LI></UL></TD></TR></TBODY></TABLE>
+<H2><SPAN class=editsection>[<A 
+title="Edit section: Device-independent bitmaps and BMP file format" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=1">edit</A>]</SPAN> 
+<SPAN id=Device-independent_bitmaps_and_BMP_file_format 
+class=mw-headline>Device-independent bitmaps and BMP file format</SPAN></H2>
+<P>Microsoft has defined a particular representation of color bitmaps of 
+different color depths, as an aid to exchanging bitmaps between devices and 
+applications with a variety of internal representations. They called these 
+device-independent bitmaps or DIBs, and the file format for them is called DIB 
+file format or BMP image file format. According to Microsoft support:<SUP 
+id=cite_ref-DIBhelp_0-0 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBhelp-0"><SPAN>[</SPAN>1<SPAN>]</SPAN></A></SUP></P>
+<BLOCKQUOTE>
+  <P><I>A device-independent bitmap (DIB) is a format used to define 
+  device-independent bitmaps in various color resolutions. The main purpose of 
+  DIBs is to allow bitmaps to be moved from one device to another (hence, the 
+  device-independent part of the name). A DIB is an external format, in contrast 
+  to a device-dependent bitmap, which appears in the system as a bitmap object 
+  (created by an application...). A DIB is normally transported in metafiles 
+  (usually using the StretchDIBits() function), BMP files, and the Clipboard 
+  (CF_DIB data format).</I></P></BLOCKQUOTE>
+<P>The following sections discuss the data stored in the BMP file or DIB in 
+details. This is the standard BMP file format.<SUP id=cite_ref-DIBhelp_0-1 
+class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBhelp-0"><SPAN>[</SPAN>1<SPAN>]</SPAN></A></SUP> 
+Some applications create bitmap image files which are not compliant with the 
+current Microsoft documentation. Also, not all fields are used; a value of 0 
+will be found in these unused fields.</P>
+<H2><SPAN class=editsection>[<A title="Edit section: File Structure" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=2">edit</A>]</SPAN> 
+<SPAN id=File_Structure class=mw-headline>File Structure</SPAN></H2>
+<DIV class="thumb tright">
+<DIV style="WIDTH: 642px" class=thumbinner><A class=image 
+href="http://en.wikipedia.org/wiki/File:BMPfileFormat.png"><IMG class=thumbimage 
+alt="" src="bmp_files/BMPfileFormat.png" width=640 height=1333></A> 
+<DIV class=thumbcaption>
+<DIV class=magnify><A class=internal title=Enlarge 
+href="http://en.wikipedia.org/wiki/File:BMPfileFormat.png"><IMG alt="" 
+src="bmp_files/magnify-clip.png" width=15 height=11></A></DIV><B>Diag.1 - The 
+Structure of the Bitmap Image File (BMP)</B></DIV></DIV></DIV>
+<P>The <B>Bitmap Image File</B> consists of fixed-size structures (headers) as 
+well as variable-size structures appearing in a predetermined sequence. Many 
+different versions of some of these structures can appear in the file, due to 
+the long evolution of this file format.</P>
+<P>Referring to the Diagram 1, the <B>Bitmap Image File</B> is composed of 
+structures in the following order:</P>
+<TABLE style="MARGIN: 1em auto" class=wikitable>
+  <TBODY>
+  <TR>
+    <TH>Structure Name</TH>
+    <TH>Optional</TH>
+    <TH>Size</TH>
+    <TH>Purpose</TH>
+    <TH>Comments</TH></TR>
+  <TR>
+    <TD><B>Bitmap File Header</B></TD>
+    <TD>No</TD>
+    <TD>14 Bytes</TD>
+    <TD>To store general information about the Bitmap Image File</TD>
+    <TD>Not needed after the file is loaded in memory</TD></TR>
+  <TR>
+    <TD><B>DIB Header</B></TD>
+    <TD>No</TD>
+    <TD>Fixed-size<BR>(however 7 different versions exist)</TD>
+    <TD>To store detailed information about the bitmap image and define the 
+      pixel format</TD>
+    <TD>Immediately follows the Bitmap File Header</TD></TR>
+  <TR>
+    <TD><B>Extra bit masks</B></TD>
+    <TD>Yes</TD>
+    <TD>3 or 4 DWORDs<SUP id=cite_ref-AlphaBitFields_1-0 class=reference><A 
+      href="http://en.wikipedia.org/wiki/BMP_file#cite_note-AlphaBitFields-1"><SPAN>[</SPAN>2<SPAN>]</SPAN></A></SUP><BR>(12 
+      or 16 Bytes)</TD>
+    <TD>To define the pixel format</TD>
+    <TD>Present only in case the DIB Header is the BITMAPINFOHEADER</TD></TR>
+  <TR>
+    <TD><B>Color Table</B></TD>
+    <TD>Semi-optional</TD>
+    <TD>Variable-size</TD>
+    <TD>To define colors used by the bitmap image data (Pixel Array)</TD>
+    <TD>Mandatory for <A title="Color depth" 
+      href="http://en.wikipedia.org/wiki/Color_depth">color depths</A> &lt;= 
+  8</TD></TR>
+  <TR>
+    <TD><B>Gap1</B></TD>
+    <TD>Yes</TD>
+    <TD>Variable-size</TD>
+    <TD>Structure alignment</TD>
+    <TD>An artifact of the File Offset to PixelArray in the Bitmap File 
+    Header</TD></TR>
+  <TR>
+    <TD><B>Pixel Array</B></TD>
+    <TD>No</TD>
+    <TD>Variable-size</TD>
+    <TD>To define the actual values of the pixels</TD>
+    <TD>The pixel format is defined by the DIB Header or Extra bit masks. Each 
+      row in the Pixel Array is padded to a multiple of 4 bytes in size</TD></TR>
+  <TR>
+    <TD><B>Gap2</B></TD>
+    <TD>Yes</TD>
+    <TD>Variable-size</TD>
+    <TD>Structure alignment</TD>
+    <TD>An artifact of the ICC Profile Data offset field in the DIB 
+  Header</TD></TR>
+  <TR>
+    <TD><B>ICC Color Profile</B></TD>
+    <TD>Yes</TD>
+    <TD>Variable-size</TD>
+    <TD>To define the <A title="Color management" 
+      href="http://en.wikipedia.org/wiki/Color_management">color profile</A> for 
+      <A href="http://en.wikipedia.org/wiki/Color_management">Color 
+      management</A></TD>
+    <TD>Can also contain a path to an external file containing the Color 
+      Profile. When loaded in memory as "non-packed DIB", it is located between 
+      the Color Table and Gap1.<SUP id=cite_ref-DIBHeaderTypes_2-0 
+      class=reference><A 
+      href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBHeaderTypes-2"><SPAN>[</SPAN>3<SPAN>]</SPAN></A></SUP></TD></TR></TBODY></TABLE>
+<H3><SPAN class=editsection>[<A title="Edit section: DIBs in memory" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=3">edit</A>]</SPAN> 
+<SPAN id=DIBs_in_memory class=mw-headline>DIBs in memory</SPAN></H3>
+<P>A Bitmap Image File loaded into memory becomes a DIB data structure - an 
+important component of the Windows GDI API. The in-memory DIB data structure is 
+almost the same as the BMP file format, but it does not contain the 14-byte 
+Bitmap File Header and begins with the DIB Header. For DIBs loaded in memory, 
+the Color Table can also consist of 16 bit entries, that constitute indexes to 
+the currently realized palette<SUP id=cite_ref-BITMAPINFO_3-0 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-BITMAPINFO-3"><SPAN>[</SPAN>4<SPAN>]</SPAN></A></SUP> 
+(an additional level of indirection), instead of explicit RGB color definitions. 
+In all cases, the Pixel Array must begin at a memory address that is a multiple 
+of 4 bytes. In non-packed DIBs loaded in memory, the optional Color Profile data 
+should be located immediately after the Color Table and before the Gap1 and 
+Pixel Array<SUP id=cite_ref-DIBHeaderTypes_2-1 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBHeaderTypes-2"><SPAN>[</SPAN>3<SPAN>]</SPAN></A></SUP> 
+(unlike in Diag.1).</P>
+<P>When the size of Gap1 and Gap2 is zero, the in-memory DIB data structure is 
+customarily referred to as "<B>packed DIB</B>" and can be referred to by a 
+single pointer pointing to the beginning of the DIB Header. In all cases, the 
+Pixel Array must begin at a memory address that is a multiple of 4 bytes. In 
+some cases it may be necessary to adjust the number of entries in the Color 
+Table in order to force the memory address of the Pixel Array to a multiple of 4 
+bytes.<SUP id=cite_ref-BITMAPINFO_3-1 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-BITMAPINFO-3"><SPAN>[</SPAN>4<SPAN>]</SPAN></A></SUP> 
+For "packed DIBs" loaded in memory, the optional Color Profile data should 
+immediately follow the Pixel Array, as depicted in Diag.1 (with Gap1=0 and 
+Gap2=0).<SUP id=cite_ref-DIBHeaderTypes_2-2 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBHeaderTypes-2"><SPAN>[</SPAN>3<SPAN>]</SPAN></A></SUP><BR>"Packed 
+DIBs" are required by <A class=mw-redirect title=Windows 
+href="http://en.wikipedia.org/wiki/Windows">Windows</A> clipboard API functions 
+as well as by some <A class=mw-redirect title=Windows 
+href="http://en.wikipedia.org/wiki/Windows">Windows</A> patterned brush and 
+resource functions.<SUP id=cite_ref-PackedDIB_4-0 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-PackedDIB-4"><SPAN>[</SPAN>5<SPAN>]</SPAN></A></SUP></P>
+<H3><SPAN class=editsection>[<A title="Edit section: Bitmap file header" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=4">edit</A>]</SPAN> 
+<SPAN id=Bitmap_file_header class=mw-headline>Bitmap file header</SPAN></H3>
+<P>This block of bytes is at the start of the file and is used to identify the 
+file. A typical application reads this block first to ensure that the file is 
+actually a BMP file and that it is not damaged. The first two bytes of the BMP 
+file format are the character 'B' then the character 'M' in 1-byte <A 
+href="http://en.wikipedia.org/wiki/ASCII">ASCII</A> encoding. All of the integer 
+values are stored in <A class=mw-redirect title=Little-endian 
+href="http://en.wikipedia.org/wiki/Little-endian">little-endian</A> format (i.e. 
+least-significant byte first).</P>
+<TABLE style="MARGIN: 1em auto" class=wikitable>
+  <TBODY>
+  <TR>
+    <TH>Offset#</TH>
+    <TH>Size</TH>
+    <TH>Purpose</TH></TR>
+  <TR>
+    <TD>0000<SUB>h</SUB></TD>
+    <TD>2 bytes</TD>
+    <TD>the <A title="Magic number (programming)" 
+      href="http://en.wikipedia.org/wiki/Magic_number_(programming)">Header 
+      field</A> used to identify the BMP &amp; DIB file is 0x42 0x4D in <A 
+      href="http://en.wikipedia.org/wiki/Hexadecimal">Hexadecimal</A>, same as 
+      <B>BM</B> in ASCII. The following entries are possible: 
+      <UL>
+        <LI><B>BM</B> – Windows 3.1x, 95, NT, ... etc; and it's not mandatory 
+        unless filesize <A class=mw-redirect title=GET 
+        href="http://en.wikipedia.org/wiki/GET">greater or equal than</A>4 or 
+        SIGNATURE 
+        <LI><B>BA</B> – OS/2 struct Bitmap Array 
+        <LI><B>CI</B> – OS/2 struct Color Icon 
+        <LI><B>&amp;CP</B> – OS/2 const Color Pointer 
+        <LI><B>IC</B> – OS/2 struct Icon 
+        <LI><B>*PT</B> – OS/2 Pointer </LI></UL></TD></TR>
+  <TR>
+    <TD>0002<SUB>h</SUB></TD>
+    <TD>4 bytes</TD>
+    <TD>the size of the BMP file in bytes</TD></TR>
+  <TR>
+    <TD>0006<SUB>h</SUB></TD>
+    <TD>2 bytes</TD>
+    <TD>reserved; actual value depends on the application that creates the 
+      image</TD></TR>
+  <TR>
+    <TD>0008<SUB>h</SUB></TD>
+    <TD>2 bytes</TD>
+    <TD>reserved; actual value depends on the application that creates the 
+      image</TD></TR>
+  <TR>
+    <TD>000A<SUB>h</SUB></TD>
+    <TD>4 bytes</TD>
+    <TD>the <A title="Offset (computer science)" 
+      href="http://en.wikipedia.org/wiki/Offset_(computer_science)">offset</A>, 
+      i.e. starting address, of the byte where the bitmap image data (Pixel 
+      Array) can be found.</TD></TR></TBODY></TABLE>
+<P><I>Equivalent C++ -Language Header</I></P>
+<DIV style="TEXT-ALIGN: left" dir=ltr class=mw-geshi>
+<DIV style="FONT-FAMILY: monospace" class="c source-c"><PRE class=de1><SPAN class=co2>#include &lt;stdint.h&gt;</SPAN>
+ 
+<SPAN class=coMULTI>/* Note: the magic number has been removed from the bmpfile_header structure
+   since it causes alignment problems
+     struct bmpfile_magic should be written/read first
+   followed by the
+     struct bmpfile_header
+   [this avoids compiler-specific alignment pragmas etc.]
+*/</SPAN>
+ 
+<SPAN class=kw4>struct</SPAN> bmpfile_magic <SPAN class=br0>{</SPAN>
+  <SPAN class=kw4>unsigned</SPAN> <SPAN class=kw4>char</SPAN> magic<SPAN class=br0>[</SPAN>2<SPAN class=br0>]</SPAN><SPAN class=sy0>;</SPAN>
+<SPAN class=br0>}</SPAN><SPAN class=sy0>;</SPAN>
+ 
+<SPAN class=kw4>struct</SPAN> bmpfile_header <SPAN class=br0>{</SPAN>
+  uint32_t filesz<SPAN class=sy0>;</SPAN>
+  uint16_t creator1<SPAN class=sy0>;</SPAN>
+  uint16_t creator2<SPAN class=sy0>;</SPAN>
+  uint32_t bmp_offset<SPAN class=sy0>;</SPAN>
+<SPAN class=br0>}</SPAN><SPAN class=sy0>;</SPAN>
+</PRE></DIV></DIV>
+<H3><SPAN class=editsection>[<A 
+title="Edit section: DIB Header (Bitmap Information Header)" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=5">edit</A>]</SPAN> 
+<SPAN id=DIB_Header_.28Bitmap_Information_Header.29 class=mw-headline>DIB Header 
+(Bitmap Information Header)</SPAN></H3>
+<P>This block of bytes tells the application detailed information about the 
+image, which will be used to display the image on the screen. The block also 
+matches the header used internally by Windows and OS/2 and has several different 
+variants. All of them contain a dword (32&nbsp;bit) field, specifying their 
+size, so that an application can easily determine which header is used in the 
+image. The reason that there are different headers is that Microsoft extended 
+the DIB format several times. The new extended headers can be used with some GDI 
+functions instead of the older ones, providing more functionality. Since the GDI 
+supports a function for loading bitmap files, typical Windows applications use 
+that functionality. One consequence of this is that for such applications, the 
+BMP formats that they support match the formats supported by the Windows version 
+being run. See the table below for more information.</P>
+<TABLE style="MARGIN: 1em auto" class=wikitable>
+  <TBODY>
+  <TR>
+    <TH>Size</TH>
+    <TH>Header Name</TH>
+    <TH>OS support</TH>
+    <TH>Features Added (incremental)</TH>
+    <TH>in Bitmap Files Written by</TH></TR>
+  <TR>
+    <TD>12</TD>
+    <TD>BITMAPCOREHEADER<BR>OS21XBITMAPHEADER</TD>
+    <TD><A href="http://en.wikipedia.org/wiki/OS/2">OS/2</A> and also all 
+      Windows versions since <A 
+      href="http://en.wikipedia.org/wiki/Windows_3.0">Windows 3.0</A></TD>
+    <TD></TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>64</TD>
+    <TD>BITMAPCOREHEADER2<BR>OS22XBITMAPHEADER</TD>
+    <TD><A href="http://en.wikipedia.org/wiki/OS/2">OS/2</A></TD>
+    <TD>Adds Halftoning. Adds RLE and Huffman 1D compression.</TD></TR>
+  <TR>
+    <TD>40</TD>
+    <TD>BITMAPINFOHEADER</TD>
+    <TD>all Windows versions since <A 
+      href="http://en.wikipedia.org/wiki/Windows_3.0">Windows 3.0</A></TD>
+    <TD>Removes RLE-24 and Huffman 1D compression. Adds 16bpp and 32bpp pixel 
+      formats. Adds optional RGB bit masks.</TD>
+    <TD>Adobe Photoshop</TD></TR>
+  <TR>
+    <TD>52</TD>
+    <TD>BITMAPV2INFOHEADER</TD>
+    <TD>Undocumented.</TD>
+    <TD>Removes optional RGB bit masks. Adds mandatory RGB bit masks.</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>56</TD>
+    <TD>BITMAPV3INFOHEADER</TD>
+    <TD>Undocumented.</TD>
+    <TD>Adds mandatory Alpha channel bit mask.</TD>
+    <TD>Adobe Photoshop</TD></TR>
+  <TR>
+    <TD>108</TD>
+    <TD>BITMAPV4HEADER</TD>
+    <TD>all Windows versions since Windows <A title="Windows 95" 
+      href="http://en.wikipedia.org/wiki/Windows_95">95</A>/<A 
+      title="Windows NT 4.0" 
+      href="http://en.wikipedia.org/wiki/Windows_NT_4.0">NT4</A></TD>
+    <TD>Adds <A href="http://en.wikipedia.org/wiki/Color_space">Color 
+      Space</A> type and <A 
+      href="http://en.wikipedia.org/wiki/Gamma_correction">Gamma 
+    correction</A></TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>124</TD>
+    <TD>BITMAPV5HEADER</TD>
+    <TD>Windows <A title="Windows 98" 
+      href="http://en.wikipedia.org/wiki/Windows_98">98</A>/<A 
+      title="Windows 2000" 
+      href="http://en.wikipedia.org/wiki/Windows_2000">2000</A> and newer</TD>
+    <TD>Adds <A title="ICC profile" 
+      href="http://en.wikipedia.org/wiki/ICC_profile">ICC Color Profiles</A></TD>
+    <TD></TD></TR></TBODY></TABLE>
+<P>Versions after BITMAPCOREHEADER only add fields to the end of the header of 
+the previous version. For example: BITMAPV2INFOHEADER adds fields to 
+BITMAPINFOHEADER and BITMAPV3INFOHEADER adds fields to BITMAPV2INFOHEADER (or, 
+BITMAPINFOHEADER is a stripped version of BITMAPV2INFOHEADER)</P>
+<P>For compatibility reasons, most applications use the older DIB headers for 
+saving files. With OS/2 being obsolete, for now the common format is the 
+BITMAPINFOHEADER header. See next table for its description. All values are 
+stored as <A title=Signedness 
+href="http://en.wikipedia.org/wiki/Signedness">unsigned integers</A>, unless 
+explicitly noted.</P>
+<TABLE style="MARGIN: 1em auto" class=wikitable>
+  <TBODY>
+  <TR>
+    <TH>Offset #</TH>
+    <TH>Size</TH>
+    <TH>Purpose</TH></TR>
+  <TR>
+    <TD>0Eh</TD>
+    <TD>4</TD>
+    <TD>the size of this header (40 bytes)</TD></TR>
+  <TR>
+    <TD>12h</TD>
+    <TD>4</TD>
+    <TD>the bitmap width in pixels (signed integer).</TD></TR>
+  <TR>
+    <TD>16h</TD>
+    <TD>4</TD>
+    <TD>the bitmap height in pixels (signed integer).</TD></TR>
+  <TR>
+    <TD>1Ah</TD>
+    <TD>2</TD>
+    <TD>the number of color planes being used. Must be set to 1.</TD></TR>
+  <TR>
+    <TD>1Ch</TD>
+    <TD>2</TD>
+    <TD>the number of bits per pixel, which is the color depth of the image. 
+      Typical values are 1, 4, 8, 16, 24 and 32.</TD></TR>
+  <TR>
+    <TD>1Eh</TD>
+    <TD>4</TD>
+    <TD>the compression method being used. See the next table for a list of 
+      possible values.</TD></TR>
+  <TR>
+    <TD>22h</TD>
+    <TD>4</TD>
+    <TD>the image size. This is the size of the raw bitmap data (see below), 
+      and should not be confused with the file size.</TD></TR>
+  <TR>
+    <TD>26h</TD>
+    <TD>4</TD>
+    <TD>the horizontal resolution of the image. (pixel per meter, signed 
+      integer)</TD></TR>
+  <TR>
+    <TD>2Ah</TD>
+    <TD>4</TD>
+    <TD>the vertical resolution of the image. (pixel per meter, signed 
+    integer)</TD></TR>
+  <TR>
+    <TD>2Eh</TD>
+    <TD>4</TD>
+    <TD>the number of colors in the color palette, or 0 to default to 
+      2<SUP><I>n</I></SUP>.</TD></TR>
+  <TR>
+    <TD>32h</TD>
+    <TD>4</TD>
+    <TD>the number of important colors used, or 0 when every color is 
+      important; generally ignored.</TD></TR></TBODY></TABLE>
+<P>Note: The image size field can be 0 for BI_RGB bitmaps.</P>
+<P><I>Equivalent C-Language Header</I></P>
+<DIV style="TEXT-ALIGN: left" dir=ltr class=mw-geshi>
+<DIV style="FONT-FAMILY: monospace" class="c source-c"><PRE class=de1><SPAN class=kw4>typedef</SPAN> <SPAN class=kw4>struct</SPAN> <SPAN class=br0>{</SPAN>
+  uint32_t header_sz<SPAN class=sy0>;</SPAN>
+  int32_t width<SPAN class=sy0>;</SPAN>
+  int32_t height<SPAN class=sy0>;</SPAN>
+  uint16_t nplanes<SPAN class=sy0>;</SPAN>
+  uint16_t bitspp<SPAN class=sy0>;</SPAN>
+  uint32_t compress_type<SPAN class=sy0>;</SPAN>
+  uint32_t bmp_bytesz<SPAN class=sy0>;</SPAN>
+  int32_t hres<SPAN class=sy0>;</SPAN>
+  int32_t vres<SPAN class=sy0>;</SPAN>
+  uint32_t ncolors<SPAN class=sy0>;</SPAN>
+  uint32_t nimpcolors<SPAN class=sy0>;</SPAN>
+<SPAN class=br0>}</SPAN> BITMAPINFOHEADER<SPAN class=sy0>;</SPAN>
+</PRE></DIV></DIV>
+<P>The compression method field (bytes #30-33) can have the following 
+values:</P>
+<TABLE style="MARGIN: 1em auto" class=wikitable>
+  <TBODY>
+  <TR>
+    <TH>Value</TH>
+    <TH>Identified by</TH>
+    <TH>Compression method</TH>
+    <TH>Comments</TH></TR>
+  <TR>
+    <TD>0</TD>
+    <TD>BI_RGB</TD>
+    <TD>none</TD>
+    <TD>Most common</TD></TR>
+  <TR>
+    <TD>1</TD>
+    <TD>BI_RLE8</TD>
+    <TD><A title="Run-length encoding" 
+      href="http://en.wikipedia.org/wiki/Run-length_encoding">RLE</A> 
+    8-bit/pixel</TD>
+    <TD>Can be used only with 8-bit/pixel bitmaps</TD></TR>
+  <TR>
+    <TD>2</TD>
+    <TD>BI_RLE4</TD>
+    <TD>RLE 4-bit/pixel</TD>
+    <TD>Can be used only with 4-bit/pixel bitmaps</TD></TR>
+  <TR>
+    <TD>3</TD>
+    <TD>BI_BITFIELDS</TD>
+    <TD><A href="http://en.wikipedia.org/wiki/Bit_field">Bit field</A> or 
+      Huffman 1D compression for BITMAPCOREHEADER2</TD>
+    <TD>Pixel format defined by bit masks or Huffman 1D compressed bitmap for 
+      BITMAPCOREHEADER2</TD></TR>
+  <TR>
+    <TD>4</TD>
+    <TD>BI_JPEG</TD>
+    <TD>JPEG or RLE-24 compression for BITMAPCOREHEADER2</TD>
+    <TD>The bitmap contains a <A 
+      href="http://en.wikipedia.org/wiki/JPEG">JPEG</A> image or RLE-24 
+      compressed bitmap for BITMAPCOREHEADER2</TD></TR>
+  <TR>
+    <TD>5</TD>
+    <TD>BI_PNG</TD>
+    <TD>PNG</TD>
+    <TD>The bitmap contains a <A title="Portable Network Graphics" 
+      href="http://en.wikipedia.org/wiki/Portable_Network_Graphics">PNG</A> 
+    image</TD></TR></TBODY></TABLE>
+<P>Note: BI_JPEG and BI_PNG are for printer drivers and are not supported when 
+rendering to the screen.<SUP id=cite_ref-5 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-5"><SPAN>[</SPAN>6<SPAN>]</SPAN></A></SUP></P>
+<P><I>Equivalent C-Language Header (Compression Methods)</I></P>
+<DIV style="TEXT-ALIGN: left" dir=ltr class=mw-geshi>
+<DIV style="FONT-FAMILY: monospace" class="c source-c"><PRE class=de1><SPAN class=kw4>typedef</SPAN> <SPAN class=kw2>enum</SPAN> <SPAN class=br0>{</SPAN>
+  BI_RGB <SPAN class=sy0>=</SPAN> <SPAN class=nu0>0</SPAN><SPAN class=sy0>,</SPAN>
+  BI_RLE8<SPAN class=sy0>,</SPAN>
+  BI_RLE4<SPAN class=sy0>,</SPAN>
+  BI_BITFIELDS<SPAN class=sy0>,</SPAN> <SPAN class=co1>//Also Huffman 1D compression for BITMAPCOREHEADER2</SPAN>
+  BI_JPEG<SPAN class=sy0>,</SPAN>      <SPAN class=co1>//Also RLE-24 compression for BITMAPCOREHEADER2</SPAN>
+  BI_PNG<SPAN class=sy0>,</SPAN>
+<SPAN class=br0>}</SPAN> bmp_compression_method_t<SPAN class=sy0>;</SPAN>
+</PRE></DIV></DIV>
+<P>The OS/2 BITMAPCOREHEADER header is also popular:</P>
+<TABLE style="MARGIN: 1em auto" class=wikitable>
+  <TBODY>
+  <TR>
+    <TH>Offset</TH>
+    <TH>Size</TH>
+    <TH>Purpose</TH></TR>
+  <TR>
+    <TD>Eh</TD>
+    <TD>4</TD>
+    <TD>the size of this header (12 bytes)</TD></TR>
+  <TR>
+    <TD>12h</TD>
+    <TD>2</TD>
+    <TD>the bitmap width in pixels.</TD></TR>
+  <TR>
+    <TD>14h</TD>
+    <TD>2</TD>
+    <TD>the bitmap height in pixels.</TD></TR>
+  <TR>
+    <TD>16h</TD>
+    <TD>2</TD>
+    <TD>the number of color planes; 1 is the only legal value</TD></TR>
+  <TR>
+    <TD>18h</TD>
+    <TD>2</TD>
+    <TD>the number of bits per pixel. Typical values are 1, 4, 8 and 
+  24.</TD></TR></TBODY></TABLE>
+<P>Note: OS/2 BITMAPCOREHEADER bitmaps cannot be compressed and cannot be 16 or 
+32 bits/pixel. All values in the OS/2 BITMAPCOREHEADER header are unsigned 
+integers.</P>
+<P>A 16-bit and 32-bit version of DIB with an integrated <A class=mw-redirect 
+title="Alpha channel" href="http://en.wikipedia.org/wiki/Alpha_channel">alpha 
+channel</A> has been introduced with the undocumented BITMAPV3INFOHEADER and 
+with the documented BITMAPV4HEADER (since <A 
+href="http://en.wikipedia.org/wiki/Windows_95">Windows 95</A>) and is used 
+within <A href="http://en.wikipedia.org/wiki/Windows_XP">Windows XP</A> logon 
+and theme system as well as Microsoft Office (since v2000); it is supported by 
+some <A href="http://en.wikipedia.org/wiki/Image_editing">image editing</A> 
+software, such as <A href="http://en.wikipedia.org/wiki/Adobe_Photoshop">Adobe 
+Photoshop</A> since version 7 and <A 
+href="http://en.wikipedia.org/wiki/Adobe_Flash">Adobe Flash</A> since version MX 
+2004 (then known as Macromedia Flash). It is also supported by <A 
+href="http://en.wikipedia.org/wiki/GIMP">GIMP</A>, <A 
+href="http://en.wikipedia.org/wiki/Google_Chrome">Google Chrome</A>, <A 
+title="Microsoft PowerPoint" 
+href="http://en.wikipedia.org/wiki/Microsoft_PowerPoint">MS-PowerPoint</A> and 
+MS-Word.</P>
+<H3><SPAN class=editsection>[<A title="Edit section: Color Table" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=6">edit</A>]</SPAN> 
+<SPAN id=Color_Table class=mw-headline>Color Table</SPAN></H3>
+<P>The Color Table (a.k.a. Palette) occurs in the BMP image file directly after 
+the BMP file header, the DIB header (and after optional three Red, Green and 
+Blue bitmasks if the BITMAPINFOHEADER Header with BI_BITFIELDS option is used). 
+Therefore, its offset is the size of the BITMAPFILEHEADER plus the size of the 
+DIB header (plus optional 12 bytes for the three bit masks).<BR><SMALL><I>Note: 
+On <A href="http://en.wikipedia.org/wiki/Windows_CE">Windows CE</A> the 
+BITMAPINFOHEADER Header can be used with the BI_ALPHABITFIELDS<SUP 
+id=cite_ref-AlphaBitFields_1-1 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-AlphaBitFields-1"><SPAN>[</SPAN>2<SPAN>]</SPAN></A></SUP> 
+option in the biCompression member. In such case, <B>four</B> optional bitmasks 
+follow the BITMAPINFOHEADER Header instead of the three bitmask mentioned above, 
+thus the Color Table's offset is the size of the BITMAPFILEHEADER plus the size 
+of the BITMAPINFOHEADER Header plus the 16 bytes of the four bitmasks (Red, 
+Green, Blue and Alpha).</I></SMALL></P>
+<P>The number of entries in the palette is either 2<SUP><I>n</I></SUP> or a 
+smaller number specified in the header (in the OS/2 BITMAPCOREHEADER header 
+format, only the full-size palette is supported).<SUP id=cite_ref-DIBhelp_0-2 
+class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBhelp-0"><SPAN>[</SPAN>1<SPAN>]</SPAN></A></SUP><SUP 
+id=cite_ref-OS2gff_6-0 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-OS2gff-6"><SPAN>[</SPAN>7<SPAN>]</SPAN></A></SUP>. 
+In most cases, each entry in the color table occupies 4 bytes, in the order 
+Blue, Green, Red, 0x00 (see below for exceptions).</P>
+<P>The Color Table is a block of bytes (a table) listing the colors used by the 
+image. Each pixel in an indexed color image is described by a number of bits (1, 
+4, or 8) which is an index of a single color described by this table. The 
+purpose of the color palette in indexed color bitmaps is to inform the 
+application about the actual color that each of these index values corresponds 
+to. The purpose of the Color Table in non-indexed (non-palettized) bitmaps is to 
+list the colors used by the bitmap for the purposes of optimization on devices 
+with limited color display capability and to facilitate future conversion to 
+different pixel formats and paletization.</P>
+<P>The colors in the Color Table are usually specified in the 4-byte per entry 
+<A class=mw-redirect title=RGBAX 
+href="http://en.wikipedia.org/wiki/RGBAX">8.8.8.0.8</A> format (in <A 
+class=mw-redirect title=RGBAX 
+href="http://en.wikipedia.org/wiki/RGBAX">RGBAX</A> notation). The Color Table 
+used with the OS/2 BITMAPCOREHEADER uses the 3-byte per entry <A 
+class=mw-redirect title=RGBAX 
+href="http://en.wikipedia.org/wiki/RGBAX">8.8.8.0.0</A> format.<SUP 
+id=cite_ref-DIBhelp_0-3 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBhelp-0"><SPAN>[</SPAN>1<SPAN>]</SPAN></A></SUP><SUP 
+id=cite_ref-OS2gff_6-1 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-OS2gff-6"><SPAN>[</SPAN>7<SPAN>]</SPAN></A></SUP> 
+For DIBs loaded in memory, the Color Table can optionally consist of 2-byte 
+entries - these entries constitute indexes to the currently realized palette<SUP 
+id=cite_ref-BITMAPINFO_3-2 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-BITMAPINFO-3"><SPAN>[</SPAN>4<SPAN>]</SPAN></A></SUP> 
+instead of explicit RGB color definitions.</P>
+<P>Microsoft <B>does not disallow</B> the presence of a valid Alpha channel bit 
+mask<SUP id=cite_ref-7 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-7"><SPAN>[</SPAN>8<SPAN>]</SPAN></A></SUP> 
+in BITMAPV4HEADER and BITMAPV5HEADER for 1bpp, 4bpp and 8bpp indexed color 
+images, which indicates that the Color Table entries can also specify an Alpha 
+component using the <A class=mw-redirect title=RGBAX 
+href="http://en.wikipedia.org/wiki/RGBAX">8.8.8.[0-8].[0-8]</A> format via the 
+RGBQUAD.rgbReserved<SUP id=cite_ref-8 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-8"><SPAN>[</SPAN>9<SPAN>]</SPAN></A></SUP> 
+member. However, some versions of Microsoft's documentation disallow this 
+feature by stating that the RGBQUAD.rgbReserved member "must be zero".</P>
+<P>As mentioned above, the Color Table is normally not used when the pixels are 
+in the 16-bit per pixel (16bpp) format (and higher); there are normally no Color 
+Table entries in those bitmap image files. However, the Microsoft documentation 
+(on the MSDN web site as of Nov. 16, 2010) specifies that for 16bpp (and 
+higher), the Color Table can be present to store a list of colors intended for 
+optimization on devices with limited color display capability, while it also 
+specifies, that in such cases, no indexed palette entries are present in this 
+Color Table. This may seem like a contradiction if no distinction is made 
+between the mandatory palette entries and the optional color list.</P>
+<H3><SPAN class=editsection>[<A title="Edit section: Pixel Storage" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=7">edit</A>]</SPAN> 
+<SPAN id=Pixel_Storage class=mw-headline>Pixel Storage</SPAN></H3>
+<P>The bits representing the bitmap pixels are <A class=mw-redirect title=Packed 
+href="http://en.wikipedia.org/wiki/Packed">packed</A> in rows. The size of each 
+row is rounded up to a multiple of 4 bytes (a 32-bit <A class=mw-redirect 
+title=DWORD href="http://en.wikipedia.org/wiki/DWORD">DWORD</A>) by 
+padding.<BR>For images with Height &gt; 1, multiple padded rows are stored 
+consecutively, forming a Pixel Array.</P>
+<P>The total number of bytes necessary to store one row of pixels can be 
+calculated as: <B><A class=mw-redirect title="Ceiling function" 
+href="http://en.wikipedia.org/wiki/Ceiling_function">CEILING</A>( ImageWidth * 
+BitsPerPixel / 32 ) * 4</B><BR></P>
+<DL>
+  <DD><IMG class=tex 
+  alt="\mbox{RowSize} = \left\lceil\frac { \mbox{BitsPerPixel} \cdot \mbox{ImageWidth} }{32}\right\rceil \cdot 4," 
+  src="bmp_files/0d4765cb92d9ce76042dc8a6e2bd5f43.png"> 
+  <DD><I>ImageWidth</I> is expressed in <A class=mw-redirect title=Pixels 
+  href="http://en.wikipedia.org/wiki/Pixels">pixels</A>. </DD></DL>
+<P>The total amount of <A title="Octet (computing)" 
+href="http://en.wikipedia.org/wiki/Octet_(computing)">bytes</A> necessary to 
+store an array of pixels in an <B><VAR>n</VAR></B> Bits per Pixel (bpp) image, 
+with <A title="Power of two" 
+href="http://en.wikipedia.org/wiki/Power_of_two">2<SUP><VAR>n</VAR></SUP></A> 
+colors, can be calculated by accounting for the effect of rounding up the size 
+of each row to a multiple of a 4 bytes, as follows:</P>
+<DL>
+  <DD><IMG class=tex 
+  alt="\mbox{PixelArraySize} = \mbox{RowSize} \cdot \left | \mbox{ImageHeight} \right  \vert " 
+  src="bmp_files/4be03da5f469979c07cf95e6207b3a2d.png"> 
+  <DD><I>ImageHeight</I> is expressed in <A class=mw-redirect title=Pixels 
+  href="http://en.wikipedia.org/wiki/Pixels">pixels</A>. The absolute value is 
+  necessary because ImageHeight can be negative </DD></DL>
+<P>The total Bitmap Image File size can be approximated as:</P>
+<DL>
+  <DD><IMG class=tex 
+  alt="\mbox{FileSize} \approx 54 + 4 \cdot 2^\mbox{bpp} + \mbox{PixelArraySize}" 
+  src="bmp_files/9c6480c9c56458964e66186059fbf197.png">, 
+  <DD>for <I>BPP</I> ≤ 8 ( because for pixels larger than 8 bits, the <A 
+  title="Palette (computing)" 
+  href="http://en.wikipedia.org/wiki/Palette_(computing)">palette</A> is not 
+  mandatory ) </DD></DL>
+<P>Only images with 8 or fewer Bits per Pixel must account for the <A 
+title="Palette (computing)" 
+href="http://en.wikipedia.org/wiki/Palette_(computing)">palette</A>. 16bpp 
+images (or higher), may omit the <A title="Palette (computing)" 
+href="http://en.wikipedia.org/wiki/Palette_(computing)">palette</A> part from 
+the size calculation, as follows:</P>
+<DL>
+  <DD><IMG class=tex alt="\mbox{FileSize} \approx 54 + \mbox{PixelArraySize}" 
+  src="bmp_files/4b47d7ed9aadfc528623817cf48456b5.png">, 
+  <DD>for <I>Bits per Pixel</I> &gt; 8. </DD></DL>
+<P>In the formulas above, the number <B>54</B> is the combined size of the 14 
+byte Bitmap File Header and the 40 byte popular Windows <A class=mw-redirect 
+title="Header (information technology)" 
+href="http://en.wikipedia.org/wiki/Header_(information_technology)">DIB 
+Header</A> - the BITMAPINFOHEADER&nbsp;&nbsp;(some other DIB Header versions 
+will be larger or smaller than that as described by the table above) and the 
+expression <IMG class=tex alt="4 \cdot 2^n" 
+src="bmp_files/cc02d9602bc019ca809aa56daf2e7ba5.png">&nbsp; is the size of the 
+color <A title="Palette (computing)" 
+href="http://en.wikipedia.org/wiki/Palette_(computing)">palette</A> in <A 
+title="Octet (computing)" 
+href="http://en.wikipedia.org/wiki/Octet_(computing)">bytes</A>.</P>
+<P>This total file size formula is only an approximation, since the size of the 
+color <A title="Palette (computing)" 
+href="http://en.wikipedia.org/wiki/Palette_(computing)">palette</A> will be <IMG 
+class=tex alt="3 \cdot 2^n" 
+src="bmp_files/5cf84ffff352bfee47d447957b4edea9.png">&nbsp;bytes for the OS/2 
+DIB Header version BITMAPCOREHEADER, and some files may define only the number 
+of colors needed by the image, potentially fewer than <SPAN 
+class=texhtml>2<SUP><I>n</I></SUP></SPAN>.<SUP id=cite_ref-DIBhelp_0-4 
+class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBhelp-0"><SPAN>[</SPAN>1<SPAN>]</SPAN></A></SUP><BR>An 
+additional size uncertainty is introduced by the optional presence of the 12 or 
+16 bytes needed for the extra bit masks stored immediately after the 
+BITMAPINFOHEADER DIB Header and the variable-size GAP depiced in Diag.1</P>
+<H4><SPAN class=editsection>[<A title="Edit section: Pixel Array (bitmap data)" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=8">edit</A>]</SPAN> 
+<SPAN id=Pixel_Array_.28bitmap_data.29 class=mw-headline>Pixel Array (bitmap 
+data)</SPAN></H4>
+<P>The Pixel Array is a block of 32-bit DWORDs, that describes the image pixel 
+by pixel. Normally pixels are stored "upside-down" with respect to normal image 
+<A href="http://en.wikipedia.org/wiki/Raster_scan">raster scan</A> order, 
+starting in the lower left corner, going from left to right, and then row by row 
+from the bottom to the top of the image.<SUP id=cite_ref-DIBhelp_0-5 
+class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBhelp-0"><SPAN>[</SPAN>1<SPAN>]</SPAN></A></SUP><BR>Uncompressed 
+<A class=mw-redirect title=Windows 
+href="http://en.wikipedia.org/wiki/Windows">Windows</A> bitmaps also can be 
+stored from the top to bottom, when the Image Height value is negative.</P>
+<P>In the original OS/2 DIB, the only four legal values of <A 
+href="http://en.wikipedia.org/wiki/Color_depth">color depth</A> were 1, 4, 8, 
+and 24 bits per pixel (<B>bpp</B>).<SUP id=cite_ref-DIBhelp_0-6 
+class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBhelp-0"><SPAN>[</SPAN>1<SPAN>]</SPAN></A></SUP> 
+Contemporary DIB Headers allow pixel formats with 1, 2, 4, 8, 16, 24 and 32 bits 
+per pixel (bpp).<SUP id=cite_ref-9 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-9"><SPAN>[</SPAN>10<SPAN>]</SPAN></A></SUP></P>
+<P>Padding bytes (not necessarily 0) must be appended to the end of the rows in 
+order to bring up the length of the rows to a multiple of four bytes. When the 
+Pixel Array is loaded into memory, each row must begin at a memory address that 
+is a multiple of 4. This address/offset restriction is mandatory <B>only</B> for 
+Pixel Array's loaded in memory. For file storage purposes, <B>only the size</B> 
+of each row must be a multiple of 4 bytes while the file offset can be 
+arbitrary.<SUP id=cite_ref-DIBhelp_0-7 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBhelp-0"><SPAN>[</SPAN>1<SPAN>]</SPAN></A></SUP><BR>A 
+24-bit bitmap with Width=1, would have 3 bytes of data per row (blue, green, 
+red) and 1 byte of padding, while Width=2 would have 2 bytes of padding, Width=3 
+would have 3 bytes of padding, and Width=4 would not have any padding at 
+all.</P>
+<P>Bitmap Image Files are typically much larger than image file formats 
+compressed with other algorithms, for the same image. For example, the 1058×1058 
+<A title=File:Wikipedia-logo.png 
+href="http://en.wikipedia.org/wiki/File:Wikipedia-logo.png">Wikipedia logo</A>, 
+which occupies about 271 <A title=Kilobyte 
+href="http://en.wikipedia.org/wiki/Kilobyte">KB</A> in the lossless <A 
+title="Portable Network Graphics" 
+href="http://en.wikipedia.org/wiki/Portable_Network_Graphics">PNG</A> format, 
+takes about 3358 <A title=Kilobyte 
+href="http://en.wikipedia.org/wiki/Kilobyte">KB</A> as a 24bpp BMP Image File. 
+Uncompressed formats are generally unsuitable for transferring images on the <A 
+href="http://en.wikipedia.org/wiki/Internet">Internet</A> or other slow or 
+capacity-limited <A title="Digital media" 
+href="http://en.wikipedia.org/wiki/Digital_media">media</A>.</P>
+<H4><SPAN class=editsection>[<A title="Edit section: Compression" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=9">edit</A>]</SPAN> 
+<SPAN id=Compression class=mw-headline>Compression</SPAN></H4>
+<P><A title="Palette (computing)" 
+href="http://en.wikipedia.org/wiki/Palette_(computing)">Indexed</A> color images 
+may be <A title="Image compression" 
+href="http://en.wikipedia.org/wiki/Image_compression">compressed</A> with 4-bit 
+or 8-bit <A title="Run-length encoding" 
+href="http://en.wikipedia.org/wiki/Run-length_encoding">RLE</A> or <A 
+title="Huffman coding" 
+href="http://en.wikipedia.org/wiki/Huffman_coding">Huffman</A> 1D 
+algorithm.<BR><A href="http://en.wikipedia.org/wiki/OS/2">OS/2</A> 
+BITMAPCOREHEADER2 <A title="Color depth" 
+href="http://en.wikipedia.org/wiki/Color_depth">24bpp</A> images may be <A 
+title="Image compression" 
+href="http://en.wikipedia.org/wiki/Image_compression">compressed</A> with the 
+24-bit <A title="Run-length encoding" 
+href="http://en.wikipedia.org/wiki/Run-length_encoding">RLE</A> 
+algorithm.<BR>The <A title="Color depth" 
+href="http://en.wikipedia.org/wiki/Color_depth">16bpp</A> and <A 
+title="Color depth" href="http://en.wikipedia.org/wiki/Color_depth">32bpp</A> 
+images are <I>always</I> stored uncompressed.<BR>Note that images in all <A 
+title="Color depth" href="http://en.wikipedia.org/wiki/Color_depth">color 
+depths</A> can be stored without <A title="Image compression" 
+href="http://en.wikipedia.org/wiki/Image_compression">compression</A> if so 
+desired.</P>
+<H4><SPAN class=editsection>[<A title="Edit section: Pixel Format" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=10">edit</A>]</SPAN> 
+<SPAN id=Pixel_Format class=mw-headline>Pixel Format</SPAN></H4>
+<P>In bitmap image file on a disk or bitmap image in memory, the pixels can be 
+defined by varying number of bits.</P>
+<DL>
+  <DD>
+  <UL>
+    <LI>The 1-bit per pixel (1bpp) format supports 2 distinct colors, (for 
+    example: black and white, ...or yellow and pink). The pixel values are 
+    stored in each bit, with the first (left-most) pixel in the most-significant 
+    bit of the first byte.<SUP id=cite_ref-DIBhelp_0-8 class=reference><A 
+    href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBhelp-0"><SPAN>[</SPAN>1<SPAN>]</SPAN></A></SUP> 
+    Each bit is an index into a table of 2 colors. This Color Table is in 32bpp 
+    8.8.8.0.8 <A class=mw-redirect title=RGBAX 
+    href="http://en.wikipedia.org/wiki/RGBAX">RGBAX</A> format. An unset bit 
+    will refer to the first color table entry, and a set bit will refer to the 
+    last (second) color table entry. </LI></UL></DD></DL>
+<DL>
+  <DD>
+  <UL>
+    <LI>The 2-bit per pixel (2bpp) format supports 4 distinct colors and stores 
+    4 pixels per 1 byte, the left-most pixel being in the two most significant 
+    bits (<A href="http://en.wikipedia.org/wiki/Windows_CE">Windows CE</A> 
+    only<SUP id=cite_ref-PSformats_10-0 class=reference><A 
+    href="http://en.wikipedia.org/wiki/BMP_file#cite_note-PSformats-10"><SPAN>[</SPAN>11<SPAN>]</SPAN></A></SUP>). 
+    Each pixel value is a 2-bit index into a table of up to 4 colors. This Color 
+    Table is in 32bpp 8.8.8.0.8 <A class=mw-redirect title=RGBAX 
+    href="http://en.wikipedia.org/wiki/RGBAX">RGBAX</A> format. </LI></UL></DD></DL>
+<DL>
+  <DD>
+  <UL>
+    <LI>The 4-bit per pixel (4bpp) format supports 16 distinct colors and stores 
+    2 pixels per 1 byte, the left-most pixel being in the more significant <A 
+    href="http://en.wikipedia.org/wiki/Nibble">nibble</A>.<SUP 
+    id=cite_ref-DIBhelp_0-9 class=reference><A 
+    href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBhelp-0"><SPAN>[</SPAN>1<SPAN>]</SPAN></A></SUP> 
+    Each pixel value is a 4-bit index into a table of up to 16 colors. This 
+    Color Table is in 32bpp 8.8.8.0.8 <A class=mw-redirect title=RGBAX 
+    href="http://en.wikipedia.org/wiki/RGBAX">RGBAX</A> format. </LI></UL></DD></DL>
+<DL>
+  <DD>
+  <UL>
+    <LI>The 8-bit per pixel (8bpp) format supports 256 distinct colors and 
+    stores 1 pixel per 1 byte. Each byte is an index into a table of up to 256 
+    colors. This Color Table is in 32bpp 8.8.8.0.8 <A class=mw-redirect 
+    title=RGBAX href="http://en.wikipedia.org/wiki/RGBAX">RGBAX</A> format. 
+  </LI></UL></DD></DL>
+<DL>
+  <DD>
+  <UL>
+    <LI>The 16-bit per pixel (16bpp) format supports 65536 distinct colors and 
+    stores 1 pixel per 2 byte WORD. Each WORD can define the Alpha, Red, Green 
+    and Blue <A title="Sample (graphics)" 
+    href="http://en.wikipedia.org/wiki/Sample_(graphics)">samples</A> of the 
+    pixel. </LI></UL></DD></DL>
+<DL>
+  <DD>
+  <UL>
+    <LI>The 24-bit pixel (24bpp) format supports 16,777,216 distinct colors and 
+    stores 1 pixel value per 3 bytes. Each pixel value defines the Red, Green 
+    and Blue <A title="Sample (graphics)" 
+    href="http://en.wikipedia.org/wiki/Sample_(graphics)">samples</A> of the 
+    pixel (8.8.8.0.0 in <A class=mw-redirect title=RGBAX 
+    href="http://en.wikipedia.org/wiki/RGBAX">RGBAX</A> notation). Specifically 
+    in the order (Blue, Green and Red, 8-bits per each <A 
+    title="Sample (graphics)" 
+    href="http://en.wikipedia.org/wiki/Sample_(graphics)">sample</A> ).<SUP 
+    id=cite_ref-DIBhelp_0-10 class=reference><A 
+    href="http://en.wikipedia.org/wiki/BMP_file#cite_note-DIBhelp-0"><SPAN>[</SPAN>1<SPAN>]</SPAN></A></SUP> 
+    </LI></UL></DD></DL>
+<DL>
+  <DD>
+  <UL>
+    <LI>The 32-bit per pixel (32bpp) format supports 4,294,967,296 distinct 
+    colors and stores 1 pixel per 4 byte DWORD. Each DWORD can define the Alpha, 
+    Red, Green and Blue <A title="Sample (graphics)" 
+    href="http://en.wikipedia.org/wiki/Sample_(graphics)">samples</A> of the 
+    pixel. </LI></UL></DD></DL>
+<P>In order to resolve the ambiguity of <B>which bits define which <A 
+title="Sample (graphics)" 
+href="http://en.wikipedia.org/wiki/Sample_(graphics)">samples</A></B>, the DIB 
+Headers provide certain defaults as well as specific BITFIELDS which are bit 
+masks that define the membership of particular group of bits in a pixel to a 
+particular <A title="Channel (digital image)" 
+href="http://en.wikipedia.org/wiki/Channel_(digital_image)">channel</A>.<BR>The 
+following diagram defines this mechanism:</P>
+<DIV class=floatnone><A class=image 
+title="The BITFIELDS mechanism depicted in RGBAX Sample Length notation" 
+href="http://en.wikipedia.org/wiki/File:BitfieldsSLN.png"><IMG 
+alt="The BITFIELDS mechanism depicted in RGBAX Sample Length notation" 
+src="bmp_files/BitfieldsSLN.png" width=753 height=208></A></DIV>
+<P><B>Diag.2 - The BITFIELDS mechanism for a 32 bit pixel depicted in <A 
+class=mw-redirect title=RGBAX 
+href="http://en.wikipedia.org/wiki/RGBAX">RGBAX</A> <A title="Sample (graphics)" 
+href="http://en.wikipedia.org/wiki/Sample_(graphics)">Sample</A> Length 
+notation</B></P>
+<P>The <A title="Sample (graphics)" 
+href="http://en.wikipedia.org/wiki/Sample_(graphics)">sample</A> fields defined 
+by the BITFIELDS bit masks have to be contiguous and non-overlapping.<BR>The 
+Red, Green and Blue bit masks are valid only when the Compression member of the 
+DIB Header is set to BI_BITFIELDS.<BR>The Alpha bit mask is valid whenever it is 
+present in the DIB Header or when the Compression member of the DIB Header is 
+set to BI_ALPHABITFIELDS<SUP id=cite_ref-AlphaBitFields_1-2 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-AlphaBitFields-1"><SPAN>[</SPAN>2<SPAN>]</SPAN></A></SUP> 
+(<A href="http://en.wikipedia.org/wiki/Windows_CE">Windows CE</A> only).</P>
+<DIV class=floatnone><A class=image 
+title="The BITFIELDS mechanism depicted in RGBAX Sample Length notation" 
+href="http://en.wikipedia.org/wiki/File:SLNotation44440.png"><IMG 
+alt="The BITFIELDS mechanism depicted in RGBAX Sample Length notation" 
+src="bmp_files/SLNotation44440.png" width=448 height=107></A></DIV>
+<P><B>Diag.3 - The pixel format with an Alpha channel in a 16 bit pixel (in <A 
+class=mw-redirect title=RGBAX 
+href="http://en.wikipedia.org/wiki/RGBAX">RGBAX</A> <A title="Sample (graphics)" 
+href="http://en.wikipedia.org/wiki/Sample_(graphics)">Sample</A> Length 
+notation) actually generated by Adobe Photohop<SUP id=cite_ref-PSformats_10-1 
+class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-PSformats-10"><SPAN>[</SPAN>11<SPAN>]</SPAN></A></SUP></B></P>
+<DL>
+  <DD>
+  <DL>
+    <DD>
+    <DL>
+      <DD>
+      <DL>
+        <DD><B>The table below lists all of the possible pixel formats of a DIB 
+        (in <A class=mw-redirect title=RGBAX 
+        href="http://en.wikipedia.org/wiki/RGBAX">RGBAX</A> notation).</B> 
+      </DD></DL></DD></DL></DD></DL></DD></DL>
+<DIV class=floatnone><A class=image 
+title="All of the possible pixel formats in a DIB" 
+href="http://en.wikipedia.org/wiki/File:AllBMPformats.png"><IMG 
+alt="All of the possible pixel formats in a DIB" 
+src="bmp_files/AllBMPformats.png" width=1103 height=249></A></DIV>
+<P>The BITFIELD mechanism described above allows for the definition of tens of 
+thousands different pixel formats, however only several of them are used in 
+practice,<SUP id=cite_ref-PSformats_10-2 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-PSformats-10"><SPAN>[</SPAN>11<SPAN>]</SPAN></A></SUP> 
+such as:</P>
+<UL>
+  <LI>8.8.8.0.0 
+  <LI>8.8.8.0.8 
+  <LI>8.8.8.8.0 
+  <LI>5.5.5.0.1 
+  <LI>5.5.5.1.0 
+  <LI>5.6.5.0.0 
+  <LI>4.4.4.0.4 
+  <LI>4.4.4.4.0 
+  <LI>All palettized formats (marked in yellow in the table above) </LI></UL>
+<P>[The list above is in the <A class=mw-redirect title=RGBAX 
+href="http://en.wikipedia.org/wiki/RGBAX">RGBAX</A> notation]</P>
+<H3><SPAN class=editsection>[<A 
+title="Edit section: Example of a 2×2 Pixel, 24-Bit Bitmap (Windows DIB Header BITMAPINFOHEADER)" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=11">edit</A>]</SPAN> 
+<SPAN 
+id=Example_of_a_2.C3.972_Pixel.2C_24-Bit_Bitmap_.28Windows_DIB_Header_BITMAPINFOHEADER.29 
+class=mw-headline>Example of a 2×2 Pixel, 24-Bit Bitmap (Windows DIB Header 
+BITMAPINFOHEADER)</SPAN></H3>
+<P>Pixel format: 8.8.8.0.0 (in <A class=mw-redirect title=RGBAX 
+href="http://en.wikipedia.org/wiki/RGBAX">RGBAX</A> notation).</P>
+<DIV class="thumb tright">
+<DIV style="WIDTH: 136px" class=thumbinner><A class=image 
+href="http://en.wikipedia.org/wiki/File:Bmp_format.svg"><IMG class=thumbimage 
+alt="" src="bmp_files/134px-Bmp_format.svg.png" width=134 height=134></A> 
+<DIV class=thumbcaption>Example of a 2×2 Pixel Bitmap, with 24 bits/pixel 
+encoding</DIV></DIV></DIV>
+<TABLE style="MARGIN: 1em auto" class=wikitable>
+  <TBODY>
+  <TR>
+    <TH 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Offset</TH>
+    <TH 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Size</TH>
+    <TH 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Hex 
+      Value</TH>
+    <TH 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Value</TH>
+    <TH 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Description</TH></TR>
+  <TR>
+    <TD style="TEXT-ALIGN: center" colSpan=5>BMP Header</TD></TR>
+  <TR>
+    <TD align=middle>0h</TD>
+    <TD align=middle>2</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>42 
+      4D</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">"BM"</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Magic 
+      number (unsigned integer 66, 77)</TD></TR>
+  <TR>
+    <TD align=middle>2h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>46 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">70 
+      Bytes</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Size 
+      of the BMP file</TD></TR>
+  <TR>
+    <TD align=middle>6h</TD>
+    <TD align=middle>2</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Unused</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Application 
+      specific</TD></TR>
+  <TR>
+    <TD align=middle>8h</TD>
+    <TD align=middle>2</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Unused</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Application 
+      specific</TD></TR>
+  <TR>
+    <TD align=middle>Ah</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>36 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">54 
+      bytes</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Offset 
+      where the Pixel Array (bitmap data) can be found</TD></TR>
+  <TR>
+    <TD style="TEXT-ALIGN: center" colSpan=5>DIB Header</TD></TR>
+  <TR>
+    <TD align=middle>Eh</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>28 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">40 
+      bytes</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Number 
+      of bytes in the DIB header (from this point)</TD></TR>
+  <TR>
+    <TD align=middle>12h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>02 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">2 
+      pixels</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Width 
+      of the bitmap in pixels</TD></TR>
+  <TR>
+    <TD align=middle>16h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>02 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">2 
+      pixels</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Height 
+      of the bitmap in pixels</TD></TR>
+  <TR>
+    <TD align=middle>1Ah</TD>
+    <TD align=middle>2</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>01 
+      00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">1 
+      plane</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Number 
+      of color planes being used</TD></TR>
+  <TR>
+    <TD align=middle>1Ch</TD>
+    <TD align=middle>2</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>18 
+      00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">24 
+      bits</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Number 
+      of bits per pixel</TD></TR>
+  <TR>
+    <TD align=middle>1Eh</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">BI_RGB, 
+      no Pixel Array compression used</TD></TR>
+  <TR>
+    <TD align=middle>22h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>10 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">16 
+      bytes</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Size 
+      of the raw data in the Pixel Array (including padding)</TD></TR>
+  <TR>
+    <TD align=middle>26h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>13 
+      0B 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">2,835 
+      pixels/meter</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Horizontal 
+      resolution of the image</TD></TR>
+  <TR>
+    <TD align=middle>2Ah</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>13 
+      0B 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">2,835 
+      pixels/meter</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Vertical 
+      resolution of the image</TD></TR>
+  <TR>
+    <TD align=middle>2Eh</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      colors</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Number 
+      of colors in the palette</TD></TR>
+  <TR>
+    <TD align=middle>32h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      important colors</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      means all colors are important</TD></TR>
+  <TR>
+    <TD colSpan=5 align=middle>Start of Pixel Array (bitmap data)</TD></TR>
+  <TR>
+    <TD align=middle>36h</TD>
+    <TD align=middle>3</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 FF</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      0 255</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Red, 
+      Pixel (0,1)</TD></TR>
+  <TR>
+    <TD align=middle>39h</TD>
+    <TD align=middle>3</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>FF 
+      FF FF</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">255 
+      255 255</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">White, 
+      Pixel (1,1)</TD></TR>
+  <TR>
+    <TD align=middle>3Ch</TD>
+    <TD align=middle>2</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      0</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Padding 
+      for 4 byte alignment (could be a value other than zero)</TD></TR>
+  <TR>
+    <TD align=middle>3Eh</TD>
+    <TD align=middle>3</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>FF 
+      00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">255 
+      0 0</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Blue, 
+      Pixel (0,0)</TD></TR>
+  <TR>
+    <TD align=middle>41h</TD>
+    <TD align=middle>3</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      FF 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      255 0</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Green, 
+      Pixel (1,0)</TD></TR>
+  <TR>
+    <TD align=middle>44h</TD>
+    <TD align=middle>2</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      0</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Padding 
+      for 4 byte alignment (could be a value other than 
+zero)</TD></TR></TBODY></TABLE>
+<H3><SPAN class=editsection>[<A 
+title="Edit section: Example of a 4×2 Pixel, 32-Bit Bitmap with Opacity Values in the Alpha Channel (Windows DIB Header BITMAPV4HEADER)" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=12">edit</A>]</SPAN> 
+<SPAN 
+id=Example_of_a_4.C3.972_Pixel.2C_32-Bit_Bitmap_with_Opacity_Values_in_the_Alpha_Channel_.28Windows_DIB_Header_BITMAPV4HEADER.29 
+class=mw-headline>Example of a 4×2 Pixel, 32-Bit Bitmap with Opacity Values in 
+the Alpha Channel (Windows DIB Header BITMAPV4HEADER)</SPAN></H3>
+<P>Pixel format: 8.8.8.8.0 (in <A class=mw-redirect title=RGBAX 
+href="http://en.wikipedia.org/wiki/RGBAX">RGBAX</A> notation).</P>
+<DIV class="thumb tright">
+<DIV style="WIDTH: 262px" class=thumbinner><A class=image 
+href="http://en.wikipedia.org/wiki/File:Bmp_format2.svg"><IMG class=thumbimage 
+alt="" src="bmp_files/260px-Bmp_format2.svg.png" width=260 height=160></A> 
+<DIV class=thumbcaption>Example of a 4×2 Pixel Bitmap, with 32 bits/pixel 
+encoding</DIV></DIV></DIV>
+<TABLE style="MARGIN: 1em auto" class=wikitable>
+  <TBODY>
+  <TR>
+    <TH 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Offset</TH>
+    <TH 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Size</TH>
+    <TH 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Hex 
+      Value</TH>
+    <TH 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Value</TH>
+    <TH 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Description</TH></TR>
+  <TR>
+    <TD style="TEXT-ALIGN: center" colSpan=5>BMP Header</TD></TR>
+  <TR>
+    <TD align=middle>0h</TD>
+    <TD align=middle>2</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>42 
+      4D</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">"BM"</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Magic 
+      number (unsigned integer 66, 77)</TD></TR>
+  <TR>
+    <TD align=middle>2h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>9A 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">154 
+      Bytes</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Size 
+      of the BMP file</TD></TR>
+  <TR>
+    <TD align=middle>6h</TD>
+    <TD align=middle>2</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Unused</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Application 
+      specific</TD></TR>
+  <TR>
+    <TD align=middle>8h</TD>
+    <TD align=middle>2</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Unused</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Application 
+      specific</TD></TR>
+  <TR>
+    <TD align=middle>Ah</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>7A 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">122 
+      bytes from the start of the file</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Offset 
+      where the Pixel Array (bitmap data) can be found</TD></TR>
+  <TR>
+    <TD style="TEXT-ALIGN: center" colSpan=5>DIB Header</TD></TR>
+  <TR>
+    <TD align=middle>Eh</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>6C 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">108 
+      bytes</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Number 
+      of bytes in the DIB header (from this point)</TD></TR>
+  <TR>
+    <TD align=middle>12h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>04 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">4 
+      pixels</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Width 
+      of the bitmap in pixels</TD></TR>
+  <TR>
+    <TD align=middle>16h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>02 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">2 
+      pixels</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Height 
+      of the bitmap in pixels</TD></TR>
+  <TR>
+    <TD align=middle>1Ah</TD>
+    <TD align=middle>2</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>01 
+      00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">1 
+      plane</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Number 
+      of color planes being used</TD></TR>
+  <TR>
+    <TD align=middle>1Ch</TD>
+    <TD align=middle>2</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>20 
+      00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">32 
+      bits</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Number 
+      of bits per pixel</TD></TR>
+  <TR>
+    <TD align=middle>1Eh</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>03 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">3</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">BI_BITFIELDS, 
+      no Pixel Array compression used</TD></TR>
+  <TR>
+    <TD align=middle>22h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>20 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">32 
+      bytes</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Size 
+      of the raw data in the Pixel Array (including padding)</TD></TR>
+  <TR>
+    <TD align=middle>26h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>13 
+      0B 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">2,835 
+      pixels/meter</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Horizontal 
+      physical resolution of the image</TD></TR>
+  <TR>
+    <TD align=middle>2Ah</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>13 
+      0B 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">2,835 
+      pixels/meter</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Vertical 
+      physical resolution of the image</TD></TR>
+  <TR>
+    <TD align=middle>2Eh</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      colors</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Number 
+      of colors in the palette</TD></TR>
+  <TR>
+    <TD align=middle>32h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      important colors</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      means all colors are important</TD></TR>
+  <TR>
+    <TD align=middle>36h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 FF 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">00FF0000 
+      in big-endian</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Red 
+      channel bit mask (valid because BI_BITFIELDS is specified)</TD></TR>
+  <TR>
+    <TD align=middle>3Ah</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      FF 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0000FF00 
+      in big-endian</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Green 
+      channel bit mask (valid because BI_BITFIELDS is specified)</TD></TR>
+  <TR>
+    <TD align=middle>3Eh</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>FF 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">000000FF 
+      in big-endian</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Blue 
+      channel bit mask (valid because BI_BITFIELDS is specified)</TD></TR>
+  <TR>
+    <TD align=middle>42h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 00 FF</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">FF000000 
+      in big-endian</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Alpha 
+      channel bit mask</TD></TR>
+  <TR>
+    <TD align=middle>46h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>20 
+      6E 69 57</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">LCS_WINDOWS_COLOR_SPACE</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Type 
+      of Color Space</TD></TR>
+  <TR>
+    <TD align=middle>4Ah</TD>
+    <TD align=middle>24h</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>24* 
+      00...00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">CIEXYZTRIPLE 
+      Color Space endpoints</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Unused 
+      when LCS_WINDOWS_COLOR_SPACE is specified</TD></TR>
+  <TR>
+    <TD align=middle>6Eh</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      Red Gamma</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Unused 
+      when LCS_WINDOWS_COLOR_SPACE is specified</TD></TR>
+  <TR>
+    <TD align=middle>72h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      Green Gamma</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Unused 
+      when LCS_WINDOWS_COLOR_SPACE is specified</TD></TR>
+  <TR>
+    <TD align=middle>76h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 00 00</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      Blue Gamma</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Unused 
+      when LCS_WINDOWS_COLOR_SPACE is specified</TD></TR>
+  <TR>
+    <TD colSpan=5 align=middle>Start of the Pixel Array (the bitmap 
+Data)</TD></TR>
+  <TR>
+    <TD align=middle>7Ah</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>FF 
+      00 00 7F</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">255 
+      0 0 127</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Blue 
+      (Alpha: 127), Pixel (0,1)</TD></TR>
+  <TR>
+    <TD align=middle>7Eh</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      FF 00 7F</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      255 0 127</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Green 
+      (Alpha: 127), Pixel (1,1)</TD></TR>
+  <TR>
+    <TD align=middle>82h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 FF 7F</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      0 255 127</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Red 
+      (Alpha: 127), Pixel (2,1)</TD></TR>
+  <TR>
+    <TD align=middle>86h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>FF 
+      FF FF 7F</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">255 
+      255 255 127</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">White 
+      (Alpha: 127), Pixel (3,1)</TD></TR>
+  <TR>
+    <TD align=middle>8Ah</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>FF 
+      00 00 FF</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">255 
+      0 0 255</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Blue 
+      (Alpha: 255), Pixel (0,0)</TD></TR>
+  <TR>
+    <TD align=middle>8Eh</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      FF 00 FF</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      255 0 255</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Green 
+      (Alpha: 255), Pixel (1,0)</TD></TR>
+  <TR>
+    <TD align=middle>92h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>00 
+      00 FF FF</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">0 
+      0 255 255</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">Red 
+      (Alpha: 255), Pixel (2,0)</TD></TR>
+  <TR>
+    <TD align=middle>96h</TD>
+    <TD align=middle>4</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 0px"><CODE>FF 
+      FF FF FF</CODE></TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">255 
+      255 255 255</TD>
+    <TD 
+    style="PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 0px">White 
+      (Alpha: 255), Pixel (3,0)</TD></TR></TBODY></TABLE>
+<P>Note that the bitmap data starts with the lower left hand corner of the 
+image.</P>
+<H2><SPAN class=editsection>[<A title="Edit section: Usage of BMP format" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=13">edit</A>]</SPAN> 
+<SPAN id=Usage_of_BMP_format class=mw-headline>Usage of BMP format</SPAN></H2>
+<P>The simplicity of the BMP file format, and its widespread familiarity in 
+Windows and elsewhere, as well as the fact that this format is relatively well 
+<A title=Documentation 
+href="http://en.wikipedia.org/wiki/Documentation">documented</A> and free of <A 
+title=Patent href="http://en.wikipedia.org/wiki/Patent">patents</A>, makes it a 
+very common format that image processing programs from many operating systems 
+can read and write.</P>
+<P>Many older <A title="Graphical user interface" 
+href="http://en.wikipedia.org/wiki/Graphical_user_interface">graphical user 
+interfaces</A> used bitmaps in their built-in graphics subsystems;<SUP 
+id=cite_ref-11 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-11"><SPAN>[</SPAN>12<SPAN>]</SPAN></A></SUP> 
+for example, the Microsoft Windows and OS/2 platforms' <A 
+title="Graphics Device Interface" 
+href="http://en.wikipedia.org/wiki/Graphics_Device_Interface">GDI</A> subsystem, 
+where the specific format used is the <I>Windows and OS/2 bitmap file 
+format</I>, usually named with the <A class=mw-redirect title="File extension" 
+href="http://en.wikipedia.org/wiki/File_extension">file extension</A> of 
+<CODE>.BMP</CODE> or <CODE>.DIB</CODE>.</P>
+<P>While most BMP files have a relatively large file size due to lack of any 
+compression (or generally low-ratio <A title="Run-length encoding" 
+href="http://en.wikipedia.org/wiki/Run-length_encoding">RLE</A> on palletized 
+images), many BMP files can be considerably compressed with <A 
+href="http://en.wikipedia.org/wiki/Lossless_data_compression">lossless data 
+compression</A> algorithms such as <A title="ZIP (file format)" 
+href="http://en.wikipedia.org/wiki/ZIP_(file_format)">ZIP</A> (in extreme cases 
+of non-photographic data, up to 0.1% of original size) because they contain 
+redundant data. Some formats, such as <A 
+href="http://en.wikipedia.org/wiki/RAR">RAR</A>, even include routines 
+specifically targeted at efficient compression of such data.</P>
+<H2><SPAN class=editsection>[<A title="Edit section: Related formats" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=14">edit</A>]</SPAN> 
+<SPAN id=Related_formats class=mw-headline>Related formats</SPAN></H2>
+<DIV class="rellink relarticle mainarticle">Main article: <A 
+href="http://en.wikipedia.org/wiki/Image_file_formats">Image file 
+formats</A></DIV>
+<P>The <A href="http://en.wikipedia.org/wiki/X_Window_System">X Window 
+System</A> uses a similar <A class=mw-redirect title="X Bitmap" 
+href="http://en.wikipedia.org/wiki/X_Bitmap">XBM</A> format for <A 
+href="http://en.wikipedia.org/wiki/Black-and-white">black-and-white</A> images, 
+and <A title="X PixMap" href="http://en.wikipedia.org/wiki/X_PixMap">XPM</A> 
+(<I>pixelmap</I>) for <A href="http://en.wikipedia.org/wiki/Color">color</A> 
+images. There are also a variety of "raw" formats, which saves raw <A 
+href="http://en.wikipedia.org/wiki/Data">data</A> with no other <A 
+href="http://en.wikipedia.org/wiki/Information">information</A>. The <A 
+class=mw-redirect title="Portable Pixmap" 
+href="http://en.wikipedia.org/wiki/Portable_Pixmap">Portable Pixmap</A> (PPM) 
+and <A href="http://en.wikipedia.org/wiki/Truevision_TGA">Truevision TGA</A> 
+formats also exist, but are less often used&nbsp;– or only for special purposes; 
+for example, TGA can contain transparency information.</P>
+<P>Numerous other bitmap file formats are in existence, though most are not 
+widely used.<SUP id=cite_ref-12 class=reference><A 
+href="http://en.wikipedia.org/wiki/BMP_file#cite_note-12"><SPAN>[</SPAN>13<SPAN>]</SPAN></A></SUP></P>
+<H2><SPAN class=editsection>[<A title="Edit section: See also" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=15">edit</A>]</SPAN> 
+<SPAN id=See_also class=mw-headline>See also</SPAN></H2>
+<UL>
+  <LI><A 
+  href="http://en.wikipedia.org/wiki/Comparison_of_graphics_file_formats">Comparison 
+  of graphics file formats</A> </LI></UL>
+<H2><SPAN class=editsection>[<A title="Edit section: References" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=16">edit</A>]</SPAN> 
+<SPAN id=References class=mw-headline>References</SPAN></H2>
+<DIV style="LIST-STYLE-TYPE: decimal" class=reflist>
+<OL class=references>
+  <LI id=cite_note-DIBhelp-0>^ <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBhelp_0-0"><SUP><I><B>a</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBhelp_0-1"><SUP><I><B>b</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBhelp_0-2"><SUP><I><B>c</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBhelp_0-3"><SUP><I><B>d</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBhelp_0-4"><SUP><I><B>e</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBhelp_0-5"><SUP><I><B>f</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBhelp_0-6"><SUP><I><B>g</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBhelp_0-7"><SUP><I><B>h</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBhelp_0-8"><SUP><I><B>i</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBhelp_0-9"><SUP><I><B>j</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBhelp_0-10"><SUP><I><B>k</B></I></SUP></A> 
+  <SPAN class="citation web"><A class="external text" 
+  href="http://support.microsoft.com/kb/q81498/" rel=nofollow>"DIBs and Their 
+  Uses"</A>. <I>Microsoft Help and Support</I>. 2005-02-11<SPAN 
+  class=printonly>. <A class="external free" 
+  href="http://support.microsoft.com/kb/q81498/" 
+  rel=nofollow>http://support.microsoft.com/kb/q81498/</A></SPAN>.</SPAN><SPAN 
+  class=Z3988 
+  title=ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=DIBs+and+Their+Uses&amp;rft.atitle=Microsoft+Help+and+Support&amp;rft.date=2005-02-11&amp;rft_id=http%3A%2F%2Fsupport.microsoft.com%2Fkb%2Fq81498%2F&amp;rfr_id=info:sid/en.wikipedia.org:BMP_file_format><SPAN 
+  style="DISPLAY: none">&nbsp;</SPAN></SPAN> 
+  <LI id=cite_note-AlphaBitFields-1>^ <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-AlphaBitFields_1-0"><SUP><I><B>a</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-AlphaBitFields_1-1"><SUP><I><B>b</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-AlphaBitFields_1-2"><SUP><I><B>c</B></I></SUP></A> 
+  MSDN - BITMAPINFOHEADER: <A class="external text" 
+  href="http://msdn.microsoft.com/en-us/library/aa452885.aspx" 
+  rel=nofollow>BI_ALPHABITFIELDS in biCompression member</A> 
+  <LI id=cite_note-DIBHeaderTypes-2>^ <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBHeaderTypes_2-0"><SUP><I><B>a</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBHeaderTypes_2-1"><SUP><I><B>b</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-DIBHeaderTypes_2-2"><SUP><I><B>c</B></I></SUP></A> 
+  MSDN <A class="external text" 
+  href="http://msdn.microsoft.com/en-us/library/dd183386%28VS.85%29.aspx" 
+  rel=nofollow>Bitmap Header Types</A> 
+  <LI id=cite_note-BITMAPINFO-3>^ <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-BITMAPINFO_3-0"><SUP><I><B>a</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-BITMAPINFO_3-1"><SUP><I><B>b</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-BITMAPINFO_3-2"><SUP><I><B>c</B></I></SUP></A> 
+  MSDN <A class="external text" 
+  href="http://msdn.microsoft.com/en-us/library/dd183375%28VS.85%29.aspx" 
+  rel=nofollow>BITMAPINFO Structure</A> 
+  <LI id=cite_note-PackedDIB-4><B><A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-PackedDIB_4-0">^</A></B> 
+  Feng Yuan - Windows graphics programming: Win32 GDI and DirectDraw: <A 
+  class="external text" 
+  href="http://books.google.com/books?id=-O92IIF1Bj4C&amp;pg=PA595" 
+  rel=nofollow>Packed Device-Independent Bitmap (CreateDIBPatternBrush, 
+  CreateDIBPatternBrushPt, FindResource, LoadResource, LockResource)</A> 
+  <LI id=cite_note-5><B><A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-5">^</A></B> <SPAN 
+  class="citation web"><A class="external text" 
+  href="http://msdn.microsoft.com/en-us/library/dd145023(VS.85).aspx" 
+  rel=nofollow>"JPEG and PNG Extensions for Specific Bitmap Functions and 
+  Structures"</A><SPAN class=printonly>. <A class="external free" 
+  href="http://msdn.microsoft.com/en-us/library/dd145023(VS.85).aspx" 
+  rel=nofollow>http://msdn.microsoft.com/en-us/library/dd145023(VS.85).aspx</A></SPAN>.</SPAN><SPAN 
+  class=Z3988 
+  title=ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=JPEG+and+PNG+Extensions+for+Specific+Bitmap+Functions+and+Structures&amp;rft.atitle=&amp;rft_id=http%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Flibrary%2Fdd145023%28VS.85%29.aspx&amp;rfr_id=info:sid/en.wikipedia.org:BMP_file_format><SPAN 
+  style="DISPLAY: none">&nbsp;</SPAN></SPAN> 
+  <LI id=cite_note-OS2gff-6>^ <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-OS2gff_6-0"><SUP><I><B>a</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-OS2gff_6-1"><SUP><I><B>b</B></I></SUP></A> 
+  <SPAN class="citation web"><A class="external text" 
+  href="http://netghost.narod.ru/gff/graphics/summary/os2bmp.htm" 
+  rel=nofollow>"GFF Format Summary: OS/2 Bitmap"</A><SPAN class=printonly>. <A 
+  class="external free" 
+  href="http://netghost.narod.ru/gff/graphics/summary/os2bmp.htm" 
+  rel=nofollow>http://netghost.narod.ru/gff/graphics/summary/os2bmp.htm</A></SPAN>.</SPAN><SPAN 
+  class=Z3988 
+  title=ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=GFF+Format+Summary%3A+OS%2F2+Bitmap&amp;rft.atitle=&amp;rft_id=http%3A%2F%2Fnetghost.narod.ru%2Fgff%2Fgraphics%2Fsummary%2Fos2bmp.htm&amp;rfr_id=info:sid/en.wikipedia.org:BMP_file_format><SPAN 
+  style="DISPLAY: none">&nbsp;</SPAN></SPAN> 
+  <LI id=cite_note-7><B><A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-7">^</A></B> MSDN - 
+  BITMAPV4HEADER: <A class="external text" 
+  href="http://msdn.microsoft.com/en-us/library/dd183380%28VS.85%29.aspx" 
+  rel=nofollow>The member bV4AlphaMask</A> 
+  <LI id=cite_note-8><B><A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-8">^</A></B> MSDN - 
+  RGBQUAD: <A class="external text" 
+  href="http://msdn.microsoft.com/en-us/library/dd162938%28VS.85%29.aspx" 
+  rel=nofollow>rgbReserved member</A> 
+  <LI id=cite_note-9><B><A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-9">^</A></B> MSDN - 
+  BITMAPINFOHEADER: <A class="external text" 
+  href="http://msdn.microsoft.com/en-us/library/dd183376%28VS.85%29.aspx" 
+  rel=nofollow>The member biBitCount</A> 
+  <LI id=cite_note-PSformats-10>^ <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-PSformats_10-0"><SUP><I><B>a</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-PSformats_10-1"><SUP><I><B>b</B></I></SUP></A> 
+  <A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-PSformats_10-2"><SUP><I><B>c</B></I></SUP></A> 
+  MSDN: <A class="external text" 
+  href="http://msdn.microsoft.com/en-us/library/ms959648.aspx" 
+  rel=nofollow>Windows CE - BITMAPINFOHEADER Structure</A> 
+  <LI id=cite_note-11><B><A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-11">^</A></B> <SPAN 
+  class="citation book">Julian Smart, Stefan Csomor, and Kevin Hock (2006). <A 
+  class="external text" 
+  href="http://books.google.com/books?id=CyMsvtgnq0QC&amp;pg=PA265&amp;dq=bitmap+pixmap+gui&amp;as_brr=3&amp;ei=4SjwRrTpHYSipgL63NS3BA&amp;sig=4_ev_R-Xs8tXCVONCaiJEnFLtI0" 
+  rel=nofollow><I>Cross-Platform GUI Programming with Wxwidgets</I></A>. 
+  Prentice Hall. <A title="International Standard Book Number" 
+  href="http://en.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</A>&nbsp;<A 
+  title=Special:BookSources/0131473816 
+  href="http://en.wikipedia.org/wiki/Special:BookSources/0131473816">0131473816</A><SPAN 
+  class=printonly>. <A class="external free" 
+  href="http://books.google.com/books?id=CyMsvtgnq0QC&amp;pg=PA265&amp;dq=bitmap+pixmap+gui&amp;as_brr=3&amp;ei=4SjwRrTpHYSipgL63NS3BA&amp;sig=4_ev_R-Xs8tXCVONCaiJEnFLtI0" 
+  rel=nofollow>http://books.google.com/books?id=CyMsvtgnq0QC&amp;pg=PA265&amp;dq=bitmap+pixmap+gui&amp;as_brr=3&amp;ei=4SjwRrTpHYSipgL63NS3BA&amp;sig=4_ev_R-Xs8tXCVONCaiJEnFLtI0</A></SPAN>.</SPAN><SPAN 
+  class=Z3988 
+  title=ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Cross-Platform+GUI+Programming+with+Wxwidgets&amp;rft.aulast=Julian+Smart%2C+Stefan+Csomor%2C+and+Kevin+Hock&amp;rft.au=Julian+Smart%2C+Stefan+Csomor%2C+and+Kevin+Hock&amp;rft.date=2006&amp;rft.pub=Prentice+Hall&amp;rft.isbn=0131473816&amp;rft_id=http%3A%2F%2Fbooks.google.com%2Fbooks%3Fid%3DCyMsvtgnq0QC%26pg%3DPA265%26dq%3Dbitmap%2Bpixmap%2Bgui%26as_brr%3D3%26ei%3D4SjwRrTpHYSipgL63NS3BA%26sig%3D4_ev_R-Xs8tXCVONCaiJEnFLtI0&amp;rfr_id=info:sid/en.wikipedia.org:BMP_file_format><SPAN 
+  style="DISPLAY: none">&nbsp;</SPAN></SPAN> 
+  <LI id=cite_note-12><B><A 
+  href="http://en.wikipedia.org/wiki/BMP_file#cite_ref-12">^</A></B> <SPAN 
+  class="citation web"><A class="external text" 
+  href="http://www.file-extensions.org/filetype/extensions/name/Bitmap+image/" 
+  rel=nofollow>"List of bitmap file types"</A>. <I>Search 
+  File-Extensions.org</I><SPAN class=printonly>. <A class="external free" 
+  href="http://www.file-extensions.org/filetype/extensions/name/Bitmap+image/" 
+  rel=nofollow>http://www.file-extensions.org/filetype/extensions/name/Bitmap+image/</A></SPAN>.</SPAN><SPAN 
+  class=Z3988 
+  title=ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=List+of+bitmap+file+types&amp;rft.atitle=Search+File-Extensions.org&amp;rft_id=http%3A%2F%2Fwww.file-extensions.org%2Ffiletype%2Fextensions%2Fname%2FBitmap%2Bimage%2F&amp;rfr_id=info:sid/en.wikipedia.org:BMP_file_format><SPAN 
+  style="DISPLAY: none">&nbsp;</SPAN></SPAN> </LI></OL></DIV>
+<H2><SPAN class=editsection>[<A title="Edit section: External links" 
+href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit&amp;section=17">edit</A>]</SPAN> 
+<SPAN id=External_links class=mw-headline>External links</SPAN></H2>
+<UL>
+  <LI><A class="external text" 
+  href="http://atlc.sourceforge.net/bmp.html#_toc381201084" rel=nofollow>For a 
+  table view of the bitmap file format</A> at sourceforge 
+  <LI><A class="external text" href="http://www.digicamsoft.com/bmp/bmp.html" 
+  rel=nofollow>Bitmap File Structure</A> 
+  <LI><A class="external text" 
+  href="http://www.herdsoft.com/ti/davincie/imex3j8i.htm" rel=nofollow>An 
+  introduction to DIBs (Device Independent Bitmaps)</A> 
+  <LI><A class="external text" href="http://wvnvaxa.wvnet.edu/vmswww/bmp.html" 
+  rel=nofollow>BMP test images</A> 
+  <LI><A class="external text" href="http://www.kalytta.com/bitmap.h" 
+  rel=nofollow>Simple bitmap loader C++ class</A> </LI></UL>
+<TABLE class=navbox cellSpacing=0>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 2px">
+      <TABLE 
+      style="WIDTH: 100%; BACKGROUND: none transparent scroll repeat 0% 0%" 
+      class="nowraplinks collapsible autocollapse" cellSpacing=0>
+        <TBODY>
+        <TR>
+          <TH class=navbox-title colSpan=2><SPAN 
+            style="TEXT-ALIGN: left; WIDTH: 6em; FLOAT: left"><SPAN 
+            class="noprint plainlinks navbar"><SPAN 
+            style="WHITE-SPACE: nowrap; WORD-SPACING: -0.12em"><A 
+            title="Template:Compression formats" 
+            href="http://en.wikipedia.org/wiki/Template:Compression_formats"><SPAN 
+            style="BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; FONT-SIZE: 100%; BORDER-LEFT-STYLE: none" 
+            title="View this template">v</SPAN></A> <SPAN 
+            style="BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; FONT-SIZE: 100%; BORDER-LEFT-STYLE: none"><B>·</B></SPAN> 
+            <A title="Template talk:Compression formats" 
+            href="http://en.wikipedia.org/wiki/Template_talk:Compression_formats"><SPAN 
+            style="BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; FONT-SIZE: 100%; BORDER-LEFT-STYLE: none" 
+            title="Discuss this template">d</SPAN></A> <SPAN 
+            style="BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; FONT-SIZE: 100%; BORDER-LEFT-STYLE: none"><B>·</B></SPAN> 
+            <A class="external text" 
+            href="http://en.wikipedia.org/w/index.php?title=Template:Compression_formats&amp;action=edit" 
+            rel=nofollow><SPAN 
+            style="BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; FONT-SIZE: 100%; BORDER-LEFT-STYLE: none" 
+            title="Edit this template">e</SPAN></A></SPAN></SPAN></SPAN><SPAN 
+            style="FONT-SIZE: 110%"><A 
+            href="http://en.wikipedia.org/wiki/Multimedia">Multimedia</A> <A 
+            title="Data compression" 
+            href="http://en.wikipedia.org/wiki/Data_compression">compression</A> 
+            and <A title="Container format (digital)" 
+            href="http://en.wikipedia.org/wiki/Container_format_(digital)">container</A> 
+            formats</SPAN></TH></TR>
+        <TR style="HEIGHT: 2px">
+          <TD></TD></TR>
+        <TR>
+          <TD class=navbox-group><A title="Video compression" 
+            href="http://en.wikipedia.org/wiki/Video_compression">Video</A></TD>
+          <TD 
+          style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+          class="navbox-list navbox-odd">
+            <DIV 
+            style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"></DIV>
+            <TABLE style="WIDTH: 100%" class="nowraplinks navbox-subgroup" 
+            cellSpacing=0>
+              <TBODY>
+              <TR>
+                <TD style="PADDING-LEFT: 0em; WIDTH: 9em; PADDING-RIGHT: 0em" 
+                class=navbox-group>
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.75em; PADDING-RIGHT: 0.75em; PADDING-TOP: 0em"><A 
+                  title="International Organization for Standardization" 
+                  href="http://en.wikipedia.org/wiki/International_Organization_for_Standardization">ISO</A>/<A 
+                  title="International Electrotechnical Commission" 
+                  href="http://en.wikipedia.org/wiki/International_Electrotechnical_Commission">IEC</A></DIV></TD>
+                <TD 
+                style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: auto; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+                class="navbox-list navbox-odd">
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+                  title="Motion JPEG" 
+                  href="http://en.wikipedia.org/wiki/Motion_JPEG">MJPEG</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="JPEG 2000" 
+                  href="http://en.wikipedia.org/wiki/JPEG_2000#Motion_JPEG_2000">Motion 
+                  JPEG 2000</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/MPEG-1">MPEG-1</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/MPEG-2">MPEG-2</A> (<A 
+                  title="H.262/MPEG-2 Part 2" 
+                  href="http://en.wikipedia.org/wiki/H.262/MPEG-2_Part_2">Part 
+                  2</A>)&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/MPEG-4">MPEG-4</A> (<A 
+                  title="MPEG-4 Part 2" 
+                  href="http://en.wikipedia.org/wiki/MPEG-4_Part_2">Part 
+                  2/ASP</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="H.264/MPEG-4 AVC" 
+                  href="http://en.wikipedia.org/wiki/H.264/MPEG-4_AVC">Part 
+                  10/AVC</A>)&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="High Efficiency Video Coding" 
+                  href="http://en.wikipedia.org/wiki/High_Efficiency_Video_Coding">HEVC</A></DIV></TD></TR>
+              <TR style="HEIGHT: 2px">
+                <TD></TD></TR>
+              <TR>
+                <TD style="PADDING-LEFT: 0em; WIDTH: 9em; PADDING-RIGHT: 0em" 
+                class=navbox-group>
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.75em; PADDING-RIGHT: 0.75em; PADDING-TOP: 0em"><A 
+                  href="http://en.wikipedia.org/wiki/ITU-T">ITU-T</A></DIV></TD>
+                <TD 
+                style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: auto; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+                class="navbox-list navbox-even">
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+                  href="http://en.wikipedia.org/wiki/H.120">H.120</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/H.261">H.261</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="H.262/MPEG-2 Part 2" 
+                  href="http://en.wikipedia.org/wiki/H.262/MPEG-2_Part_2">H.262</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/H.263">H.263</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="H.264/MPEG-4 AVC" 
+                  href="http://en.wikipedia.org/wiki/H.264/MPEG-4_AVC">H.264</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="High Efficiency Video Coding" 
+                  href="http://en.wikipedia.org/wiki/High_Efficiency_Video_Coding">HEVC</A></DIV></TD></TR>
+              <TR style="HEIGHT: 2px">
+                <TD></TD></TR>
+              <TR>
+                <TD style="PADDING-LEFT: 0em; WIDTH: 9em; PADDING-RIGHT: 0em" 
+                class=navbox-group>
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.75em; PADDING-RIGHT: 0.75em; PADDING-TOP: 0em">Others</DIV></TD>
+                <TD 
+                style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: auto; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+                class="navbox-list navbox-odd">
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+                  title="Audio Video Standard" 
+                  href="http://en.wikipedia.org/wiki/Audio_Video_Standard">AVS</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="Bink Video" 
+                  href="http://en.wikipedia.org/wiki/Bink_Video">Bink</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/CineForm">CineForm</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Cinepak">Cinepak</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A class=mw-redirect 
+                  title="Dirac (codec)" 
+                  href="http://en.wikipedia.org/wiki/Dirac_(codec)">Dirac</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/DV">DV</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Indeo">Indeo</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Microsoft_Video_1">Microsoft 
+                  Video 1</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/OMS_Video">OMS 
+                  Video</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Pixlet">Pixlet</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/RealVideo">RealVideo</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/RTVideo">RTVideo</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/SheerVideo">SheerVideo</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="Smacker video" 
+                  href="http://en.wikipedia.org/wiki/Smacker_video">Smacker</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="Sorenson codec" 
+                  href="http://en.wikipedia.org/wiki/Sorenson_codec">Sorenson 
+                  Video &amp; Sorenson Spark</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Theora">Theora</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/VC-1">VC-1</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A class=mw-redirect 
+                  title=VC-2 
+                  href="http://en.wikipedia.org/wiki/VC-2">VC-2</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A class=mw-redirect 
+                  title=VC-3 
+                  href="http://en.wikipedia.org/wiki/VC-3">VC-3</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/VP3">VP3</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/VP6">VP6</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/VP7">VP7</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/VP8">VP8</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Windows Media Video" 
+                  href="http://en.wikipedia.org/wiki/Windows_Media_Video">WMV</A></DIV></TD></TR></TBODY></TABLE></TD></TR>
+        <TR style="HEIGHT: 2px">
+          <TD></TD></TR>
+        <TR>
+          <TD class=navbox-group><A title="Audio compression (data)" 
+            href="http://en.wikipedia.org/wiki/Audio_compression_(data)">Audio</A></TD>
+          <TD 
+          style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+          class="navbox-list navbox-even">
+            <DIV 
+            style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"></DIV>
+            <TABLE style="WIDTH: 100%" class="nowraplinks navbox-subgroup" 
+            cellSpacing=0>
+              <TBODY>
+              <TR>
+                <TD style="PADDING-LEFT: 0em; WIDTH: 9em; PADDING-RIGHT: 0em" 
+                class=navbox-group>
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.75em; PADDING-RIGHT: 0.75em; PADDING-TOP: 0em"><A 
+                  title="International Organization for Standardization" 
+                  href="http://en.wikipedia.org/wiki/International_Organization_for_Standardization">ISO</A>/<A 
+                  title="International Electrotechnical Commission" 
+                  href="http://en.wikipedia.org/wiki/International_Electrotechnical_Commission">IEC</A></DIV></TD>
+                <TD 
+                style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: auto; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+                class="navbox-list navbox-odd">
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+                  title=MP3 href="http://en.wikipedia.org/wiki/MP3">MPEG-1 Layer 
+                  III (MP3)</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="MPEG-1 Audio Layer II" 
+                  href="http://en.wikipedia.org/wiki/MPEG-1_Audio_Layer_II">MPEG-1 
+                  Layer II</A> (<A title="MPEG Multichannel" 
+                  href="http://en.wikipedia.org/wiki/MPEG_Multichannel">Multichannel</A>)&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="MPEG-1 Audio Layer I" 
+                  href="http://en.wikipedia.org/wiki/MPEG-1_Audio_Layer_I">MPEG-1 
+                  Layer I</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Advanced Audio Coding" 
+                  href="http://en.wikipedia.org/wiki/Advanced_Audio_Coding">AAC</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="High-Efficiency Advanced Audio Coding" 
+                  href="http://en.wikipedia.org/wiki/High-Efficiency_Advanced_Audio_Coding">HE-AAC</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/MPEG_Surround">MPEG 
+                  Surround</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Audio Lossless Coding" 
+                  href="http://en.wikipedia.org/wiki/Audio_Lossless_Coding">MPEG-4 
+                  ALS</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/MPEG-4_SLS">MPEG-4 
+                  SLS</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  class=mw-redirect title="Direct Stream Transfer" 
+                  href="http://en.wikipedia.org/wiki/Direct_Stream_Transfer#DST">MPEG-4 
+                  DST</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Harmonic Vector Excitation Coding" 
+                  href="http://en.wikipedia.org/wiki/Harmonic_Vector_Excitation_Coding">MPEG-4 
+                  HVXC</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="MPEG-4 Part 3" 
+                  href="http://en.wikipedia.org/wiki/MPEG-4_Part_3#Subparts">MPEG-4 
+                  CELP</A></DIV></TD></TR>
+              <TR style="HEIGHT: 2px">
+                <TD></TD></TR>
+              <TR>
+                <TD style="PADDING-LEFT: 0em; WIDTH: 9em; PADDING-RIGHT: 0em" 
+                class=navbox-group>
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.75em; PADDING-RIGHT: 0.75em; PADDING-TOP: 0em"><A 
+                  href="http://en.wikipedia.org/wiki/ITU-T">ITU-T</A></DIV></TD>
+                <TD 
+                style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: auto; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+                class="navbox-list navbox-even">
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+                  href="http://en.wikipedia.org/wiki/G.711">G.711</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/G.718">G.718</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/G.719">G.719</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/G.722">G.722</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/G.722.1">G.722.1</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A class=mw-redirect 
+                  title=G.722.2 
+                  href="http://en.wikipedia.org/wiki/G.722.2">G.722.2</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/G.723">G.723</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/G.723.1">G.723.1</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/G.726">G.726</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/G.728">G.728</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/G.729">G.729</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/G.729.1">G.729.1</A></DIV></TD></TR>
+              <TR style="HEIGHT: 2px">
+                <TD></TD></TR>
+              <TR>
+                <TD style="PADDING-LEFT: 0em; WIDTH: 9em; PADDING-RIGHT: 0em" 
+                class=navbox-group>
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.75em; PADDING-RIGHT: 0.75em; PADDING-TOP: 0em">Others</DIV></TD>
+                <TD 
+                style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: auto; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+                class="navbox-list navbox-odd">
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+                  title="Dolby Digital" 
+                  href="http://en.wikipedia.org/wiki/Dolby_Digital">AC-3</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Adaptive Multi-Rate audio codec" 
+                  href="http://en.wikipedia.org/wiki/Adaptive_Multi-Rate_audio_codec">AMR</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Adaptive Multi-Rate Wideband" 
+                  href="http://en.wikipedia.org/wiki/Adaptive_Multi-Rate_Wideband">AMR-WB</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Extended Adaptive Multi-Rate – Wideband" 
+                  href="http://en.wikipedia.org/wiki/Extended_Adaptive_Multi-Rate_%E2%80%93_Wideband">AMR-WB+</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Apple_Lossless">Apple 
+                  Lossless</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Adaptive Transform Acoustic Coding" 
+                  href="http://en.wikipedia.org/wiki/Adaptive_Transform_Acoustic_Coding">ATRAC</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/CELT">CELT</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Dynamic Resolution Adaptation" 
+                  href="http://en.wikipedia.org/wiki/Dynamic_Resolution_Adaptation">DRA</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="DTS (sound system)" 
+                  href="http://en.wikipedia.org/wiki/DTS_(sound_system)">DTS</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Enhanced Variable Rate Codec" 
+                  href="http://en.wikipedia.org/wiki/Enhanced_Variable_Rate_Codec">EVRC</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Enhanced Variable Rate Codec B" 
+                  href="http://en.wikipedia.org/wiki/Enhanced_Variable_Rate_Codec_B">EVRC-B</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Free Lossless Audio Codec" 
+                  href="http://en.wikipedia.org/wiki/Free_Lossless_Audio_Codec">FLAC</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="Half Rate" 
+                  href="http://en.wikipedia.org/wiki/Half_Rate">GSM-HR</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="Full Rate" 
+                  href="http://en.wikipedia.org/wiki/Full_Rate">GSM-FR</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Enhanced full rate" 
+                  href="http://en.wikipedia.org/wiki/Enhanced_full_rate">GSM-EFR</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Internet Low Bit Rate Codec" 
+                  href="http://en.wikipedia.org/wiki/Internet_Low_Bit_Rate_Codec">iLBC</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Internet Speech Audio Codec" 
+                  href="http://en.wikipedia.org/wiki/Internet_Speech_Audio_Codec">iSAC</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Monkey%27s_Audio">Monkey's 
+                  Audio</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="TTA (codec)" 
+                  href="http://en.wikipedia.org/wiki/TTA_(codec)">TTA</A> (True 
+                  Audio)&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/MT9">MT9</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="A-law algorithm" 
+                  href="http://en.wikipedia.org/wiki/A-law_algorithm">A-law</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="Μ-law algorithm" 
+                  href="http://en.wikipedia.org/wiki/%CE%9C-law_algorithm">μ-law</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Musepack">Musepack</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Nellymoser Asao Codec" 
+                  href="http://en.wikipedia.org/wiki/Nellymoser_Asao_Codec">Nellymoser</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/OptimFROG">OptimFROG</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Original Sound Quality" 
+                  href="http://en.wikipedia.org/wiki/Original_Sound_Quality">OSQ</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/QCELP">QCELP</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/RealAudio">RealAudio</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/RTAudio">RTAudio</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title=Digidesign 
+                  href="http://en.wikipedia.org/wiki/Digidesign#Sound_Designer_File_Formats">SD2</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title=Shorten 
+                  href="http://en.wikipedia.org/wiki/Shorten">SHN</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/SILK">SILK</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="Siren Codec" 
+                  href="http://en.wikipedia.org/wiki/Siren_Codec">Siren</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Selectable Mode Vocoder" 
+                  href="http://en.wikipedia.org/wiki/Selectable_Mode_Vocoder">SMV</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Speex">Speex</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/SVOPC">SVOPC</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/TwinVQ">TwinVQ</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Variable-Rate Multimode Wideband" 
+                  href="http://en.wikipedia.org/wiki/Variable-Rate_Multimode_Wideband">VMR-WB</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Vorbis">Vorbis</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/WavPack">WavPack</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Windows Media Audio" 
+                  href="http://en.wikipedia.org/wiki/Windows_Media_Audio">WMA</A></DIV></TD></TR></TBODY></TABLE></TD></TR>
+        <TR style="HEIGHT: 2px">
+          <TD></TD></TR>
+        <TR>
+          <TD class=navbox-group><A title="Image compression" 
+            href="http://en.wikipedia.org/wiki/Image_compression">Image</A></TD>
+          <TD 
+          style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+          class="navbox-list navbox-odd">
+            <DIV 
+            style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"></DIV>
+            <TABLE style="WIDTH: 100%" class="nowraplinks navbox-subgroup" 
+            cellSpacing=0>
+              <TBODY>
+              <TR>
+                <TD style="PADDING-LEFT: 0em; WIDTH: 9em; PADDING-RIGHT: 0em" 
+                class=navbox-group>
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.75em; PADDING-RIGHT: 0.75em; PADDING-TOP: 0em"><A 
+                  title="International Organization for Standardization" 
+                  href="http://en.wikipedia.org/wiki/International_Organization_for_Standardization">ISO</A>/<A 
+                  title="International Electrotechnical Commission" 
+                  href="http://en.wikipedia.org/wiki/International_Electrotechnical_Commission">IEC</A>/<A 
+                  href="http://en.wikipedia.org/wiki/ITU-T">ITU-T</A></DIV></TD>
+                <TD 
+                style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: auto; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+                class="navbox-list navbox-odd">
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+                  href="http://en.wikipedia.org/wiki/JPEG">JPEG</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/JPEG_2000">JPEG 
+                  2000</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/JPEG_XR">JPEG 
+                  XR</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Lossless_JPEG">lossless 
+                  JPEG</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/JBIG">JBIG</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/JBIG2">JBIG2</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Portable Network Graphics" 
+                  href="http://en.wikipedia.org/wiki/Portable_Network_Graphics">PNG</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Tag Image File Format / Electronic Photography" 
+                  href="http://en.wikipedia.org/wiki/Tag_Image_File_Format_/_Electronic_Photography">TIFF/EP</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Tagged Image File Format" 
+                  href="http://en.wikipedia.org/wiki/Tagged_Image_File_Format#TIFF.2FIT">TIFF/IT</A></DIV></TD></TR>
+              <TR style="HEIGHT: 2px">
+                <TD></TD></TR>
+              <TR>
+                <TD style="PADDING-LEFT: 0em; WIDTH: 9em; PADDING-RIGHT: 0em" 
+                class=navbox-group>
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.75em; PADDING-RIGHT: 0.75em; PADDING-TOP: 0em">Others</DIV></TD>
+                <TD 
+                style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: auto; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+                class="navbox-list navbox-even">
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+                  href="http://en.wikipedia.org/wiki/APNG">APNG</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <STRONG 
+                  class=selflink>BMP</STRONG>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/DjVu">DjVu</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title=OpenEXR 
+                  href="http://en.wikipedia.org/wiki/OpenEXR">EXR</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Graphics Interchange Format" 
+                  href="http://en.wikipedia.org/wiki/Graphics_Interchange_Format">GIF</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/ICER">ICER</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/ILBM">ILBM</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Multiple-image Network Graphics" 
+                  href="http://en.wikipedia.org/wiki/Multiple-image_Network_Graphics">MNG</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/PCX">PCX</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Progressive Graphics File" 
+                  href="http://en.wikipedia.org/wiki/Progressive_Graphics_File">PGF</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="Truevision TGA" 
+                  href="http://en.wikipedia.org/wiki/Truevision_TGA">TGA</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="QuickTime VR" 
+                  href="http://en.wikipedia.org/wiki/QuickTime_VR">QTVR</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Tagged Image File Format" 
+                  href="http://en.wikipedia.org/wiki/Tagged_Image_File_Format">TIFF</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Wireless Application Protocol Bitmap Format" 
+                  href="http://en.wikipedia.org/wiki/Wireless_Application_Protocol_Bitmap_Format">WBMP</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/WebP">WebP</A></DIV></TD></TR></TBODY></TABLE></TD></TR>
+        <TR style="HEIGHT: 2px">
+          <TD></TD></TR>
+        <TR>
+          <TD class=navbox-group><A title="Container format (digital)" 
+            href="http://en.wikipedia.org/wiki/Container_format_(digital)">Containers</A></TD>
+          <TD 
+          style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+          class="navbox-list navbox-even">
+            <DIV 
+            style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"></DIV>
+            <TABLE style="WIDTH: 100%" class="nowraplinks navbox-subgroup" 
+            cellSpacing=0>
+              <TBODY>
+              <TR>
+                <TD style="PADDING-LEFT: 0em; WIDTH: 9em; PADDING-RIGHT: 0em" 
+                class=navbox-group>
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.75em; PADDING-RIGHT: 0.75em; PADDING-TOP: 0em">ISO/IEC</DIV></TD>
+                <TD 
+                style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: auto; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+                class="navbox-list navbox-odd">
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+                  title="MPEG program stream" 
+                  href="http://en.wikipedia.org/wiki/MPEG_program_stream">MPEG-PS</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="MPEG transport stream" 
+                  href="http://en.wikipedia.org/wiki/MPEG_transport_stream">MPEG-TS</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/ISO_base_media_file_format">ISO 
+                  base media file format</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/MPEG-4_Part_14">MPEG-4 Part 
+                  14</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="JPEG 2000" 
+                  href="http://en.wikipedia.org/wiki/JPEG_2000#Motion_JPEG_2000">Motion 
+                  JPEG 2000</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Digital Item" 
+                  href="http://en.wikipedia.org/wiki/Digital_Item#File_Format">MPEG-21 
+                  Part 9</A></DIV></TD></TR>
+              <TR style="HEIGHT: 2px">
+                <TD></TD></TR>
+              <TR>
+                <TD style="PADDING-LEFT: 0em; WIDTH: 9em; PADDING-RIGHT: 0em" 
+                class=navbox-group>
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.75em; PADDING-RIGHT: 0.75em; PADDING-TOP: 0em">ITU-T</DIV></TD>
+                <TD 
+                style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: auto; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+                class="navbox-list navbox-even">
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+                  title=MPEG-2 
+                  href="http://en.wikipedia.org/wiki/MPEG-2#Systems">H.222.0</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="JPEG 2000" 
+                  href="http://en.wikipedia.org/wiki/JPEG_2000#Motion_JPEG_2000">T.802</A></DIV></TD></TR>
+              <TR style="HEIGHT: 2px">
+                <TD></TD></TR>
+              <TR>
+                <TD style="PADDING-LEFT: 0em; WIDTH: 9em; PADDING-RIGHT: 0em" 
+                class=navbox-group>
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.75em; PADDING-RIGHT: 0.75em; PADDING-TOP: 0em">Others</DIV></TD>
+                <TD 
+                style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: auto; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+                class="navbox-list navbox-odd">
+                  <DIV 
+                  style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+                  href="http://en.wikipedia.org/wiki/3GP_and_3G2">3GP and 
+                  3G2</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="AMV video format" 
+                  href="http://en.wikipedia.org/wiki/AMV_video_format">AMV</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Advanced Systems Format" 
+                  href="http://en.wikipedia.org/wiki/Advanced_Systems_Format">ASF</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Audio Interchange File Format" 
+                  href="http://en.wikipedia.org/wiki/Audio_Interchange_File_Format">AIFF</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Audio Video Interleave" 
+                  href="http://en.wikipedia.org/wiki/Audio_Video_Interleave">AVI</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="Au file format" 
+                  href="http://en.wikipedia.org/wiki/Au_file_format">AU</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="Bink Video" 
+                  href="http://en.wikipedia.org/wiki/Bink_Video">Bink</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title=DivX 
+                  href="http://en.wikipedia.org/wiki/DivX#DivX_Media_Format_.28DMF.29">DivX 
+                  Media Format</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> 
+                  <A title="Digital Picture Exchange" 
+                  href="http://en.wikipedia.org/wiki/Digital_Picture_Exchange">DPX</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="Enhanced VOB" 
+                  href="http://en.wikipedia.org/wiki/Enhanced_VOB">EVO</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Flash_Video">Flash 
+                  Video</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="General Exchange Format" 
+                  href="http://en.wikipedia.org/wiki/General_Exchange_Format">GXF</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title=.m2ts 
+                  href="http://en.wikipedia.org/wiki/.m2ts">M2TS</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Matroska">Matroska</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Material Exchange Format" 
+                  href="http://en.wikipedia.org/wiki/Material_Exchange_Format">MXF</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/Ogg">Ogg</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/QuickTime_File_Format">QuickTime 
+                  File Format</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> 
+                  <A 
+                  href="http://en.wikipedia.org/wiki/RealMedia">RealMedia</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title=REDCODE 
+                  href="http://en.wikipedia.org/wiki/REDCODE">REDCODE 
+                  RAW</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="Resource Interchange File Format" 
+                  href="http://en.wikipedia.org/wiki/Resource_Interchange_File_Format">RIFF</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A title="Smacker video" 
+                  href="http://en.wikipedia.org/wiki/Smacker_video">Smacker</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  title="MOD and TOD (video format)" 
+                  href="http://en.wikipedia.org/wiki/MOD_and_TOD_(video_format)">MOD 
+                  and TOD</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/VOB">VOB</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/WAV">WAV</A>&nbsp;<SPAN 
+                  style="FONT-WEIGHT: bold">·</SPAN> <A 
+                  href="http://en.wikipedia.org/wiki/WebM">WebM</A></DIV></TD></TR></TBODY></TABLE></TD></TR>
+        <TR style="HEIGHT: 2px">
+          <TD></TD></TR>
+        <TR>
+          <TD class=navbox-abovebelow colSpan=2>See <A 
+            title="Template:Compression methods" 
+            href="http://en.wikipedia.org/wiki/Template:Compression_methods">Compression 
+            methods</A> for methods and <A 
+            title="Template:Compression software implementations" 
+            href="http://en.wikipedia.org/wiki/Template:Compression_software_implementations">Compression 
+            software implementations</A> for 
+  codecs</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<TABLE class=navbox cellSpacing=0>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 2px">
+      <TABLE 
+      style="WIDTH: 100%; BACKGROUND: none transparent scroll repeat 0% 0%" 
+      class="nowraplinks collapsible autocollapse" cellSpacing=0>
+        <TBODY>
+        <TR>
+          <TH class=navbox-title colSpan=2><SPAN 
+            style="TEXT-ALIGN: left; WIDTH: 6em; FLOAT: left"><SPAN 
+            class="noprint plainlinks navbar"><SPAN 
+            style="WHITE-SPACE: nowrap; WORD-SPACING: -0.12em"><A 
+            title="Template:Graphics file formats" 
+            href="http://en.wikipedia.org/wiki/Template:Graphics_file_formats"><SPAN 
+            style="BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; FONT-SIZE: 100%; BORDER-LEFT-STYLE: none" 
+            title="View this template">v</SPAN></A> <SPAN 
+            style="BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; FONT-SIZE: 100%; BORDER-LEFT-STYLE: none"><B>·</B></SPAN> 
+            <A title="Template talk:Graphics file formats" 
+            href="http://en.wikipedia.org/wiki/Template_talk:Graphics_file_formats"><SPAN 
+            style="BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; FONT-SIZE: 100%; BORDER-LEFT-STYLE: none" 
+            title="Discuss this template">d</SPAN></A> <SPAN 
+            style="BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; FONT-SIZE: 100%; BORDER-LEFT-STYLE: none"><B>·</B></SPAN> 
+            <A class="external text" 
+            href="http://en.wikipedia.org/w/index.php?title=Template:Graphics_file_formats&amp;action=edit" 
+            rel=nofollow><SPAN 
+            style="BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; FONT-SIZE: 100%; BORDER-LEFT-STYLE: none" 
+            title="Edit this template">e</SPAN></A></SPAN></SPAN></SPAN><SPAN 
+            style="FONT-SIZE: 110%"><A class=mw-redirect 
+            title="Graphics file formats" 
+            href="http://en.wikipedia.org/wiki/Graphics_file_formats">Graphics 
+            file formats</A></SPAN></TH></TR>
+        <TR style="HEIGHT: 2px">
+          <TD></TD></TR>
+        <TR>
+          <TD class=navbox-group><A title="Raster graphics" 
+            href="http://en.wikipedia.org/wiki/Raster_graphics">Raster 
+            formats</A></TD>
+          <TD 
+          style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+          class="navbox-list navbox-odd">
+            <DIV 
+            style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+            title="ANI (file format)" 
+            href="http://en.wikipedia.org/wiki/ANI_(file_format)">ANI</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=ANIM 
+            href="http://en.wikipedia.org/wiki/ANIM">ANIM</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=APNG 
+            href="http://en.wikipedia.org/wiki/APNG">APNG</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="ART image file format" 
+            href="http://en.wikipedia.org/wiki/ART_image_file_format">ART</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="BEF (image format)" 
+            href="http://en.wikipedia.org/wiki/BEF_(image_format)">BEF</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="BMF Bitmap" 
+            href="http://en.wikipedia.org/wiki/BMF_Bitmap">BMF</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <STRONG 
+            class=selflink>BMP</STRONG>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="BSAVE (graphics image format)" 
+            href="http://en.wikipedia.org/wiki/BSAVE_(graphics_image_format)">BSAVE</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="CALS Raster file format" 
+            href="http://en.wikipedia.org/wiki/CALS_Raster_file_format">CAL</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Computer Graphics Metafile" 
+            href="http://en.wikipedia.org/wiki/Computer_Graphics_Metafile">CGM</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=Cineon 
+            href="http://en.wikipedia.org/wiki/Cineon">CIN</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Cartesian Perceptual Compression" 
+            href="http://en.wikipedia.org/wiki/Cartesian_Perceptual_Compression">CPC</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Digital Picture Exchange" 
+            href="http://en.wikipedia.org/wiki/Digital_Picture_Exchange">DPX</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="ECW (file format)" 
+            href="http://en.wikipedia.org/wiki/ECW_(file_format)">ECW</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=OpenEXR 
+            href="http://en.wikipedia.org/wiki/OpenEXR">EXR</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=FITS 
+            href="http://en.wikipedia.org/wiki/FITS">FITS</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="FLIC (file format)" 
+            href="http://en.wikipedia.org/wiki/FLIC_(file_format)">FLIC</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=FlashPix 
+            href="http://en.wikipedia.org/wiki/FlashPix">FPX</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Graphics Interchange Format" 
+            href="http://en.wikipedia.org/wiki/Graphics_Interchange_Format">GIF</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="HDRi (data format)" 
+            href="http://en.wikipedia.org/wiki/HDRi_(data_format)">HDRi</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A class=mw-redirect 
+            title="ICER (file format)" 
+            href="http://en.wikipedia.org/wiki/ICER_(file_format)">ICER</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Apple Icon Image format" 
+            href="http://en.wikipedia.org/wiki/Apple_Icon_Image_format">ICNS</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="ICO (file format)" 
+            href="http://en.wikipedia.org/wiki/ICO_(file_format)">ICO / 
+            CUR</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Image Cytometry Standard" 
+            href="http://en.wikipedia.org/wiki/Image_Cytometry_Standard">ICS</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=IGES 
+            href="http://en.wikipedia.org/wiki/IGES">IGES</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=ILBM 
+            href="http://en.wikipedia.org/wiki/ILBM">ILBM</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=JBIG 
+            href="http://en.wikipedia.org/wiki/JBIG">JBIG</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=JBIG2 
+            href="http://en.wikipedia.org/wiki/JBIG2">JBIG2</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="JPEG Network Graphics" 
+            href="http://en.wikipedia.org/wiki/JPEG_Network_Graphics">JNG</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=JPEG 
+            href="http://en.wikipedia.org/wiki/JPEG">JPEG</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="JPEG 2000" 
+            href="http://en.wikipedia.org/wiki/JPEG_2000">JPEG 
+            2000</A>&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Lossless JPEG" 
+            href="http://en.wikipedia.org/wiki/Lossless_JPEG#JPEG-LS">JPEG-LS</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=JPEG-HDR 
+            href="http://en.wikipedia.org/wiki/JPEG-HDR">JPEG-HDR</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="JPEG XR" 
+            href="http://en.wikipedia.org/wiki/JPEG_XR">JPEG XR</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Multiple-image Network Graphics" 
+            href="http://en.wikipedia.org/wiki/Multiple-image_Network_Graphics">MNG</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Magick Image File Format" 
+            href="http://en.wikipedia.org/wiki/Magick_Image_File_Format">MIFF</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="Netpbm format" 
+            href="http://en.wikipedia.org/wiki/Netpbm_format">PBM</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=PCX 
+            href="http://en.wikipedia.org/wiki/PCX">PCX</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Progressive Graphics File" 
+            href="http://en.wikipedia.org/wiki/Progressive_Graphics_File">PGF</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="Netpbm format" 
+            href="http://en.wikipedia.org/wiki/Netpbm_format">PGM</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="PICtor PIC image format" 
+            href="http://en.wikipedia.org/wiki/PICtor_PIC_image_format">PICtor</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="Pixel Studio Pro" 
+            href="http://en.wikipedia.org/wiki/Pixel_Studio_Pro">Pixel</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Portable Network Graphics" 
+            href="http://en.wikipedia.org/wiki/Portable_Network_Graphics">PNG</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="Netpbm format" 
+            href="http://en.wikipedia.org/wiki/Netpbm_format">PPM</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A class=mw-redirect 
+            title="Corel Paint Shop Pro" 
+            href="http://en.wikipedia.org/wiki/Corel_Paint_Shop_Pro">PSP</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="Radiance (software)" 
+            href="http://en.wikipedia.org/wiki/Radiance_(software)#Scene_description_format">RAD</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="RGBE image format" 
+            href="http://en.wikipedia.org/wiki/RGBE_image_format">RGBE</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="Silicon Graphics Image" 
+            href="http://en.wikipedia.org/wiki/Silicon_Graphics_Image">SGI</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="Truevision TGA" 
+            href="http://en.wikipedia.org/wiki/Truevision_TGA">TGA</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Tagged Image File Format" 
+            href="http://en.wikipedia.org/wiki/Tagged_Image_File_Format">TIFF</A> 
+            (<A title="Tag Image File Format / Electronic Photography" 
+            href="http://en.wikipedia.org/wiki/Tag_Image_File_Format_/_Electronic_Photography">TIFF/EP</A>, 
+            <A title="Tagged Image File Format" 
+            href="http://en.wikipedia.org/wiki/Tagged_Image_File_Format#TIFF.2FIT">TIFF/IT</A>, 
+            <A href="http://en.wikipedia.org/wiki/Logluv_TIFF">Logluv 
+            TIFF</A>)&nbsp;<SPAN style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Wireless Application Protocol Bitmap Format" 
+            href="http://en.wikipedia.org/wiki/Wireless_Application_Protocol_Bitmap_Format">WBMP</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=WebP 
+            href="http://en.wikipedia.org/wiki/WebP">WebP</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="Xar (graphics)" 
+            href="http://en.wikipedia.org/wiki/Xar_(graphics)">XAR</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="X BitMap" 
+            href="http://en.wikipedia.org/wiki/X_BitMap">XBM</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="XCF (file format)" 
+            href="http://en.wikipedia.org/wiki/XCF_(file_format)">XCF</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="X PixMap" 
+            href="http://en.wikipedia.org/wiki/X_PixMap">XPM</A></DIV></TD></TR>
+        <TR style="HEIGHT: 2px">
+          <TD></TD></TR>
+        <TR>
+          <TD class=navbox-group><A title="Raw image format" 
+            href="http://en.wikipedia.org/wiki/Raw_image_format">Raw 
+          formats</A></TD>
+          <TD 
+          style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+          class="navbox-list navbox-even">
+            <DIV 
+            style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+            title="Camera Image File Format" 
+            href="http://en.wikipedia.org/wiki/Camera_Image_File_Format">CIFF</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Digital Negative (file format)" 
+            href="http://en.wikipedia.org/wiki/Digital_Negative_(file_format)">DNG</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="ORF format" 
+            href="http://en.wikipedia.org/wiki/ORF_format">ORF</A></DIV></TD></TR>
+        <TR style="HEIGHT: 2px">
+          <TD></TD></TR>
+        <TR>
+          <TD class=navbox-group><A title="Vector graphics" 
+            href="http://en.wikipedia.org/wiki/Vector_graphics">Vector 
+            formats</A></TD>
+          <TD 
+          style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+          class="navbox-list navbox-odd">
+            <DIV 
+            style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+            title="Adobe Illustrator Artwork" 
+            href="http://en.wikipedia.org/wiki/Adobe_Illustrator_Artwork">AI</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=CorelDRAW 
+            href="http://en.wikipedia.org/wiki/CorelDRAW#CDR_file_format">CDR</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="AutoCAD DXF" 
+            href="http://en.wikipedia.org/wiki/AutoCAD_DXF">DXF</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Extended Vector Animation" 
+            href="http://en.wikipedia.org/wiki/Extended_Vector_Animation">EVA</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="Windows Metafile" 
+            href="http://en.wikipedia.org/wiki/Windows_Metafile">EMF</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Haiku Vector Icon Format" 
+            href="http://en.wikipedia.org/wiki/Haiku_Vector_Icon_Format">HVIF</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Precision Graphics Markup Language" 
+            href="http://en.wikipedia.org/wiki/Precision_Graphics_Markup_Language">PGML</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Scalable Vector Graphics" 
+            href="http://en.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="Vector Markup Language" 
+            href="http://en.wikipedia.org/wiki/Vector_Markup_Language">VML</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="Windows Metafile" 
+            href="http://en.wikipedia.org/wiki/Windows_Metafile">WMF</A></DIV></TD></TR>
+        <TR style="HEIGHT: 2px">
+          <TD></TD></TR>
+        <TR>
+          <TD class=navbox-group>Compound formats</TD>
+          <TD 
+          style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+          class="navbox-list navbox-even">
+            <DIV 
+            style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+            title=DjVu 
+            href="http://en.wikipedia.org/wiki/DjVu">DjVu</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Encapsulated PostScript" 
+            href="http://en.wikipedia.org/wiki/Encapsulated_PostScript">EPS</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Portable Document Format" 
+            href="http://en.wikipedia.org/wiki/Portable_Document_Format">PDF</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=PICT 
+            href="http://en.wikipedia.org/wiki/PICT">PICT</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=PostScript 
+            href="http://en.wikipedia.org/wiki/PostScript">PostScript</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title="Adobe Photoshop" 
+            href="http://en.wikipedia.org/wiki/Adobe_Photoshop#Features">PSD</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A title=SWF 
+            href="http://en.wikipedia.org/wiki/SWF">SWF</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Extensible Application Markup Language" 
+            href="http://en.wikipedia.org/wiki/Extensible_Application_Markup_Language">XAML</A></DIV></TD></TR>
+        <TR style="HEIGHT: 2px">
+          <TD></TD></TR>
+        <TR>
+          <TD class=navbox-group>Related</TD>
+          <TD 
+          style="TEXT-ALIGN: left; BORDER-LEFT: 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+          class="navbox-list navbox-odd">
+            <DIV 
+            style="PADDING-BOTTOM: 0em; PADDING-LEFT: 0.25em; PADDING-RIGHT: 0.25em; PADDING-TOP: 0em"><A 
+            title="Exchangeable image file format" 
+            href="http://en.wikipedia.org/wiki/Exchangeable_image_file_format">Exchangeable 
+            image file format (Exif)</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Extensible Metadata Platform" 
+            href="http://en.wikipedia.org/wiki/Extensible_Metadata_Platform">Extensible 
+            Metadata Platform (XMP)</A></DIV></TD></TR>
+        <TR style="HEIGHT: 2px">
+          <TD></TD></TR>
+        <TR>
+          <TD class=navbox-abovebelow colSpan=2><A 
+            title="Comparison of graphics file formats" 
+            href="http://en.wikipedia.org/wiki/Comparison_of_graphics_file_formats">Comparison</A>&nbsp;<SPAN 
+            style="FONT-WEIGHT: bold">·</SPAN> <A 
+            title="Comparison of layout engines (graphics)" 
+            href="http://en.wikipedia.org/wiki/Comparison_of_layout_engines_(graphics)">Browser 
+            support</A></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- 
+NewPP limit report
+Preprocessor node count: 8135/1000000
+Post-expand include size: 192025/2048000 bytes
+Template argument size: 157294/2048000 bytes
+Expensive parser function count: 0/500
+--><!-- Saved in parser cache with key enwiki:pcache:idhash:250336-0!1!0!!en!4 and timestamp 20110328191346 -->
+<DIV class=printfooter>Retrieved from "<A 
+href="http://en.wikipedia.org/wiki/BMP_file_format">http://en.wikipedia.org/wiki/BMP_file_format</A>"</DIV><!-- /bodytext --><!-- catlinks -->
+<DIV id=catlinks class=catlinks>
+<DIV id=mw-normal-catlinks><A title=Special:Categories 
+href="http://en.wikipedia.org/wiki/Special:Categories">Categories</A>: <SPAN 
+dir=ltr><A title="Category:Graphics file formats" 
+href="http://en.wikipedia.org/wiki/Category:Graphics_file_formats">Graphics file 
+formats</A></SPAN> | <SPAN dir=ltr><A 
+title="Category:Microsoft Windows multimedia technology" 
+href="http://en.wikipedia.org/wiki/Category:Microsoft_Windows_multimedia_technology">Microsoft 
+Windows multimedia technology</A></SPAN></DIV></DIV><!-- /catlinks -->
+<DIV class=visualClear></DIV></DIV><!-- /bodyContent --></DIV><!-- /content --><!-- header -->
+<DIV id=mw-head class=noprint><!-- 0 -->
+<DIV id=p-personal>
+<H5>Personal tools</H5>
+<UL>
+  <LI id=pt-login><A accessKey=o 
+  title="You are encouraged to log in; however, it is not mandatory. [o]" 
+  href="http://en.wikipedia.org/w/index.php?title=Special:UserLogin&amp;returnto=BMP_file_format">Log 
+  in / create account</A> </LI></UL></DIV><!-- /0 -->
+<DIV id=left-navigation><!-- 0 -->
+<DIV id=p-namespaces class=vectorTabs>
+<H5>Namespaces</H5>
+<UL>
+  <LI id=ca-nstab-main class=selected><SPAN><A accessKey=c 
+  title="View the content page [c]" 
+  href="http://en.wikipedia.org/wiki/BMP_file_format">Article</A></SPAN> </LI>
+  <LI id=ca-talk><SPAN><A accessKey=t 
+  title="Discussion about the content page [t]" 
+  href="http://en.wikipedia.org/wiki/Talk:BMP_file_format">Discussion</A></SPAN> 
+  </LI></UL></DIV><!-- /0 --><!-- 1 -->
+<DIV id=p-variants class="vectorMenu emptyPortlet">
+<H5><SPAN>Variants</SPAN><A 
+href="http://en.wikipedia.org/wiki/BMP_file#"></A></H5>
+<DIV class=menu>
+<UL></UL></DIV></DIV><!-- /1 --></DIV>
+<DIV id=right-navigation><!-- 0 -->
+<DIV id=p-views class=vectorTabs>
+<H5>Views</H5>
+<UL>
+  <LI id=ca-view class=selected><SPAN><A 
+  href="http://en.wikipedia.org/wiki/BMP_file_format">Read</A></SPAN> </LI>
+  <LI id=ca-edit><SPAN><A accessKey=e 
+  title="You can edit this page. &#10;Please use the preview button before saving. [e]" 
+  href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=edit">Edit</A></SPAN> 
+  </LI>
+  <LI id=ca-history class="collapsible "><SPAN><A accessKey=h 
+  title="Past versions of this page [h]" 
+  href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;action=history">View 
+  history</A></SPAN> </LI></UL></DIV><!-- /0 --><!-- 1 -->
+<DIV id=p-cactions class="vectorMenu emptyPortlet">
+<H5><SPAN>Actions</SPAN><A 
+href="http://en.wikipedia.org/wiki/BMP_file#"></A></H5>
+<DIV class=menu>
+<UL></UL></DIV></DIV><!-- /1 --><!-- 2 -->
+<DIV id=p-search>
+<H5><LABEL for=searchInput>Search</LABEL></H5>
+<FORM id=searchform action=/w/index.php><INPUT value=Special:Search type=hidden 
+name=title> 
+<DIV id=simpleSearch><INPUT accessKey=f id=searchInput 
+title="Search Wikipedia [f]" name=search><BUTTON id=searchButton 
+title="Search Wikipedia for this text" name=button type=submit><IMG alt=Search 
+src="bmp_files/search-ltr.png"></BUTTON> 
+</DIV></FORM></DIV><!-- /2 --></DIV></DIV><!-- /header --><!-- panel -->
+<DIV id=mw-panel class=noprint><!-- logo -->
+<DIV id=p-logo><A 
+style="BACKGROUND-IMAGE: url(http://upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png)" 
+title="Visit the main page" 
+href="http://en.wikipedia.org/wiki/Main_Page"></A></DIV><!-- /logo --><!-- navigation -->
+<DIV id=p-navigation class=portal>
+<H5>Navigation</H5>
+<DIV class=body>
+<UL>
+  <LI id=n-mainpage-description><A accessKey=z title="Visit the main page [z]" 
+  href="http://en.wikipedia.org/wiki/Main_Page">Main page</A> </LI>
+  <LI id=n-contents><A title="Guides to browsing Wikipedia" 
+  href="http://en.wikipedia.org/wiki/Portal:Contents">Contents</A> </LI>
+  <LI id=n-featuredcontent><A title="Featured content – the best of Wikipedia" 
+  href="http://en.wikipedia.org/wiki/Portal:Featured_content">Featured 
+  content</A> </LI>
+  <LI id=n-currentevents><A 
+  title="Find background information on current events" 
+  href="http://en.wikipedia.org/wiki/Portal:Current_events">Current events</A> 
+  </LI>
+  <LI id=n-randompage><A accessKey=x title="Load a random article [x]" 
+  href="http://en.wikipedia.org/wiki/Special:Random">Random article</A> </LI>
+  <LI id=n-sitesupport><A title="Support us" 
+  href="http://wikimediafoundation.org/wiki/Special:Landingcheck?landing_page=WMFJA085&amp;language=en&amp;utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=20101204SB002">Donate 
+  to Wikipedia</A> </LI></UL></DIV></DIV><!-- /navigation --><!-- SEARCH --><!-- /SEARCH --><!-- interaction -->
+<DIV id=p-interaction class=portal>
+<H5>Interaction</H5>
+<DIV class=body>
+<UL>
+  <LI id=n-help><A title="Guidance on how to use and edit Wikipedia" 
+  href="http://en.wikipedia.org/wiki/Help:Contents">Help</A> </LI>
+  <LI id=n-aboutsite><A title="Find out about Wikipedia" 
+  href="http://en.wikipedia.org/wiki/Wikipedia:About">About Wikipedia</A> </LI>
+  <LI id=n-portal><A 
+  title="About the project, what you can do, where to find things" 
+  href="http://en.wikipedia.org/wiki/Wikipedia:Community_portal">Community 
+  portal</A> </LI>
+  <LI id=n-recentchanges><A accessKey=r 
+  title="The list of recent changes in the wiki [r]" 
+  href="http://en.wikipedia.org/wiki/Special:RecentChanges">Recent changes</A> 
+  </LI>
+  <LI id=n-contact><A title="How to contact Wikipedia" 
+  href="http://en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact Wikipedia</A> 
+  </LI></UL></DIV></DIV><!-- /interaction --><!-- TOOLBOX -->
+<DIV id=p-tb class=portal>
+<H5>Toolbox</H5>
+<DIV class=body>
+<UL>
+  <LI id=t-whatlinkshere><A accessKey=j 
+  title="List of all English Wikipedia pages containing links to this page [j]" 
+  href="http://en.wikipedia.org/wiki/Special:WhatLinksHere/BMP_file_format">What 
+  links here</A> </LI>
+  <LI id=t-recentchangeslinked><A accessKey=k 
+  title="Recent changes in pages linked from this page [k]" 
+  href="http://en.wikipedia.org/wiki/Special:RecentChangesLinked/BMP_file_format">Related 
+  changes</A> </LI>
+  <LI id=t-upload><A accessKey=u title="Upload files [u]" 
+  href="http://en.wikipedia.org/wiki/Wikipedia:Upload">Upload file</A> </LI>
+  <LI id=t-specialpages><A accessKey=q title="List of all special pages [q]" 
+  href="http://en.wikipedia.org/wiki/Special:SpecialPages">Special pages</A> 
+  </LI>
+  <LI id=t-permalink><A title="Permanent link to this revision of the page" 
+  href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;oldid=416340399">Permanent 
+  link</A> </LI>
+  <LI id=t-cite><A title="Information on how to cite this page" 
+  href="http://en.wikipedia.org/w/index.php?title=Special:Cite&amp;page=BMP_file_format&amp;id=416340399">Cite 
+  this page</A> </LI></UL></DIV></DIV><!-- /TOOLBOX --><!-- coll-print_export -->
+<DIV id=p-coll-print_export class=portal>
+<H5>Print/export</H5>
+<DIV class=body>
+<UL id=collectionPortletList>
+  <LI id=coll-create_a_book><A title="Create a book or page collection" 
+  href="http://en.wikipedia.org/w/index.php?title=Special:Book&amp;bookcmd=book_creator&amp;referer=BMP+file+format" 
+  rel=nofollow>Create a book</A></LI>
+  <LI id=coll-download-as-rl><A title="Download a PDF version of this wiki page" 
+  href="http://en.wikipedia.org/w/index.php?title=Special:Book&amp;bookcmd=render_article&amp;arttitle=BMP+file+format&amp;oldid=416340399&amp;writer=rl" 
+  rel=nofollow>Download as PDF</A></LI>
+  <LI id=t-print><A accessKey=p title="Printable version of this page [p]" 
+  href="http://en.wikipedia.org/w/index.php?title=BMP_file_format&amp;printable=yes">Printable 
+  version</A></LI></UL></DIV></DIV><!-- /coll-print_export --><!-- LANGUAGES -->
+<DIV id=p-lang class=portal>
+<H5>Languages</H5>
+<DIV class=body>
+<UL>
+  <LI class=interwiki-ar><A title="بي إم بي (صيغة ملفات)" 
+  href="http://ar.wikipedia.org/wiki/%D8%A8%D9%8A_%D8%A5%D9%85_%D8%A8%D9%8A_(%D8%B5%D9%8A%D8%BA%D8%A9_%D9%85%D9%84%D9%81%D8%A7%D8%AA)">العربية</A> 
+  </LI>
+  <LI class=interwiki-az><A title=BMP 
+  href="http://az.wikipedia.org/wiki/BMP">Azərbaycanca</A> </LI>
+  <LI class=interwiki-bg><A title=BMP 
+  href="http://bg.wikipedia.org/wiki/BMP">Български</A> </LI>
+  <LI class=interwiki-ca><A title=BMP 
+  href="http://ca.wikipedia.org/wiki/BMP">Català</A> </LI>
+  <LI class=interwiki-cs><A title=BMP 
+  href="http://cs.wikipedia.org/wiki/BMP">Česky</A> </LI>
+  <LI class=interwiki-da><A title=BMP 
+  href="http://da.wikipedia.org/wiki/BMP">Dansk</A> </LI>
+  <LI class=interwiki-de><A title="Windows Bitmap" 
+  href="http://de.wikipedia.org/wiki/Windows_Bitmap">Deutsch</A> </LI>
+  <LI class=interwiki-es><A title="Windows bitmap" 
+  href="http://es.wikipedia.org/wiki/Windows_bitmap">Español</A> </LI>
+  <LI class=interwiki-fr><A title="Windows bitmap" 
+  href="http://fr.wikipedia.org/wiki/Windows_bitmap">Français</A> </LI>
+  <LI class=interwiki-gl><A title=BMP 
+  href="http://gl.wikipedia.org/wiki/BMP">Galego</A> </LI>
+  <LI class=interwiki-ko><A title="BMP 파일 포맷" 
+  href="http://ko.wikipedia.org/wiki/BMP_%ED%8C%8C%EC%9D%BC_%ED%8F%AC%EB%A7%B7">한국어</A> 
+  </LI>
+  <LI class=interwiki-id><A title=Bitmap 
+  href="http://id.wikipedia.org/wiki/Bitmap">Bahasa Indonesia</A> </LI>
+  <LI class=interwiki-it><A title="Windows bitmap" 
+  href="http://it.wikipedia.org/wiki/Windows_bitmap">Italiano</A> </LI>
+  <LI class=interwiki-pam><A title=BMP 
+  href="http://pam.wikipedia.org/wiki/BMP">Kapampangan</A> </LI>
+  <LI class=interwiki-ka><A title=BMP 
+  href="http://ka.wikipedia.org/wiki/BMP">ქართული</A> </LI>
+  <LI class=interwiki-lt><A title="BMP (formatas)" 
+  href="http://lt.wikipedia.org/wiki/BMP_(formatas)">Lietuvių</A> </LI>
+  <LI class=interwiki-hu><A title=BMP 
+  href="http://hu.wikipedia.org/wiki/BMP">Magyar</A> </LI>
+  <LI class=interwiki-nl><A title="BMP (bestandsindeling)" 
+  href="http://nl.wikipedia.org/wiki/BMP_(bestandsindeling)">Nederlands</A> 
+</LI>
+  <LI class=interwiki-ja><A title="Windows bitmap" 
+  href="http://ja.wikipedia.org/wiki/Windows_bitmap">日本語</A> </LI>
+  <LI class=interwiki-no><A title="Windows Bitmap" 
+  href="http://no.wikipedia.org/wiki/Windows_Bitmap">‪Norsk (bokmål)‬</A> </LI>
+  <LI class=interwiki-pl><A title="BMP (format)" 
+  href="http://pl.wikipedia.org/wiki/BMP_(format)">Polski</A> </LI>
+  <LI class=interwiki-pt><A title="Device Independent Bitmap" 
+  href="http://pt.wikipedia.org/wiki/Device_Independent_Bitmap">Português</A> 
+  </LI>
+  <LI class=interwiki-ro><A title="BMP (format fișier)" 
+  href="http://ro.wikipedia.org/wiki/BMP_(format_fi%C8%99ier)">Română</A> </LI>
+  <LI class=interwiki-ru><A title=BMP 
+  href="http://ru.wikipedia.org/wiki/BMP">Русский</A> </LI>
+  <LI class=interwiki-sk><A title="BMP (formát)" 
+  href="http://sk.wikipedia.org/wiki/BMP_(form%C3%A1t)">Slovenčina</A> </LI>
+  <LI class=interwiki-fi><A title="BMP (tiedostomuoto)" 
+  href="http://fi.wikipedia.org/wiki/BMP_(tiedostomuoto)">Suomi</A> </LI>
+  <LI class=interwiki-sv><A title=BMP 
+  href="http://sv.wikipedia.org/wiki/BMP">Svenska</A> </LI>
+  <LI class=interwiki-tr><A title=Bmp 
+  href="http://tr.wikipedia.org/wiki/Bmp">Türkçe</A> </LI>
+  <LI class=interwiki-uk><A title=BMP 
+  href="http://uk.wikipedia.org/wiki/BMP">Українська</A> </LI>
+  <LI class=interwiki-vi><A title=BMP 
+  href="http://vi.wikipedia.org/wiki/BMP">Tiếng Việt</A> </LI>
+  <LI class=interwiki-yo><A title="BMP file format" 
+  href="http://yo.wikipedia.org/wiki/BMP_file_format">Yorùbá</A> </LI>
+  <LI class=interwiki-zh><A title=BMP 
+  href="http://zh.wikipedia.org/wiki/BMP">中文</A> </LI></UL></DIV></DIV><!-- /LANGUAGES --></DIV><!-- /panel --><!-- footer -->
+<DIV id=footer>
+<UL id=footer-info>
+  <LI id=footer-info-lastmod>This page was last modified on 28 March 2011 at 
+  19:13.<BR>
+  <LI id=footer-info-copyright>Text is available under the <A 
+  href="http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" 
+  rel=license>Creative Commons Attribution-ShareAlike License</A><A 
+  style="DISPLAY: none" href="http://creativecommons.org/licenses/by-sa/3.0/" 
+  rel=license></A>; additional terms may apply. See <A 
+  href="http://wikimediafoundation.org/wiki/Terms_of_Use">Terms of Use</A> for 
+  details.<BR>Wikipedia® is a registered trademark of the <A 
+  href="http://www.wikimediafoundation.org/">Wikimedia Foundation, Inc.</A>, a 
+  non-profit organization.<BR>
+  <LI class=noprint><A class=internal 
+  href="http://en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact us</A> 
+</LI></UL>
+<UL id=footer-places>
+  <LI id=footer-places-privacy><A title="wikimedia:Privacy policy" 
+  href="http://wikimediafoundation.org/wiki/Privacy_policy">Privacy policy</A> 
+  </LI>
+  <LI id=footer-places-about><A title=Wikipedia:About 
+  href="http://en.wikipedia.org/wiki/Wikipedia:About">About Wikipedia</A> </LI>
+  <LI id=footer-places-disclaimer><A title="Wikipedia:General disclaimer" 
+  href="http://en.wikipedia.org/wiki/Wikipedia:General_disclaimer">Disclaimers</A> 
+  </LI></UL>
+<UL id=footer-icons class=noprint>
+  <LI id=footer-copyrightico><A href="http://wikimediafoundation.org/"><IMG 
+  alt="Wikimedia Foundation" src="bmp_files/wikimedia-button.png" width=88 
+  height=31></A> </LI>
+  <LI id=footer-poweredbyico><A href="http://www.mediawiki.org/"><IMG 
+  alt="Powered by MediaWiki" src="bmp_files/poweredby_mediawiki_88x31.png" 
+  width=88 height=31></A> </LI></UL>
+<DIV style="CLEAR: both"></DIV></DIV><!-- /footer -->
+<SCRIPT type=text/javascript src="bmp_files/load.php"></SCRIPT>
+
+<SCRIPT type=text/javascript>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "BMP_file_format", "wgTitle": "BMP file format", "wgAction": "view", "wgArticleId": 250336, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 416340399, "wgCategories": ["Graphics file formats", "Microsoft Windows multimedia technology"], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": [], "wgSearchNamespaces": [0], "wgFlaggedRevsParams": {"tags": {"status": {"levels": 1, "quality": 2, "pristine": 3}}}, "wgStableRevisionId": null, "wgRevContents": {"error": "Unable to get content.", "waiting": "Waiting for content"}, "wgWikimediaMobileUrl": "http://en.m.wikipedia.org/wiki", "wgVectorEnabledModules": {"collapsiblenav": true, "collapsibletabs": true, "editwarning": true, "expandablesearch": false, "footercleanup": false, "sectioneditlinks": false, "simplesearch": true, "experiments": true}, "wgWikiEditorEnabledModules": {"toolbar": true, "dialogs": true, "templateEditor": false, "templates": false, "addMediaWizard": false, "preview": false, "previewDialog": false, "publish": false, "toc": false}, "wgTrackingToken": "943fd0387c66e86dd2a5b344413d7d5c", "Geo": {"city": "", "country": ""}, "wgNoticeProject": "wikipedia"});
+}
+</SCRIPT>
+
+<SCRIPT type=text/javascript>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.legacy.wikibits", "mediawiki.util", "mediawiki.legacy.ajax", "mediawiki.legacy.mwsuggest", "ext.vector.collapsibleNav", "ext.vector.collapsibleTabs", "ext.vector.editWarning", "ext.vector.simpleSearch", "ext.articleFeedback.startup"]);
+	mediaWiki.loader.go();
+}
+</SCRIPT>
+
+<SCRIPT type=text/javascript src="bmp_files/index.php"></SCRIPT>
+
+<SCRIPT type=text/javascript src="bmp_files/load(1).php"></SCRIPT>
+
+<SCRIPT type=text/javascript>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":4,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":"3","watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"flaggedrevssimpleui":1,"flaggedrevsstable":false,"flaggedrevseditdiffs":true,"flaggedrevsviewdiffs":false,"vector-simplesearch":1,"useeditwarning":1,"vector-collapsiblenav":1,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs100":false,"searchNs101":false,"searchNs108":false,"searchNs109":false});;mediaWiki.loader.state({"user.options":"ready"});
+	
+	/* cache key: enwiki:resourceloader:filter:minify-js:5:27c920e3d777c540f5f38bf4516bf8fd */
+}
+</SCRIPT>
+
+<SCRIPT type=text/javascript src="bmp_files/geoiplookup_wikimedia_org"></SCRIPT>
+<!-- fixalpha -->
+<SCRIPT type=text/javascript> if ( window.isMSIE55 ) fixalpha(); </SCRIPT>
+<!-- /fixalpha --><!-- Served by srv204 in 0.090 secs. --></BODY></HTML>
