@@ -37,8 +37,8 @@ int main(int argc , char **argv)
 
 	close(fd);
 
-	write(dest_fd , &sBmp.m_sBmpHeader, sizeof(BmpHeader_S));
 
+#if 0
 	//mark original point
 	int row , col ; 
 	char *p = NULL ; 
@@ -53,9 +53,16 @@ int main(int argc , char **argv)
 			*(p+2)=255;	
 		}
 	}
+#endif
 
-//	rotateBmp(dest_fd, CLOCKWISE180, &sBmp);
-	bmp2Gray(dest_fd, &sBmp, 20);
+	//1 test
+	//rotateBmp(dest_fd, CLOCKWISE180, &sBmp);
+
+	//2 test
+	//bmp2Gray(dest_fd, &sBmp, 20);
+	
+	//3 test
+	convertRgb(dest_fd, &sBmp, 24);
 
 	if (NULL != sBmp.m_pcImageData)
 	{

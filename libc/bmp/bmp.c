@@ -1,5 +1,6 @@
 #include "bmp.h"
 #include <stdio.h>
+#include <string.h>
 
 void rotateBmp(int nFd, RotateDirect_E eDirection, Bmp_S* psBmp)
 {
@@ -13,6 +14,8 @@ void rotateBmp(int nFd, RotateDirect_E eDirection, Bmp_S* psBmp)
 		printf("buf == NULL\n");	
 		return;
 	}
+
+	write(nFd , &psBmp->m_sBmpHeader, sizeof(BmpHeader_S));
 
 	if (3 == (psBmp->m_sBmpHeader.m_BPP >> 3))
 		nBpp = 3;
@@ -87,7 +90,7 @@ void getBmpHeadInfo(int nFd, BmpHeader_S* psBmpHead)
 	printf("FileSize     : %d\n", psBmpHead->m_nFileSize);
 	printf("Reserv1      : %d\n", psBmpHead->m_Reserv1);
 	printf("Reserv2      : %d\n", psBmpHead->m_Reserv2);
-	printf("FileOffset   : %d\n", psBmpHead->m_nFileOffset);
+	printf("FileHeaderOffset   : %d\n", psBmpHead->m_nFileHeaderOffset);
 	printf("DIBHeaderSize: %d\n", psBmpHead->m_nDIBHeaderSize);
 	printf("ImageWidth   : %d\n", psBmpHead->m_nImageWidth);
 	printf("ImageHight   : %d\n", psBmpHead->m_nImageHight);
@@ -234,6 +237,8 @@ void bmp2Gray(int nFd, Bmp_S* psBmp, int nPrecision)
 		return;
 	}
 
+	write(nFd , &psBmp->m_sBmpHeader, sizeof(BmpHeader_S));
+
 	if (3 == (psBmp->m_sBmpHeader.m_BPP >> 3))
 		nBpp = 3;
 	else if (4 == (psBmp->m_sBmpHeader.m_BPP >> 3))
@@ -254,11 +259,81 @@ void bmp2Gray(int nFd, Bmp_S* psBmp, int nPrecision)
 				printf("getGray error!\n");	
 				return;
 			}
-//			printf("cGray=%d\n",cGray);
 			*p = cGray;
 			*(p+1) = cGray;
 			*(p+2) = cGray;
 			write(nFd, p, nBpp);
+		}
+	}
+}
+
+//888to565
+void convertRgb(int nFd, Bmp_S* psBmp, U16 uBpp)
+{
+	int row , col ; 
+	U16 data ; 
+	char *p = NULL ; 
+	BmpHeader_S header;
+
+	if (uBpp == psBmp->m_sBmpHeader.m_BPP)
+	{
+		printf("same rgb format!!!\n");	
+		return;
+	}
+
+	memcpy(&header, &psBmp->m_sBmpHeader, sizeof(BmpHeader_S));
+	header.m_BPP = uBpp ; 
+	header.m_nFileSize = (psBmp->m_sBmpHeader.m_nImageWidth) * (psBmp->m_sBmpHeader.m_nImageHight) * (uBpp>>3) + 54 ; 
+	header.m_nImageSize = (psBmp->m_sBmpHeader.m_nImageWidth) * (psBmp->m_sBmpHeader.m_nImageHight) * (uBpp>>3);
+
+	write(nFd , &header , sizeof(BmpHeader_S));
+
+	for(row = 0 ; row < psBmp->m_sBmpHeader.m_nImageHight; row++)
+	{
+		for(col = 0 ; col < psBmp->m_sBmpHeader.m_nImageWidth; col++)
+		{
+			switch (uBpp)
+			{
+				case 8:
+					{
+						return;	
+					}
+					break;
+				case 16:
+					{//888to565
+						if (psBmp->m_sBmpHeader.m_BPP == 24)
+						{
+							p =(psBmp->m_pcImageData + (row * (psBmp->m_sBmpHeader.m_nImageWidth) + col)*(psBmp->m_sBmpHeader.m_BPP>>3));
+							data = RGB565((U8)(*(p+2)), (U8)(*(p+1)), (U8)(*(p)));
+							write(nFd , &data , (header.m_BPP>>3));
+						}
+					}
+					break;
+				case 24:
+					{//565to888
+						U8 red;
+						U8 green;
+						U8 blue;
+
+						if (psBmp->m_sBmpHeader.m_BPP == 16)
+						{
+							p = (psBmp->m_pcImageData + (row * (psBmp->m_sBmpHeader.m_nImageWidth) + col)*(psBmp->m_sBmpHeader.m_BPP>>3));
+						    red = *(p+1)>>3;	
+							green = ((*(p+1)) & (~(0xf8)) << 3) | ( ((*p) & (~(0x1f))) >> 5);
+							blue = (*p) & (0x1f);
+							//data = RGB888(red, green, blue);
+							write(nFd , &blue , 1);
+							write(nFd , &green , 1);
+							write(nFd , &red , 1);
+						}
+					}
+					break;
+				case 32:
+					{
+						return;	
+					}
+					break;
+			}
 		}
 	}
 }

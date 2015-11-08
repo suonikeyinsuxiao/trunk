@@ -8,8 +8,9 @@ typedef  unsigned char  U8 ;
 typedef  unsigned short U16 ; 
 typedef  unsigned int   U32 ; 
 
-#define  RGB(r,g,b)    		((r<<16)|(g<<8)|b)
-//#define  RGB(r,g,b)			((r+g+b)/3)// a simple gray arithmetic
+#define  RGB888(r,g,b)    			((r<<16)|(g<<8)|b)
+#define  RGBGRAY(r,g,b)				((r+g+b)/3)				// a simple gray arithmetic
+#define  RGB565(r,g,b)    		(((r>>3)<<11)|((g>>2)<<5)|(b>>3))
 
 #pragma  pack(1)
 typedef struct _bmpHeader
@@ -19,7 +20,7 @@ typedef struct _bmpHeader
 	U32 m_nFileSize ;     //文件大小
 	U16 m_Reserv1 ; 
 	U16 m_Reserv2 ; 
-	U32 m_nFileOffset ;   //文件头偏移量
+	U32 m_nFileHeaderOffset ;   //文件头偏移量
 	
 	//DIm_B header
 	U32 m_nDIBHeaderSize ; //DIB头大小
@@ -33,7 +34,6 @@ typedef struct _bmpHeader
 	U32 m_nYPPM ; 
 	U32 m_nCCT ; 
 	U32 m_nICC ;  
-
 }BmpHeader_S;
 
 typedef struct _bmp
@@ -122,4 +122,14 @@ int getGray(BmpRgb_S* psRgb, int nPrecision, U8* pcGray);
  */
 void bmp2Gray(int nFd, Bmp_S* psBmp,int nPrecision);
 
+/*
+ *desription: convert original rgb to uBpp RGB
+ *
+ *nFd: dest bmp file
+ *
+ *psBmp: souce bmp file information
+ *
+ * uBpp: converted RGB format
+ */
+void convertRgb(int nFd, Bmp_S* psBmp, U16 uBpp);
 #endif
