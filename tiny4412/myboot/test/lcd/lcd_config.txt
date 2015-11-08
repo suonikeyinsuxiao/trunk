@@ -1,0 +1,86 @@
+1.GPIO
+	GPF0CON 0x11400180			0x22222222	
+	GPF1CON 0x114001A0(0X20)	0x22222222		
+	GPF2CON 0x114001C0(0X20)	0x22222222		
+	GPF3CON 0x114001E0(0X20)	0x22222222 		
+
+2.System Register
+	LCDCBLK_CFG 0x10010210
+	Video Type selection           [11:10] 0
+	FIMD of LBLK0 Bypass Selection [1] 	   1
+
+3.CMU
+SCLKMPLL	CLK_SRC_LCD0 0x1003c234       CLK_DIV_LCD 0X1003c534  SCLK_FIMD0
+800M 		[3:0]  0x6                    [3:0] 0x1+1				400M 
+
+4.Display Controller(SCLK_FIMD0)) 
+
+||---配置display controller 与 LCD 的时序,以保证数据能正常在LCD上显示。
+||
+||VIDCON0(0x11c00000): Configures video output format and displays enable/disable
+||	[28:26] 0x0  RGB Interface
+||	[13:6] VCLK=SCLK_FIMD0 / (CLKVAL + 1)
+||	[1:0] 3 enable video output *最后设置
+||
+||VIDCON1(0x11c00000+0x0004): Specifies RGB I/F control signal
+||	[10:9]
+||	[7]		1
+||	[6]		1
+||	[5]		1
+||	[4]		0
+||	
+||//VIDCON2: Specifies output data format control
+||VIDTCONx: Configures video output timing and determines the size of display.
+||	VIDTCON0	0x11c00000+0x0010
+||	[23:16]		VBPD		23-VSPW -1
+||    [15:8]		VFPD		22-1
+||    [7:0]		VSPW		1~20 -1
+||
+||	VIDTCON1	0x0014		
+||    [23:16]		HBPD		46-HSPW -1
+||    [15:8] 		HFPD		210-1
+||    [7:0]  		HSPW		1~40 -1
+||
+||	VIDTCON2	0x0018
+||    [21:11]		LINEVAL		480-1
+||    [10:0]		HOZVAL		800-1
+
+
+WINCONx: Specifies each window feature setting.
+	win的特性;
+	WINCON0		0x0020		fb0
+	[22]		0			buffer0
+	                               
+	[5:2]		0xb			24BPP
+	[0]			1			enable
+
+VIDOSDxA, VIDOSDxB: Specifies window position setting.
+	win对应屏幕的坐标: x0,y0   x1,y1
+	VIDOSD0A	0x0040
+	[21:11]		0
+    [10:0]		0
+
+	VIDOSD0B	0x0044	
+	[21:11]		800
+	[10:0]		480
+	
+//VIDOSDxC, D: Specifies On Screen Display (OSD) size setting.
+VIDWxxADDx: Specifies source image address setting.
+	FB address
+	VIDW00ADD0B0	0x00A0
+	[31:0]		可用内存;
+
+	VIDW00ADD1B0	0x00D0
+	[31:0]		VIDW00ADD0B0 + 800 * 480 * 4 
+
+	VIDW00ADD2		0x0100
+	[25:13]		0x0		(OFFSIZE)
+	[12:0]		800 * 4	(PAGEWIDTH_F)
+
+//WINxMAP: Specifies window color control
+SHDOWCON: Specifies shadow control register.
+	SHADOWCON		0x0034
+	[0]			1
+
+VIDCON0 0x0000
+[1:0]	3		display enable

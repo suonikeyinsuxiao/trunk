@@ -1,0 +1,41 @@
+
+================UART0=========================================================
+MUX_UART0-4       ->            DIV_UART0-4                  ->SCLK_UART0-4
+CLK_SRC_PERIL0 0x1003c250       CLK_DIV_PERIL0 0x1003c550         
+[3:0]6								[3:0]7
+
+MPLL  ->                        MUXMPLL_USER_T               ->SCLKMPLL_USER_T
+MPLL_CON0 0x10040108		   CLK_SRC_LEFTBUS 0x10034200
+[25:16]	M 0x64  100            [4] 1
+[13:8]  P 3
+[2:0]   S 0
+0xa0640300                               
+FOUT = MDIV * FIN/(PDIV*2^SDIV)   
+       100 * 24/(3*1)
+================PWM0=========================================================
+MUXMDNIE_PWM0    ->       DIVMDNIE_PWM0  -> DIVMDNIE_PWM0_PRE      ->SCLK_MDNIE_PWM0
+CLK_SRC_LCD0 0x1003c234	  CLK_DIV_LCD	    CLK_DIV_LCD 0X1003c534
+[11:8] 0x1				  [11:8] 0xf		[15:12] 0xf
+
+CLK_DIV_LCD=0xffffff
+CLK_SRC_LCD0=0x1111
+
+
+================LCD0=========================================================
+MUXACLK_160									DIVACLK_160       		|	 MUXFIMD0 					->DIVFIMDO						->SCLK_FIMD0
+CLK_SRC_TOP0 0x1003c210						CLK_DIV_TOP 0x1003c510  |    CLK_SRC_LCD0 0x1003c234       CLK_DIV_LCD 0X1003c534         
+[20] 0->SCLKMPLL							[10:8]   			   	|    [3:0]  0x1                    [3:0] 0xf+1 24/16M
+												  4+1 160M			|	       6                              3+1 40M
+	MPLL  			  	  ->MUXMPLL     				SCLKMPLL
+	MPLL_CON0 0x10040108	CLK_SRC_DMC 0x10040200	 
+							[12] 1--FOUTMPLL			800M
+
+CLK_DIV_LCD=0xffffff
+CLK_SRC_LCD0=0x1111
+CLK_DIV_TOP =0x1215474  
+CLK_SRC_TOP0 =0x110 
+CLK_SRC_DMC=0x11000
+CLK_SRC_TOP1 =0x1111000
+
+CLK_SRC_TOP1 0x1003c214
+[12] 1->SCLKMPLL
