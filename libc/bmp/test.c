@@ -54,11 +54,8 @@ int main(int argc , char **argv)
 		}
 	}
 
-	//rotatebmp(dest_fd, buffer, 800, 480, CLOCKWISE90, 3);
-	//rotatebmp(dest_fd, buffer, 800, 480, ANTICLOCKWISE90, 3);
-	//rotateBmp(dest_fd, sBmp.m_pcImageData, 800, 480, CLOCKWISE180, 3);
-	rotateBmp(dest_fd, CLOCKWISE180, &sBmp);
-	//rotatebmp(dest_fd, buffer, 800, 480, ORIGINAL, 3);
+//	rotateBmp(dest_fd, CLOCKWISE180, &sBmp);
+	bmp2Gray(dest_fd, &sBmp, 20);
 
 	if (NULL != sBmp.m_pcImageData)
 	{

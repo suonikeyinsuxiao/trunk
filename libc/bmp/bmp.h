@@ -9,6 +9,7 @@ typedef  unsigned short U16 ;
 typedef  unsigned int   U32 ; 
 
 #define  RGB(r,g,b)    		((r<<16)|(g<<8)|b)
+//#define  RGB(r,g,b)			((r+g+b)/3)// a simple gray arithmetic
 
 #pragma  pack(1)
 typedef struct _bmpHeader
@@ -40,6 +41,14 @@ typedef struct _bmp
 	BmpHeader_S  m_sBmpHeader;
 	char* 		 m_pcImageData;
 }Bmp_S;
+
+typedef struct _bmpRgb
+{
+	U8	m_cRed;
+	U8	m_cGreen;
+	U8	m_cBlue;
+}BmpRgb_S;
+
 #pragma  pack()
 
 typedef enum
@@ -87,5 +96,30 @@ void getBmpHeadInfo(int nFd, BmpHeader_S* psBmpHead);
  *nDataLen buffer length
  */
 void getBmpData(int nFd, char* pcDataBuf, int nDataLen);
+
+/*
+ *description: get RGB Gray by precision
+ *
+ *psRgb: RGB
+ *
+ *nPrecision: precision
+ *
+ *pcGray: gray value
+ *
+ * return: -1 error, 0 success
+ * */
+int getGray(BmpRgb_S* psRgb, int nPrecision, U8* pcGray);
+
+/*
+ *desription:RGB convert to Gray 
+ *
+ *nFd:dest file descriptor
+ *
+ *psBmp: Bmp_S
+
+ *nPrecision: precision (2~20)
+ * 
+ */
+void bmp2Gray(int nFd, Bmp_S* psBmp,int nPrecision);
 
 #endif
