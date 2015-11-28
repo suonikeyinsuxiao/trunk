@@ -62,7 +62,7 @@ int main(int argc , char **argv)
 	//bmp2Gray(dest_fd, &sBmp, 20);
 	
 	//3 test
-	convertRgb(dest_fd, &sBmp, 24);
+	convertRgb(dest_fd, &sBmp, 16);
 
 	if (NULL != sBmp.m_pcImageData)
 	{

@@ -286,7 +286,7 @@ void convertRgb(int nFd, Bmp_S* psBmp, U16 uBpp)
 	header.m_nFileSize = (psBmp->m_sBmpHeader.m_nImageWidth) * (psBmp->m_sBmpHeader.m_nImageHight) * (uBpp>>3) + 54 ; 
 	header.m_nImageSize = (psBmp->m_sBmpHeader.m_nImageWidth) * (psBmp->m_sBmpHeader.m_nImageHight) * (uBpp>>3);
 
-	write(nFd , &header , sizeof(BmpHeader_S));
+	//write(nFd , &header , sizeof(BmpHeader_S));
 
 	for(row = 0 ; row < psBmp->m_sBmpHeader.m_nImageHight; row++)
 	{
