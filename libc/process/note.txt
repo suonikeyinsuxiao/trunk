@@ -1,0 +1,125 @@
+
+1. 程序， 没有在运行的可执行文件
+   进程,  运行中的程序
+
+2. 进程调度的方法：
+	按时间片轮转 
+	先来先服务
+	短时间优先
+	按优先级别
+
+3. 进程的状态:     
+		就绪   ->>   运行  ->> 等待
+		运行 ->> 就绪 //时间片完了
+		等待 ->> 就绪 //等待的条件完成了
+
+查看当前系统进程的状态 ps auxf
+status:
+D    Uninterruptible sleep (usually IO)
+R    Running or runnable (on run queue)
+S    Interruptible sleep (waiting for an event to complete)
+T    Stopped, either by a job control signal or because it is being traced.
+W    paging (not valid since the 2.6.xx kernel)
+X    dead (should never be seen)
+Z    Defunct ("zombie") process, terminated but not reaped by its parent.
+<    high-priority (not nice to other users)
+N    low-priority (nice to other users)
+L    has pages locked into memory (for real-time and custom IO)
+s    is a session leader
+l    is multi-threaded (using CLONE_THREAD, like NPTL pthreads do)
++    is in the foreground process group
+
+
+4. 父进程/子进程 , 让一个程序运行起来的进程就叫父进程, 被调用的进程叫子进程
+
+5. getpid //获取当前进程的进程号
+   getppid //获取当前进程的父进程号
+
+6. fork //创建一个子进程，创建出来的子进程是父进程的一个副本，
+除了进程号，父进程号不同。
+	子进程从fork()后开始运行, 它得到的fork返回值为0
+	父进程得到的返回值为子进程的进程号
+	返回值为-1时， 创建失败
+
+7. vfork //功能同fork一样. 但创建出来的子进程共用父进程的资源,
+所以在子进程退出时,需用_exit()不回收资源退出，
+而且vfork会确保子进程先运行，堵塞父进程
+
+8. 僵尸进程， 指子进程退出后， 父进程还没有回收子进程的资源，
+这个子进程就处在于僵尸状态
+   孤儿进程,  指在父进程退出后，而子进程还在运行，
+这个子进程就成了孤儿进程，这时由init进程(pid=1)接管
+
+9. wait //回收已退出的子进程资源， 并获取退出的子进程的退出状态
+	 WIFEXITED(status) //检查子进程是否正常退出
+	 WEXITSTATUS(status) //获取子进程的退出状态值
+
+    pid_t wait(int *status); //等待任意子进程退出
+    pid_t waitpid(pid_t pid, int *status, int options); //等待指定的子进程退出
+
+10. 守护进程, 在后台运行的进程 
+    创建守护进程: 
+		  1. 创建孤儿进程
+		  2. setsid() 创建进程会话
+		  3. 重定向标准输入， 标准输出
+		  4. chdir, 改当当前进程的工作目录
+
+    daemon函数会完成以上行为
+
+11. 调整进程的运行优先级别, -20到19， 数越高级别越低
+	nice(val) , 调整当前进程的级别
+	setpriority(PRIO_PROCESS, 进程号, val)
+
+12. 调用外部程序,
+调用成功后会用新的程序映像替换当前进程的映像，所以除了进程号，和已打开的文件描述符不变外，其它像代码，数据等都已被替换
+       int execl(const char *path, const char *arg, ...);
+       int execlp(const char *file, const char *arg, ...);
+       int execle(const char *path, const char *arg,
+                  ..., char * const envp[]);
+       int execv(const char *path, char *const argv[]);
+       int execvp(const char *file, char *const argv[]);
+	
+    l: 表示参数为单个的参数， v : 表示参数为数组
+    p: 表示程序名会从$PATH环境变量里查找， 没有p的要给绝对路径
+    e: 表示可指定环境变量， 没有e的表示继承父进程的环境变量
+
+	以上五个函数都是此函数的封装形式
+int execve(const char *filename, char *const argv[],
+                  char *const envp[]);
+注意： 不管是参数还是环境变量都要以NULL结尾
+	指定的参数包含argv[0]
+
+
+14. 环境变量
+	extern char **environ; //获取当前进程的全部环境变量
+	char *getenv(const char *name);//获取指定环境变量名的值
+       int setenv(const char *name, const char *value, int overwrite);
+//增加或修改变量名为name的环境变量, 设它的值为value,
+//如果overwrite不为零时，且name已存在，则修改， 如果overwrite为零, 则不变
+
+       int unsetenv(const char *name); //把环境变量删掉
+	
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+

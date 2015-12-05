@@ -21,7 +21,7 @@ int initSem(int key, int semValue)
 	return nSemId;
 }
 
-//open a exit mutex semaphore
+//open a exsit mutex semaphore
 int openSem(int key)
 {
 	int nSemId;
@@ -49,7 +49,7 @@ void pSem(int semId)
 {
 	struct sembuf semBuf;
 	semBuf.sem_num = 0;//编号
-	semBuf.sem_op = -1;
+	semBuf.sem_op = -1;//加锁
 	semBuf.sem_flg = SEM_UNDO;
 	
 	if (-1 == semop(semId, &semBuf, 1))

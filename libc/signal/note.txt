@@ -1,0 +1,48 @@
+
+1. kill(pid_t pid, int sig); //给指定的进程发送sig信号
+   raise(int sig); //给当前进程发送sig信号
+
+2. 处理指定的信号 
+   typedef void (*sighandler_t)(int);
+
+   sighandler_t   signal(int  signum,  sighandler_t
+       handler);
+   //使用新的处理函数handler来处理signum信号, 并返回原来的处理函数地址
+
+查看信号: man 7 signal
+
+3. SIGCHLD信号, 当子进程退出时会向父进程发送SIGCHLD信号
+
+4. 信号集合操作
+       int sigemptyset(sigset_t *set); //清空信号集合set
+       int sigfillset(sigset_t *set);//把所有信号填入到set里
+       int sigaddset(sigset_t *set, int signum);//把信号signum加入到set里
+       int sigdelset(sigset_t *set, int signum);//把信号signum从set里移除
+       int   sigismember(const   sigset_t   *set,   int signum); //检查信号signum是否存在set里
+
+5. int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);
+  how有三个类型 
+	SIG_BLOCK  设当前进程的堵塞住的信号+= set里指定的信号
+	SIG_UNCBLOCK  设当前进程的堵塞住的信号-=set里指定的信号 
+	SIG_SETMASK 堵塞的信号=set里指定的信号
+
+6. sigaction 信号处理
+       int sigaction(int signum, const struct sigaction
+       *act, struct sigaction *oldact);
+
+       struct sigaction {
+         void (*sa_handler)(int);
+         void (*sa_sigaction)(int, siginfo_t *, void *);
+         sigset_t sa_mask;
+         int sa_flags;
+         void (*sa_restorer)(void); //已不用了
+       }
+
+sa_handler和sa_sigaction只能二选一, 当使用sa_sigaction时, sa_falgs为SA_SIGINFO, 否则为0;
+sa_mask设置在信号处理函数运行期间堵塞住哪些信号
+
+sigqueue可给指定的进程发送指定的信号， 并可附带参数. 只能使用sa_sigaction处理函数才能接收
+	int  sigqueue(pid_t  pid,  int  sig, const union
+             sigval value);
+
+

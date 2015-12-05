@@ -1,0 +1,120 @@
+
+ipcs //查看当前系统的共享内存，信号量集合， 消息队列的状态
+ipcrm //删除某一项
+ipcs -l //查看限制
+
+1. int semget(key_t key, int nsems, int semflg);
+   如果semflg为IPC_CREAT时创建一个信号量集合, key为关键字（其它进程可以根据这个key获取到这个信号量集合的id）, nsems指定在这个集合里面包有多少个信号量
+   权限在semflg的最低9位里, 如 semflg: IPC_CREAT|0777
+   成功返回非负的信号量集合id, 失败为-1
+
+
+2. int semctl(int semid, int semnum, int cmd, ...);
+   semid指定操作哪一个信号量集合，semnum指定操作集合里面第几个信号量, cmd为操作类型。
+   根据cmd的不同，可能会有第四个参数, 下面联合体列出的cmd则有第四个参数， 没列出的则没有
+   union semun {
+     int  val;    /* Value for SETVAL */
+     struct semid_ds *buf;/* Buffer for IPC_STAT, IPC_SET */
+     unsigned short  *array;  /* Array for GETALL, SETALL */
+     struct seminfo  *__buf;  /* Buffer for IPC_INFO
+  };
+
+  cmd:
+  IPC_STAT: 获取信号量集合的属性状态
+  IPC_RMID: 删除信号量集合
+  GETALL/SETALL: 获取/设置集合里所有信号量的val
+  GETVAL/SETVAL: 获取/设置集合里的第semnum个信号量的val
+
+3. 信号量的锁与解锁
+int semop(int   semid,  struct  sembuf  *sops,
+       unsigned nsops);  
+    semid为操作的集合id, 每个sembuf的变量只能操作一个信号量, nsops指定sops的个数. 假如同时操作集合里的两个信号量, 则sops为buf(struct sembuf buf[2]), nsops为2;
+	struct sembuf {
+           unsigned short sem_num; //操作集合里的第几个信号量
+           short          sem_op; //作什么操作，负数表示锁, 正数表示解锁
+           short          sem_flg; //默认为0, 如为IPC_NOWAIT不管是否锁上都马上返回, 是否锁上根据返回值判断
+	}
+	
+
+4. 共享内存
+   int shmget(key_t key, size_t size, int shmflg);
+   key值为IPC_PRIVATE, 系统会创建key为0的共享内存，而且一定会成功的创建，
+不管是否存在key为0的共享内存。 这应用到像父子进程，不需要根据key来获取id的场合
+
+   size指定创建的内存为多大, shmflg可为IPC_CREAT
+
+  要使用共享内存前，先shmat把共享内存映射到进程空间
+   void  *shmat(int shmid, const void *shmaddr, int
+       shmflg);
+   shmaddr指定映射到什么地址上去， 为NULL时，系统自动选择合适的地址,shmflg为0时表示可读可写.
+   成功后返回共享内存的映射地址, 失败时为(void *)-1;
+
+   操作完后， 需要去掉本进程的映射, 共享内存还存在系统中 	
+    int shmdt(const void *shmaddr); //shmaddr为共享内存的映射地址
+
+   共享内存的操作
+   int shmctl(int shmid, int cmd, struct shmid_ds
+       *buf);
+    cmd:
+	IPC_STAT : 获取共享内存的属性
+ 	IPC_RMID : 删除共享内存
+
+5. 消息队列
+	创建消息队列
+	int msgget(key_t key, int msgflg); 
+
+	发送消息
+       int  msgsnd(int  msqid, const void *msgp, size_t
+       msgsz, int msgflg);
+	msgp为用户自定义的结构体, 结构体最前面必须是一个long型的成员，
+表示消息的类型, 后面的成员类型没有限制,
+msgsz为结构体除了表示消息类型的成员大小,
+msgflg为0时，如队列的空间不足时，会堵塞直到有空间为止, 为IPC_NOWAIT时，则非堵塞
+
+	接收消息
+	ssize_t msgrcv(int  msqid,  void  *msgp,  size_t
+       msgsz, long msgtyp, int msgflg);
+	msgtyp为指定接收哪种类型的消息， 其它同上
+
+
+	msgctl与shmctl, semctl差不多
+
+6. posix 的信号量
+   sem_t *sem_open(const char *name, int oflag);//此函数用于打开已存在的信号量
+   
+   sem_t *sem_open(const char *name, int oflag,
+                       mode_t mode, unsigned int value);
+//此函数用于创建新的信号 量
+	oflag创建时为O_CREAT, mode指定权限, value为信号量的初始值
+
+   sem_wait(sem_t *sem) ;//锁操作, -1;
+   sem_post(sem_t *sem);//解锁操作, +1;
+
+   sem_close//相当于关闭文件
+   sem_unlink //删除信号量
+   sem_getvalue //用于获取信号量的值
+
+
+7. mmap 用于映射驱动里的缓冲区到用户进程空间
+ void *mmap(void *start, size_t length, int prot, int flags, int fd, off_t offset);
+	start指定映射到进程的哪个地址上， 通常为NULL,即由系统分配合适的地址
+	length指定映射的长度
+	prot指定映射区域的操作权限, 读为PROT_READ, 写为PROT_WRITE
+	flags通常为MAP_SHARED, 指不管多少个进程映射，都是共用驱动里的缓冲区
+	offset：当操作普通文件时，offset必须按4k对齐. 其它情况由相关的驱动决定
+
+int munmap(void *start, size_t length); //去掉映射, 更新缓冲区的数据
+
+
+8. posix的共享内存
+int shm_open(const char *name, int oflag, mode_t mode);
+   //创建新的共享内存, oflag可为O_RDONLY, O_WRONLY, O_RDWR, O_CREAT; mode指定权限
+
+新创建出来的共享内存长度为0， 必须要用ftruncate指定它的长度
+
+使用共享内存时要通过mmap把共享内存映射到用户的进程来使用
+
+shm_unlink //删除共享内存
+
+
+
