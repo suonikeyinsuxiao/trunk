@@ -17,14 +17,26 @@ int main()
 
 	print_link(header);
 
-	del_node(&header, 8);
+//	del_node(&header, 8);
 
-	turnover_link(&header);
-	print_link(header);
+//	turnover_link(&header);
+//	print_link(header);
 
 	turnover_link1(&header);
 	print_link(header);
 
+	i = 15;
+	NODE_S* p = header;
+	NODE_S* p1 = header;
+
+	printf("9p->m_nData=%d\n", p->m_nData);
+	while(i-- && p)
+	{
+		p1 = p;
+		p = p->next;
+	}
+	printf("i=%d\n",i);
+	printf("date=%d\n", p1->m_nData);
 
 	mid = find_mid(&header);
 	printf("mid node data:%d\n", mid->m_nData);
