@@ -16,6 +16,9 @@ int main()
 
 	struct node* new = NULL;
 	struct node* p = NULL;
+	struct node* n = NULL;
+	struct list_head* p1 = NULL;
+	struct list_head* p2 = NULL;
 
 	for(i = 0; i < 10; i++)
 	{
@@ -50,6 +53,23 @@ int main()
 	{
 		printf("num=%d\n", p->num);	
 	}
+
+	//way1: delete list
+	list_for_each_entry_safe(p, n, &header, list)
+	{
+		list_del(&p->list);	
+		free(p);
+	}
+//way2: delete list
+//	list_for_each_safe(p1, p2, &header)
+//	{
+//		p = list_entry(p1, struct node, list);
+//		list_del(p1);	
+//		free(p);
+//	}
+
+	if (list_empty_careful(&header))
+		printf("list empty\n");
 
 	return 0;
 }
