@@ -1,7 +1,7 @@
 /***********************************************************************
 *   Copyright (C) 2016 pilot-lab.inc All rights reserved.
 *   
-*   @file:       log.c
+*   @file:       ifttt.c
 *   @brief:      
 *   @author:     Pilot labs
 *   @maintainer: frank.fu@pilot-lab.com.cn
@@ -9,11 +9,17 @@
 *   @date:       2016-02-05
 *   
 ***********************************************************************/
-#include "log.h"
+#include "ifttt.h"
 
-int main(int argc, char** argv)
+#ifndef PL_TAG
+#define PL_TAG "IFTTT"
+#endif
+
+void ifttt_print(char* pcStr)
 {
-	char* p = "hello world";
-	TLOGE("%s\n", p);
-	return 0;
+	PL_LOGE(PL_TAG, "%s",pcStr);
+	PL_LOGW(PL_TAG, "%s",pcStr);	
+	PL_LOGD(PL_TAG, "%s",pcStr);
+	PL_LOGI(PL_TAG, "%s",pcStr);
+	PL_LOGV(PL_TAG, "%s",pcStr);
 }
