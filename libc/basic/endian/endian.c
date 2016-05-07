@@ -1,4 +1,15 @@
-
+/***********************************************************************
+*   Copyright (C) 2016 pilot-lab.inc All rights reserved.
+*   
+*   @file:       endian.c
+*   @brief:      
+*   @author:     Pilot labs
+*   @maintainer: frank.fu@pilot-lab.com.cn
+*   @version:    1.0
+*   @date:       2016-05-07
+*   
+***********************************************************************/
+#include "endian.h"
 #include <stdio.h> 
 
 #define LITTLE_ENDIAN 1 
@@ -50,4 +61,4 @@ int main(int argc, char *argv[])
 	printf("%x\n",*(int*)acBuf);
 	
 	return 0; 
-}  
+}
