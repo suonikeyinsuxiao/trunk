@@ -153,7 +153,8 @@ size_t file_read(int nFd, void *pBuf, size_t nCount);
  */
 ssize_t flle_write(int nFd, const void *pBuf, size_t nCount);
 
-int file_clear(int nFd);
+
+int file_clear(const char* pcPath);
 
 #ifdef __cplusplus
 }
