@@ -1,8 +1,19 @@
+/***********************************************************************
+*   Copyright (C) 2016 pilot-lab.inc All rights reserved.
+*   
+*   @file:       messagequeue.c
+*   @brief:      
+*   @author:     Pilot labs
+*   @maintainer: frank.fu@pilot-lab.com.cn
+*   @version:    1.0
+*   @date:       2016-05-09
+*   
+***********************************************************************/
+#include "messagequeue.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
-#include "messagequeue.h"
 
 #ifndef TAG
 #define TAG "MSGQUEUE"
@@ -37,6 +48,13 @@ typedef struct _MsgQueueContext_S
 
 }MSGQUEUECONTEXT_S;
 
+/**
+ * @brief    createMsgQueue 
+ *
+ * @param[in]    nMaxMsgNum
+ *
+ * @return   success return message handle, failed return NULL 
+ */
 MSGQUEUEHANDLE createMsgQueue(int nMaxMsgNum)
 {
 	MSGQUEUECONTEXT_S* psMsgQueCxt = NULL;
@@ -73,6 +91,11 @@ MSGQUEUEHANDLE createMsgQueue(int nMaxMsgNum)
 	return psMsgQueCxt;
 }
 
+/**
+ * @brief    destoryMsgQueue 
+ *
+ * @param[in]    pMSGQUEUEHANDLE
+ */
 void destoryMsgQueue(MSGQUEUEHANDLE psMsgQueCxt)
 {
 	if (NULL == psMsgQueCxt)
@@ -111,6 +134,15 @@ void destoryMsgQueue(MSGQUEUEHANDLE psMsgQueCxt)
 }
 
 //insert a message into the messagequeue
+/**
+ * @brief    sendMsg, insert a message into the messagequeue
+ * 				notice:	psMsg->m_pMsgData the caller need to allocate storage space
+ *
+ * @param[in]    pMSGQUEUEHANDLE
+ * @param[in]    psMsg
+ *
+ * @return   success return 0, failed return -1 
+ */
 int sendMsg(MSGQUEUEHANDLE psMsgQueCxt, MSG_S* psMsg)
 {
 	if (NULL == psMsgQueCxt)
@@ -216,9 +248,20 @@ int sendMsg(MSGQUEUEHANDLE psMsgQueCxt, MSG_S* psMsg)
 	return 0;
 }
 
+/**
+ * @brief    waitSemTimeout 
+ * 				lTime_ms=-1,If the semamphore currently has the value zero, 
+ * 					then the call blocks until either it becomes possible to perform the decrement.
+ * 			If the timeout has already expired by the time of the call, and the semaphore could not be locked immediately, then waitSemTimeOut fails with a timeout error
+ *
+ * @param[in]    pSem
+ * @param[in]    lTime_ms
+ *
+ * @return   return 0 on success; on error, the value of the semaphore is left unchanged, -1 is returned, and errno is set to indicate the error 
+ */
 int waitSemTimeout(sem_t* pSem, long lTime_ms)
 {
-	int nRet;
+	int nRet = -1;
 
     struct timeval  tv;
     struct timespec ts;
@@ -241,6 +284,14 @@ int waitSemTimeout(sem_t* pSem, long lTime_ms)
     return nRet;
 }
 
+/**
+ * @brief    recvMsg, get a message from message queue
+ *				notice:	psMsg->m_pMsgData the caller need to allocate storage space
+ * @param[in]    pMSGQUEUEHANDLE
+ * @param[in]    psMsg
+ *
+ * @return    success return 0, failed return -1
+ */
 int recvMsg(MSGQUEUEHANDLE psMsgQueCxt, MSG_S* psMsg)
 {
 	if (NULL == psMsgQueCxt)
@@ -328,6 +379,13 @@ int recvMsg(MSGQUEUEHANDLE psMsgQueCxt, MSG_S* psMsg)
 	return 0;
 }
 
+/**
+ * @brief    clearMsgQueue 
+ *
+ * @param[in]    pMSGQUEUEHANDLE
+ *
+ * @return    success return 0, failed return -1
+ */
 int clearMsgQueue(MSGQUEUEHANDLE psMsgQueCxt)
 {
 	if (NULL == psMsgQueCxt)
