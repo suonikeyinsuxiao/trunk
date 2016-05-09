@@ -22,6 +22,9 @@
 #define PL_TAG "TFCARD"
 #endif
 
+#define NK (1024)
+#define FK (1000.0)
+
 #define KBYTES (1 << 10)
 #define MBYTES (1 << 20)
 #define GBYTES (1 << 30)
@@ -63,7 +66,7 @@ int getUsedSize(const char* pcPath, SIZE_S* psSize)
 	if (-1 == tfcard_is_exist(pcPath))
 	{
 		PL_LOGE(PL_TAG, "%s is not exist\n", pcPath);
-		return -1.0;
+		return -1;
 	}
 
 	struct statfs disk_info;
@@ -71,12 +74,41 @@ int getUsedSize(const char* pcPath, SIZE_S* psSize)
 	if (statfs(pcPath, &disk_info) == -1)
     {
 		PL_LOGE(PL_TAG, "failed to get %s infomation,errno:%u, reason:%s\n",pcPath, errno, strerror(errno));
-		return -1.0;
+		return -1;
 	}
 
-	unsigned long used_size = (disk_info.f_blocks - disk_info.f_bavail);
+	unsigned long used_size = (KB(disk_info.f_blocks - disk_info.f_bfree)) * (KB(disk_info.f_bsize));
 
-	if (used_size > ())
+	if (used_size >= NK)
+	{
+		psSize->m_fSize = (used_size/FK);
+		psSize->m_eSizeType = e_G;
+		return 0;
+	}
+	else if (used_size < NK && used_size > 0)
+	{
+		psSize->m_fSize = (float)used_size;
+		psSize->m_eSizeType = e_M;
+		return 0;
+	}
+	else
+	{
+		printf("xxxxxxxxxxxused_size=%d\n", used_size);
+		unsigned int uUsedSizeK = (disk_info.f_blocks - disk_info.f_bfree)* (KB(disk_info.f_bsize));
+		if (uUsedSizeK > 0 && uUsedSizeK < NK)
+		{
+			psSize->m_fSize = (float)uUsedSizeK;
+			psSize->m_eSizeType = e_K;
+			return 0;
+		}
+		else
+		{
+			psSize->m_fSize = (float)uUsedSizeK;
+			psSize->m_eSizeType = e_B;
+			return 0;
+		}
+	}
+	return 0;
 }
 
 int getTotalSize(const char* pcPath, SIZE_S* psSize)
@@ -96,9 +128,9 @@ int getTotalSize(const char* pcPath, SIZE_S* psSize)
 	}
 
 	unsigned int uTotalSize = (KB(disk_info.f_blocks)) * (KB(disk_info.f_bsize));
-	if (uTotalSize >= 1024)
+	if (uTotalSize >= NK)
 	{
-		psSize->m_fSize = (uTotalSize/1000.0);
+		psSize->m_fSize = (uTotalSize/FK);
 		psSize->m_eSizeType = e_G;
 	}
 	else
@@ -126,16 +158,34 @@ int getAvailableSize(const char* pcPath, SIZE_S* psSize)
 		return -1;
 	}
 
-	unsigned long available_size = (disk_info.f_bavail >> 10)* (disk_info.f_bsize >> 10);
-	if (available_size >= 1024)
+	unsigned int uAvailableSize = (KB(disk_info.f_bavail))* (KB(disk_info.f_bsize));
+	if (uAvailableSize >= NK)
 	{
-		psSize->m_fSize = (available_size/1000.0);
+		psSize->m_fSize = (float)(uAvailableSize/FK);
 		psSize->m_eSizeType = e_G;
+		return 0;
+	}
+	else if (uAvailableSize < NK && uAvailableSize > 0)
+	{
+		psSize->m_fSize = (float)uAvailableSize;
+		psSize->m_eSizeType = e_M;
+		return 0;
 	}
 	else
 	{
-		psSize->m_fSize = (float)available_size;
-		psSize->m_eSizeType = e_M;
+		unsigned int uAvailableSizeK = (disk_info.f_bavail)* (KB(disk_info.f_bsize));
+		if (uAvailableSizeK > 0 && uAvailableSizeK < NK)
+		{
+			psSize->m_fSize = (float)uAvailableSizeK;
+			psSize->m_eSizeType = e_K;
+			return 0;
+		}
+		else
+		{
+			psSize->m_fSize = (float)uAvailableSizeK;
+			psSize->m_eSizeType = e_B;
+			return 0;
+		}
 	}
 
 	return 0;
@@ -143,9 +193,23 @@ int getAvailableSize(const char* pcPath, SIZE_S* psSize)
 
 int main(int argc, char** argv)
 {
-	printf("KBYTES =%lu", KBYTES);
-	printf("MBYTES =%lu", MBYTES);
-	printf("GBYTES =%lu", GBYTES);
+	SIZE_S size;
+	
+	getTotalSize(argv[1], &size);
+	printf("tatal size =%.2f, type=%x\n", size.m_fSize, size.m_eSizeType);
+
+	getUsedSize(argv[1], &size);
+	printf("used size =%.2f, type=%x\n", size.m_fSize, size.m_eSizeType);
+
+	getAvailableSize(argv[1], &size);
+	printf("available size =%.2f, type=%x\n", size.m_fSize, size.m_eSizeType);
+
+	return 0;
+}
+
+#if 0
+int main(int argc, char** argv)
+{
 
 	if (-1 == tfcard_is_exist(TFCARDPATH))
 	{
@@ -189,3 +253,4 @@ int main(int argc, char** argv)
 	return 0;
 
 }
+#endif
