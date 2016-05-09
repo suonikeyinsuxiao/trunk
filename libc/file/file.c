@@ -13,6 +13,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define FILECREAT(path, mode) 			creat((path), (mode))
+#define FILEOPEN(path, flag, mode)  	open((path), (flag), (mode))
+#define FILECLOSE(fd)  					close(fd)
+#define FILESEEK(fd, offset, where)		lseek((fd), (offset), (where))
+#define FILEEXIST(path)					access((path), F_OK)
+#define FILEREAD(fd, buf, count)		read((fd), (buf), (count))
+#define FILEWRITE(fd, buf, count)		write((fd), (buf), (count))
+
+
 /**
  * @brief    file_create 
  *
@@ -219,7 +228,7 @@ int file_clear(const char* pcPath)
 
 
 
-
+#if 0
 static char* pc = "test.txt";
 
 int main(int argc, char** argv)
@@ -249,3 +258,4 @@ int main(int argc, char** argv)
 
 	return 0;
 }
+#endif

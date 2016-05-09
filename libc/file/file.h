@@ -21,14 +21,6 @@ extern "C"
 #include <sys/types.h>
 #include <unistd.h>
 
-#define FILECREAT(path, mode) 			creat((path), (mode))
-#define FILEOPEN(path, flag, mode)  	open((path), (flag), (mode))
-#define FILECLOSE(fd)  					close(fd)
-#define FILESEEK(fd, offset, where)		lseek((fd), (offset), (where))
-#define FILEEXIST(path)					access((path), F_OK)
-#define FILEREAD(fd, buf, count)		read((fd), (buf), (count))
-#define FILEWRITE(fd, buf, count)		write((fd), (buf), (count))
-
 /**
  * @brief    file_create 
  *
