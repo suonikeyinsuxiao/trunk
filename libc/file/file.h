@@ -146,7 +146,23 @@ size_t file_read(int nFd, void *pBuf, size_t nCount);
 ssize_t flle_write(int nFd, const void *pBuf, size_t nCount);
 
 
+/**
+ * @brief    file_clear 清空文件内容 
+ *
+ * @param[in]    pcPath 文件路径
+ *
+ * @return    0 clear success, -1 file is not exist, -2 clear failed
+ */
 int file_clear(const char* pcPath);
+
+/**
+ * @brief    file_getSize  获取文件大小
+ *
+ * @param[in]    nFd
+ *
+ * @return   返回文件大小 
+ */
+off_t file_getSize(int nFd);
 
 #ifdef __cplusplus
 }

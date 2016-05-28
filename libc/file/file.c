@@ -209,7 +209,13 @@ ssize_t file_write(int nFd, const void *pBuf, size_t nCount)
 	return (FILEWRITE(nFd, pBuf, nCount));
 }
 
-//0 clear success, -1 file is not exist, -2 clear failed
+/**
+ * @brief    file_clear 清空文件内容 
+ *
+ * @param[in]    pcPath 文件路径
+ *
+ * @return    0 clear success, -1 file is not exist, -2 clear failed
+ */
 int file_clear(const char* pcPath)
 {
 	if (-1 == file_is_exist(pcPath))
@@ -225,10 +231,28 @@ int file_clear(const char* pcPath)
 	return 0;
 }
 
+/**
+ * @brief    file_getSize  获取文件大小
+ *
+ * @param[in]    nFd
+ *
+ * @return   返回文件大小 
+ */
+off_t file_getSize(int nFd)
+{
+	off_t fileSize = 0;
+	off_t curposition = 0;
 
+	curposition = FILESEEK(nFd, 0, SEEK_CUR);
+	fileSize = FILESEEK(nFd, 0, SEEK_END);
+	curposition = FILESEEK(nFd, curposition, SEEK_SET);
+
+	return fileSize;
+}
 
 
 #if 0
+//for interface test
 static char* pc = "test.txt";
 
 int main(int argc, char** argv)
