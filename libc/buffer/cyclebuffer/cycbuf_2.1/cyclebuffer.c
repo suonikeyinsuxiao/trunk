@@ -22,11 +22,14 @@
 /**
  * @brief    createCycleBuffer 
  *
- * @param[in]    nBufferSize
+ * @param[in]    nBufferSize	unit的个数
+ * @param[in]    eBufType
+ * 				 当eBufType=e_normal时，cycbuffer的实际大小为nBufferSize个字节
+ * 				 当eBufType=e_double时，cycbuffer的实际大小为nBufferSize*sizeof(double)个字节
  *
- * @return   success return CYCLEBUFFERCXT_S*, otherwise NULL
+ * @return    
  */
-CYCLEBUFFERCXT_S* createCycleBuffer(int nBufferSize)
+CYCLEBUFFERCXT_S* createCycleBuffer(int nBufferSize, BUFFERTYPE_E eBufType)
 {
 	CYCLEBUFFERCXT_S* psCycBufCxt = (CYCLEBUFFERCXT_S*)malloc(sizeof(CYCLEBUFFERCXT_S));
 	if (NULL == psCycBufCxt)
@@ -35,14 +38,36 @@ CYCLEBUFFERCXT_S* createCycleBuffer(int nBufferSize)
 		return NULL;
 	}
 
-	psCycBufCxt->m_pucDataBuf 		= (unsigned char*)calloc(nBufferSize, sizeof(unsigned char));
-	if (NULL == psCycBufCxt->m_pucDataBuf)
+	psCycBufCxt->m_eBufferType = eBufType;
+	switch (eBufType)
 	{
-		PL_LOGE(PL_TAG, "calloc buffer(size %dByte) failed!\n", nBufferSize);	
-		return NULL;
+		case e_normal:
+			{
+				psCycBufCxt->m_pucDataBuf = (unsigned char*)calloc(nBufferSize, sizeof(unsigned char));
+				if (NULL == psCycBufCxt->m_pucDataBuf)
+				{
+					PL_LOGE(PL_TAG, "calloc buffer(size %dByte) failed!\n", nBufferSize);	
+					return NULL;
+				}
+				psCycBufCxt->m_nDataBufSize	= nBufferSize;
+			}
+			break;
+		case e_double:
+			{
+				psCycBufCxt->m_pucDataBuf = (unsigned char*)calloc(nBufferSize, sizeof(double));
+				if (NULL == psCycBufCxt->m_pucDataBuf)
+				{
+					PL_LOGE(PL_TAG, "calloc buffer(size %dByte) failed!\n", nBufferSize);	
+					return NULL;
+				}
+				
+				psCycBufCxt->m_nDataBufSize	= nBufferSize*sizeof(double);
+			}
+			break;
+		default:
+			PL_LOGE(PL_TAG, "unknown cycle buffer type!\n");	
+			
 	}
-
-	psCycBufCxt->m_nDataBufSize 	= nBufferSize;
 	psCycBufCxt->m_nDataWriteIndex 	= 0;
 	psCycBufCxt->m_nDataReadIndex 	= 0;
 	psCycBufCxt->m_nDataRealLen 	= 0;
@@ -112,10 +137,10 @@ int destroyCycleBuffer(CYCLEBUFFERCXT_S* psCycBufCxt)
  * @brief    writeCycleBuffer 
  *
  * @param[in]    psCycBufCxt 循环buffer上下文信息
- * @param[in]    pucData     写入循环buffer的数据		
- * @param[in]    nDataLen	 写入循环buffer的数据长度
+ * @param[in]    pucData     写入循环buffer的数据首地址		
+ * @param[in]    nDataLen	 写入循环buffer的数据unit个数
  *
- * @return   实际写入数据的长度, 0 is full, error return -1
+ * @return   实际写入数据unit个数, error return -1
  */
 int writeCycleBuffer(CYCLEBUFFERCXT_S* psCycBufCxt, unsigned char* pucData, int nDataLen)
 {
@@ -134,19 +159,63 @@ int writeCycleBuffer(CYCLEBUFFERCXT_S* psCycBufCxt, unsigned char* pucData, int 
 	pthread_mutex_lock(&psCycBufCxt->m_mutex);
 
 	nFreeLen = psCycBufCxt->m_nDataBufSize - psCycBufCxt->m_nDataRealLen;
-	nRealWriteLen = nFreeLen > nDataLen ? nDataLen : nFreeLen;
+	//nRealWriteLen = nFreeLen > nDataLen ? nDataLen : nFreeLen;
+	switch (psCycBufCxt->m_eBufferType)
+	{
+		case e_normal:
+			{
+				nRealWriteLen = nFreeLen > nDataLen ? nDataLen : nFreeLen;
+			}
+			break;
+		case e_double:
+			{
+				nRealWriteLen = nFreeLen > (nDataLen*sizeof(double)) ? (nDataLen*sizeof(double)) : nFreeLen;
+			}
+			break;
+	}
 
 	if (psCycBufCxt->m_nDataWriteIndex >= psCycBufCxt->m_nDataReadIndex)
 	{
 		int nFirstCopyLen = psCycBufCxt->m_nDataBufSize - psCycBufCxt->m_nDataWriteIndex;	
 		if (nRealWriteLen >= nFirstCopyLen)
 		{
+#if 0
+			switch(psCycBufCxt->m_eBufferType)
+			{
+				case e_normal:
+					{
+						memcpy(psCycBufCxt->m_pucDataBuf + psCycBufCxt->m_nDataWriteIndex, pucData, nFirstCopyLen);
+						memcpy(psCycBufCxt->m_pucDataBuf, pucData+nFirstCopyLen, nRealWriteLen - nFirstCopyLen);
+					}
+					break;
+				case e_double:
+					{
+						memcpy(psCycBufCxt->m_pucDataBuf + psCycBufCxt->m_nDataWriteIndex, pucData, nFirstCopyLen*sizeof(double));
+						memcpy(psCycBufCxt->m_pucDataBuf, pucData+nFirstCopyLen, nRealWriteLen - nFirstCopyLen*sizeof(double));
+					}
+					break;
+			}
+#endif
 			memcpy(psCycBufCxt->m_pucDataBuf + psCycBufCxt->m_nDataWriteIndex, pucData, nFirstCopyLen);
 			memcpy(psCycBufCxt->m_pucDataBuf, pucData+nFirstCopyLen, nRealWriteLen - nFirstCopyLen);
-				
 		}
 		else
 		{
+#if 0
+			switch(psCycBufCxt->m_eBufferType)
+			{
+				case e_normal:
+					{
+						memcpy(psCycBufCxt->m_pucDataBuf + psCycBufCxt->m_nDataWriteIndex, pucData, nRealWriteLen);
+					}
+					break;
+				case e_double:
+					{
+						memcpy(psCycBufCxt->m_pucDataBuf + psCycBufCxt->m_nDataWriteIndex, pucData, nRealWriteLen);
+					}
+					break;
+			}
+#endif
 			memcpy(psCycBufCxt->m_pucDataBuf + psCycBufCxt->m_nDataWriteIndex, pucData, nRealWriteLen);
 		}
 	}
@@ -158,6 +227,9 @@ int writeCycleBuffer(CYCLEBUFFERCXT_S* psCycBufCxt, unsigned char* pucData, int 
 	psCycBufCxt->m_nDataWriteIndex = (nRealWriteLen + psCycBufCxt->m_nDataWriteIndex)%psCycBufCxt->m_nDataBufSize;
 	psCycBufCxt->m_nDataRealLen += nRealWriteLen;
 
+	if (psCycBufCxt->m_eBufferType == e_double)
+		nRealWriteLen = nRealWriteLen/sizeof(double);//返回写入cyclebuffer的最小单位个数
+
 	pthread_mutex_unlock(&psCycBufCxt->m_mutex);
 
 	return nRealWriteLen;
@@ -168,9 +240,9 @@ int writeCycleBuffer(CYCLEBUFFERCXT_S* psCycBufCxt, unsigned char* pucData, int 
  *
  * @param[in]    psCycBufCxt	循环buffer上下文信息
  * @param[out]   pucData		从循环buffer读出的数据
- * @param[in]    nDataLen		需从循环buffer读出的数据的长度
+ * @param[in]    nDataLen		需从循环buffer读出的数据unit个数
  *
- * @return   实际读出的数据长度, error return -1
+ * @return   实际读出的数据unit个数, error return -1;如果实际读出的数据unit个数小于nDataLen,需要再次读取剩下的数据
  */
 int readCycleBuffer(CYCLEBUFFERCXT_S* psCycBufCxt, unsigned char * pucData, int nDataLen)
 {
@@ -189,7 +261,21 @@ int readCycleBuffer(CYCLEBUFFERCXT_S* psCycBufCxt, unsigned char * pucData, int 
 
 	pthread_mutex_lock(&psCycBufCxt->m_mutex);
 
-	nRealReadLen = nDataLen > psCycBufCxt->m_nDataRealLen ? psCycBufCxt->m_nDataRealLen : nDataLen;
+//	nRealReadLen = nDataLen > psCycBufCxt->m_nDataRealLen ? psCycBufCxt->m_nDataRealLen : nDataLen;
+	switch (psCycBufCxt->m_eBufferType)
+	{
+		case e_normal:
+			{
+				nRealReadLen = nDataLen > psCycBufCxt->m_nDataRealLen ? psCycBufCxt->m_nDataRealLen : nDataLen;
+			}
+			break;
+		case e_double:
+			{
+				nRealReadLen = (nDataLen*sizeof(double)) > psCycBufCxt->m_nDataRealLen ? psCycBufCxt->m_nDataRealLen : (nDataLen*sizeof(double));
+			}
+			break;
+	}
+
     nTmpLen = psCycBufCxt->m_nDataBufSize - psCycBufCxt->m_nDataReadIndex;
 
 	if (nRealReadLen <= nTmpLen)
@@ -201,10 +287,25 @@ int readCycleBuffer(CYCLEBUFFERCXT_S* psCycBufCxt, unsigned char * pucData, int 
 		memcpy(pucData, psCycBufCxt->m_pucDataBuf + psCycBufCxt->m_nDataReadIndex, nTmpLen);
 		memcpy(pucData+nTmpLen, psCycBufCxt->m_pucDataBuf, nRealReadLen - nTmpLen);
 	}
-	psCycBufCxt->m_nDataReadIndex = (psCycBufCxt->m_nDataReadIndex + nRealReadLen)%psCycBufCxt->m_nDataBufSize;
-	psCycBufCxt->m_nDataRealLen -= nRealReadLen;
+	switch (psCycBufCxt->m_eBufferType)
+	{
+		case e_normal:
+			{
+				psCycBufCxt->m_nDataReadIndex = (psCycBufCxt->m_nDataReadIndex + nRealReadLen)%psCycBufCxt->m_nDataBufSize;
+				psCycBufCxt->m_nDataRealLen -= nRealReadLen;
+			}
+			break;
+		case e_double:
+			{
+				psCycBufCxt->m_nDataReadIndex = (psCycBufCxt->m_nDataReadIndex + STEP*sizeof(double))%psCycBufCxt->m_nDataBufSize;
+				psCycBufCxt->m_nDataRealLen -= STEP*sizeof(double);
+			}
+			break;
+	}
 
 	
+	if (psCycBufCxt->m_eBufferType == e_double)
+		nRealReadLen = nRealReadLen/sizeof(double);//返回读出cyclebuffer的最小单位个数
 
 	PL_LOGD(PL_TAG, "nDataReadIndex(%d) nDataWriteIndex(%d) nDataLen(%d)\n", nDataReadIndex, nDataWriteIndex, nDataLen);
 
@@ -250,7 +351,7 @@ int isFullCycleBuffer(CYCLEBUFFERCXT_S* psCycBufCxt)
 }
 
 /**
- * @brief    getAvailDataLen 获取循环buffer中有效数据的长度 
+ * @brief    getAvailDataLen 获取循环buffer中有效数据unit的个数
  *
  * @param[in]    psCycBufCxt
  *
@@ -264,7 +365,23 @@ int getAvailDataLen(CYCLEBUFFERCXT_S* psCycBufCxt)
 		return -1;
 	}
 
-	return psCycBufCxt->m_nDataRealLen;
+	int nDataLen = 0;
+
+	switch(psCycBufCxt->m_eBufferType)
+	{
+		case(e_normal):	
+		{
+			nDataLen = psCycBufCxt->m_nDataRealLen;
+		}
+		break;
+		case(e_double):
+		{
+			nDataLen = psCycBufCxt->m_nDataRealLen/sizeof(double);
+		}
+		break;
+	}
+
+	return nDataLen; 
 }
 
 

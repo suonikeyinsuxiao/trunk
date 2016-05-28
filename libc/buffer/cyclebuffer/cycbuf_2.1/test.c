@@ -17,7 +17,6 @@
 #include <unistd.h>
 #include "cyclebuffer.h"
 
-#define CYCLEBUFFERLEN 4096
 #define AUDIOFILEPATH  "aiscatherine_50.wav"
 #define SAVEFILEPATH   "saveaudio.wav"
 
@@ -44,11 +43,20 @@ void* readCycleBufferThread(void* arg)
 	while(1)
 	{
 		memset(acBuf, 0, nBufSize);
-		printf("xxxxx\n");
+		//printf("xxxxx\n");
 
 		nReadCycleBufSize = readCycleBuffer(psCycBufCxt, acBuf, nBufSize);	
-		printf("read cycle buffer nWriteCycleBufSize=%d\n", nReadCycleBufSize);
-		file_write(nSaveFd, acBuf, nReadCycleBufSize);
+		if (0 != nReadCycleBufSize)
+		{
+			printf("read cycle buffer nWriteCycleBufSize=%d\n", nReadCycleBufSize);
+			file_write(nSaveFd, acBuf, nReadCycleBufSize);
+		}
+		else if (0 == nReadCycleBufSize)
+		{
+			printf("cycle buffer is empty sleep(1)"); 
+			sleep(1);
+		}
+
 		nSum += nReadCycleBufSize;
 		if (nSum == originFileSize)
 		{
@@ -81,7 +89,7 @@ int main(int argc, char** argv)
 	//pthread_t writetid = -1;
 	int nSum = 0;
 
-	CYCLEBUFFERCXT_S* psCycBufCxt = createCycleBuffer(CYCLEBUFFERLEN);
+	CYCLEBUFFERCXT_S* psCycBufCxt = createCycleBuffer(CYCLEBUFFERLEN, e_normal);
 	if (NULL == psCycBufCxt)
 	{
 		printf("createCycleBuffer failed!\n");	
