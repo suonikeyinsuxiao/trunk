@@ -15,11 +15,11 @@
 extern "C"
 {
 #endif
-
+#include <stdio.h>
 /**
  * @brief    standard wave file format
  * default format
- *	WAVEFORMAT_S default_wavfmt = 
+ *	WAVEHEAD_S default_wavfmt = 
  *	{
  *		{ 'R', 'I', 'F', 'F' },
  *		0,
@@ -36,7 +36,7 @@ extern "C"
  *		0  
  *	};
  */
-typedef struct _WAVEFORMAT_S
+typedef struct _waveHead_S
 {
 	//"RIFF" chunk descriptor
 	unsigned char 	m_aucChunkID[4];	/*4-big endian 一般就是RIFF*/
@@ -54,12 +54,24 @@ typedef struct _WAVEFORMAT_S
 	//"data" sub-chunk
 	unsigned char	m_aucSubChunk2ID[4];	/*4-big endian, 一般为"data"*/
 	int 			m_nSubChunk2Size;	/*4-本数据块的大小,即音频数据的长度,不包括m_acSubChunk2ID[4]和m_nSubChunk2Size, filezize-44*/	
+	//unsigned char* 	m_pucData;		
+}WAVEHEAD_S;
+
+typedef struct _waveInfo_S
+{
+	FILE*			m_pFp;
+	WAVEHEAD_S		m_sWavHead;	
 	unsigned char* 	m_pucData;		
-}WAVEFORMAT_S;
+}WAVEINFO_S;
 
-double* wavread(char* pcFileName, WAVEFORMAT_S* psWaveFmt); 
 
-void freeWave(double* pdAudRecord);
+int openWave(const char* pcFileName, WAVEINFO_S* psWavInfo);
+
+int getWaveHead(WAVEINFO_S* psWavInfo);
+
+int readWave(WAVEINFO_S* psWavInfo);
+
+void destroyWave(WAVEINFO_S* psWavInfo);
 
 double* getAudAbs(double* pdAudData, int nDataLen);
 
