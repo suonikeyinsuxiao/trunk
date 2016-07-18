@@ -462,4 +462,82 @@ void printMsg(MSG_S* psMsg)
 	LOGD(TAG,"\n");
 }
 
+MSG_S* createMsg(int nId, int nMsgLen, MSGTYPE_E eMsgType)
+{
+	MSG_S* psMsg = (MSG_S*) malloc(sizeof(MSG_S));
+	if (NULL == pMsg)
+	{
+		LOGE(TAG, "malloc MSG_S failed!\n");	
+		return NULL;
+	}
 
+	psMsg->m_nMsgId = nId;
+	psMsg->m_nMsgLen = nMsgLen;
+	psMsg->m_eMsgType = eMsgType;
+
+
+	switch(psMsg->m_eMsgType)
+	{
+		case e_INT:
+			{
+				psMsg->m_pMsgData = (int*)malloc(psMsg->m_nMsgLen);
+			}
+			break;
+		case e_LONG:
+			{
+				psMsg->m_pMsgData = (long*)malloc(psMsg->m_nMsgLen);
+			
+			}
+			break;
+		case e_FLOAT:
+			{
+				psMsg->m_pMsgData = (float*)malloc(psMsg->m_nMsgLen);
+			
+			}
+			break;
+		case e_DOUBLE:
+			{
+				psMsg->m_pMsgData = (double*)malloc(psMsg->m_nMsgLen);
+			
+			}
+			break;
+		case e_STRING:
+			{
+				psMsg->m_pMsgData = (unsigned char*)malloc(psMsg->m_nMsgLen);
+			
+			}
+			break;
+		default:
+			{
+				LOGI(TAG, "unknown message type!!!");
+				psMsg->m_pMsgData = (unsigned char*)malloc(psMsg->m_nMsgLen);
+			}
+			break;
+	}
+
+
+	return psMsg;
+}
+
+int destroyMsg(MSG_S* psMsg)
+{
+	if (NULL == psMsg || NULL == psMsg->m_pMsgData)
+	{
+		LOGE(TAG, "NULL == psMsg || NULL == psMsg->m_pMsgData!\n");	
+		return -1;
+	}
+
+	if (NULL != psMsg->m_pMsgData)
+	{
+		free(psMsg->m_pMsgData);	
+		psMsg->m_pMsgData = NULL;
+	}
+
+	if (NULL != psMsg)
+	{
+		free(psMsg);	
+		psMsg = NULL;
+	}
+
+	return 0;
+}
