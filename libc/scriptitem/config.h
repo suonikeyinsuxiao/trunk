@@ -62,12 +62,12 @@ typedef struct
  * @main_key: fist main key
  */
 #pragma pack(1)
-	typedef struct
-	{
-		int  main_cnt;
-		int  version[3];
-		script_origin_main_key_t    main_key;
-	} script_origin_head_t;
+typedef struct
+{
+	int  main_cnt;
+	int  version[3];
+	script_origin_main_key_t    main_key;
+} script_origin_head_t;
 #pragma pack()
 
 typedef enum 

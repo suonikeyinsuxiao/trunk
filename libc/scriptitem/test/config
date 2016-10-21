@@ -1,0 +1,5 @@
+[camera]
+cid=abcdefg
+sensor="ov2710"
+width=1280
+height=720
