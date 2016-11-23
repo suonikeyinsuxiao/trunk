@@ -31,6 +31,26 @@ int dir_is_exist(const char* pcPath)
 	return 0;
 }
 
+int isDir(const char* pcPath)
+{
+	if (NULL == pcPath)
+	{
+		DIR_PRINT("NULL == pcName");
+		return -1;
+	}
+
+	struct stat statBuf;
+	if ( -1 == stat(pcPath, &statBuf))
+	{
+		DIR_PRINT("%s is not exist: %s", pcPath, strerror(errno));
+		return -1;
+	}
+
+	if (S_ISDIR(statBuf.st_mode))
+		return 0;
+	else return -1;
+}
+
 DIR* dir_open(const char* pcPath)
 {
 	DIR* psDir = NULL;
@@ -102,6 +122,8 @@ int main(int argc, char** argv)
 	DIR* psDir = NULL;
 	struct stat statBuf;
 
+	if (0 == isDir(argv[1]))
+		DIR_PRINT("%s is dir\n", argv[1]);
 	//DT_BLK      This is a block device.
 	//DT_CHR      This is a character device.
 	//DT_DIR      This is a directory.
@@ -133,7 +155,6 @@ int main(int argc, char** argv)
 
 			switch (psEntry->d_type)
 			{
-
 				case DT_BLK:
 					{
 					}
@@ -160,7 +181,7 @@ int main(int argc, char** argv)
 						else
 						{
 							DIR_PRINT("lstat(%s) success!\n", psEntry->d_name);
-							DIR_PRINT("ID of device containing file:%ld\n", statBuf.st_dev);
+							DIR_PRINT("ID of device containing file:%d\n", statBuf.st_dev);
 							DIR_PRINT("inode number:%ld\n", statBuf.st_ino);
 							DIR_PRINT("protection:0x%x\n", statBuf.st_mode);
 							DIR_PRINT("number of hard links:%ld\n", statBuf.st_nlink);
@@ -227,13 +248,6 @@ int main(int argc, char** argv)
 					}
 					break;
 			}
-
-			//DIR_PRINT("d_info=%ld\n", psEntry->d_ino);
-			//DIR_PRINT("d_off=%ld\n", psEntry->d_off);
-			//DIR_PRINT("d_reclen=%d\n", psEntry->d_reclen);
-			//DIR_PRINT("d_type=%d\n", psEntry->d_type);
-			//DIR_PRINT("d_name=%s\n", psEntry->d_name);
-
 		}
 		dir_close(psDir);
 	}
