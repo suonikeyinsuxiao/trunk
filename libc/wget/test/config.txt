@@ -1,0 +1,6 @@
+work_mode=3
+language_mode=1
+sysvol=20
+welcome_mode=0
+softversion=aabbcc
+hardversion=ddeeff
