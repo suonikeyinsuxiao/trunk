@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
 					perror("connfd<0");
 					exit(1);
 				}
-				setnonblocking(connfd);
+				//setnonblocking(connfd);
 
 				char *str = inet_ntoa(clientaddr.sin_addr);
 				printf("accapt a connection from %s, connfd=%d\n", str, connfd);
