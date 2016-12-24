@@ -20,6 +20,17 @@ extern "C"
 {
 #endif
 
+/*output class name*/
+#define	OUTPUT_CLASS_WORK_MODE					("work_mode") 
+#define	OUTPUT_CLASS_EXECUTE_COMMAND			("execute_command") 
+#define OUTPUT_CLASS_MECHANICS					("mechanics")
+#define OUTPUT_CLASS_ZIGBEE_CO					("zigbee_co")
+#define OUTPUT_CLASS_ZIGBEE_DEV					("zigbee_dev")
+#define OUTPUT_CLASS_SDCARD						("sdcard")
+#define OUTPUT_CLASS_LED						("led")
+#define OUTPUT_CLASS_EXECUTE_CLOUD_FUNC			("exe_cloud_func")
+#define OUTPUT_CLASS_AUDIO_REPLY				("audio_reply")
+
 #define OUTPUT_NAME_LEN			(256)
 #define OUTPUT_CLASS_NAME_LEN	(64)
 
