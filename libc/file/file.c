@@ -250,6 +250,38 @@ off_t file_getSize(int nFd)
 	return fileSize;
 }
 
+//打开一个文件srcfile，并从第m个字节开始读取n个字节的数据保存到destfile文件中
+int main(int argc, char** argv)
+{
+	// ./a.out srcfile startpos len destfile
+	printf("argc=%d\n", argc);
+	if (argc != 5)
+	{
+		printf("usage: ./a.out srcfile startpos len destfile\n");	
+		return -1;
+	}
+
+	char* pcSrcFile = argv[1];
+	int nStartPosition = atoi(argv[2]);
+	int nLen = atoi(argv[3]);
+	char* pcDestFile = argv[4];
+
+	char acBuf[1280] = {0};
+	int nFd = -1;
+	int nFd2 = -1;
+	int nOffset = 0;
+	nFd = file_open_r(pcSrcFile);
+
+	nOffset = file_seek(nFd, nStartPosition, SEEK_SET);
+	printf("offset=%d\n", nOffset);
+
+	printf("file_read count=%d\n", (int)file_read(nFd, acBuf, nLen));
+	file_close(nFd);
+
+	nFd2 = file_create_default(pcDestFile);
+	printf("file_write count=%d\n", (int)file_write(nFd2, acBuf, nLen));
+	file_close(nFd2);
+}
 
 #if 0
 //for interface test
