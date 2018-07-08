@@ -1,0 +1,28 @@
+/***********************************************************************
+*   Copyright (C) 2017 junfu0903@aliyun.com All rights reserved.
+*   
+*   File Name: 
+*   Brief:      
+*   Author: frank
+*   Email: junfu0903@aliyun.com
+*   Version: 1.0
+*   Created Time:
+*   Blog: http://www.cnblogs.com/black-mamba
+*   Github: https://github.com/suonikeyinsuxiao
+*   
+***********************************************************************/
+
+#ifndef _MmyFileName_H
+#define _MmyFileName_H
+
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+
+#ifdef __cplusplus
+}
+#endif
+#endif //_MmyFileName_H

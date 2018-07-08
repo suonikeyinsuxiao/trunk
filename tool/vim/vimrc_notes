@@ -1,0 +1,87 @@
+"auto add pyhton,*.c,*.h header --start
+autocmd BufNewFile *.py 0r ~/.vim/vim_templation/vim_python_header
+autocmd BufNewFile *.c 0r ~/.vim/vim_templation/vim_c_header
+autocmd BufNewFile *.h 0r ~/.vim/vim_templation/vim_ch_header
+autocmd BufNewFile *.sh 0r ~/.vim/vim_templation/vim_shell_header
+autocmd BufNewFile *.py,*.[ch],*.sh ks|call FileName()|'s
+autocmd BufNewFile *.py,*.[ch],*.sh ks|call CreatedTime()|'s
+autocmd BufNewFile *.h ks|call AddchMacro()|'s
+autocmd BufNewFile *.c ks|call C_main()|'s
+
+"autocmd BufNewFile *.py 0r ~/.vim/vim_templation/vim_python_header
+"0r 表示从新建文件的第一行开始读入
+"
+
+"在新建文件头部注释中自动添加文件名
+fun FileName()
+    exe "g/File Name:.*/s//File Name:" .expand("%")
+endfun
+
+"在新建文件的头部注释中自动添加文件的创建时间
+fun CreatedTime()
+    "exe "1," . l . "g/Created Time:.*/s/Created Time:.*/Created Time:" .strftime("%Y-%m-%d %T")
+    "exe "g/Created Time:.*/s/Created Time:.*/Created Time:" .strftime("%Y-%m-%d %T")
+    exe "g/Created Time:.*/s//Created Time:" .strftime("%Y-%m-%d %T")
+    "exe "1," . l . "s/Created Time:.*/Created Time:" .strftime("%Y-%m-%d %T")
+endfun
+
+"知识点:
+"exec命令
+"   execute命令 将一个字符串当做vimscript命令执行
+"g命令
+"   :[range]global/{pattern}/{command}
+"   global命令在[range]指定的文本范围内(缺省为整个文件)查找{pattern}，然后对匹配到的行执行命令{command}，如果要对没匹配上的行执行命令，则使用global!或vglobal命令。
+"
+"s命令
+"    :[range]s/pattern/string/[c,e,g,i]
+"    c 表示每次替换前会询问
+"    e 表示不显示error
+"    g 表示替换所有匹配项
+"    i 表示不区分大小写
+"
+"实例详解:
+"   分别对以下四种命令(相同的作用)进行详细说明:
+"   1. exe "1," . l . "g/Created Time:.*/s/Created Time:.*/Created Time:" .strftime("%Y-%m-%d %T")
+"       "1,".l --- 假设l=30, 那么表示range为1-30，即在文件的1-30进行查找匹配
+"       g/Created Time:.* --- 表示g/{pattern},即在1-30行查找"Created Time:.*",如果找到了,则执行后面的command
+"       s/Created Time:.*/Created Time:". strftime("%Y-%m-%d %T") --- 表示 {command},即执行s命令进行替换
+"       所以,该组合命令的作用就是 在1至l行中匹配"Created Time:.*",然后替换成"Created Time:".strftime("%Y-%m-%d %T)
+"    2. exe "g/Created Time:.*/s/Created Time:.*/Created Time:" .strftime("%Y-%m-%d %T")
+"       因为不指定[range],g命令的搜索范围模式是整个文件,所以这条命名省去了指定行数范围
+"    3. exe "g/Created Time:.*/s//Created Time:" .strftime("%Y-%m-%d %T")
+"       功能同上
+"    4. exe "1," . l . "s/Created Time:.*/Created Time:" .strftime("%Y-%m-%d %T")
+"       仅用s命令进行在指定range内替换
+"
+"综上所述,可以结果exec命令,g命令,s命令对新建文件的头部注释中的指定部分进行动态写入
+
+fun AddchMacro()
+    let file_name = "".expand("%:r")
+    call append(line(".")+13, "#ifndef _". toupper(file_name)."_H")
+    call append(line(".")+14, "#define _". toupper(file_name)."_H")
+    call append(line(".")+15, "")
+    call append(line(".")+16, "")
+    call append(line(".")+17,"#ifdef __cplusplus")
+    call append(line(".")+18,"extern \"C\"")
+    call append(line(".")+19,"{")
+    call append(line(".")+20,"#endif")
+    call append(line(".")+21, "")
+    call append(line(".")+22, "")
+    call append(line(".")+23,"#ifdef __cplusplus")
+    call append(line(".")+24,"}")
+    call append(line(".")+25,"#endif")
+    call append(line(".")+26,"#endif //_".toupper(file_name)."_H")
+endfun
+
+fun C_main()
+    call append(line(".")+13, "#include <stdio.h>")
+    call append(line(".")+14, "#include <stdlib.h>")
+    call append(line(".")+15, "")
+    call append(line(".")+16, "int main(int argc, char** argv)")
+    call append(line(".")+17, "{")
+    call append(line(".")+18, "")
+    call append(line(".")+19, "    return 0;")
+    call append(line(".")+20, "}")
+endfun
+
+"auto add header --end
