@@ -8,6 +8,8 @@ autocmd BufNewFile *.py,*.[ch],*.sh ks|call CreatedTime()|'s
 autocmd BufNewFile *.h ks|call AddchMacro()|'s
 autocmd BufNewFile *.c ks|call C_main()|'s
 
+"autocmd 当读写一个文件时,自动执行指定的命令
+"BufNewFile	当文件不存在时开始写文件
 "autocmd BufNewFile *.py 0r ~/.vim/vim_templation/vim_python_header
 "0r 表示从新建文件的第一行开始读入
 "

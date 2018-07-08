@@ -9,7 +9,7 @@ autocmd BufNewFile *.h ks|call AddchMacro()|'s
 fun FileName_CreatedTime()
     exe "g/File Name:/s//File Name: " .expand("%")
     exe "g/Created Time:.*/s//Created Time:" .strftime("%Y-%m-%d %T")
-    exe "g/2017/s//Created Time:" .strftime("%Y")
+    exe "g/2017/s//".strftime("%Y")
 endfun
 
 fun AddchMacro()
