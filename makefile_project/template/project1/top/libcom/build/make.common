@@ -1,0 +1,154 @@
+
+# arch configuration (MIPS, ARM or X86)
+ifeq ($(CPU), arm)
+    TARGET_DEF :=
+else
+    ifeq ($(CPU), mips)
+        TARGET_DEF :=
+    else
+        # check if the local machine is 32 or 64 bits
+        LBITS := $(shell getconf LONG_BIT)
+        ifeq ($(LBITS), 64)
+            CPU := x86_64
+        else
+            CPU := x86
+        endif
+        TARGET_DEF :=
+    endif
+endif
+            
+#
+# Tools configuration
+#
+MKDIR      := mkdir
+CP         := cp
+RM         := rm
+ECHO       := echo
+SED        := sed
+TOUCH      := touch
+MV         := mv
+CD         := cd
+TAR        := tar
+AWK        := awk
+SORT       := sort
+
+# Compiler configuration
+OPTIM ?= TIME
+DEBUG ?= TRUE
+FORTIFY ?= TRUE
+
+# ------------------    Executables   ----------------------
+ifeq ($(CPU), mips)
+
+    ifdef MIPSGCC
+        # priority is given to the environment setting MIPSGCC
+        CC := $(MIPSGCC)
+        LINK := $(MIPSGCC)
+    else
+        # standard mips compiler
+        CC := mipsel-uclibc-gcc
+        LINK := mipsel-uclibc-gcc
+    endif
+    # path default value
+    MIPSGCCLIBPATH ?=
+    CCCPUFLAGS := $(MIPSCCFLAGS)
+    LINKCPUFLAGS := $(patsubst %,-L %,$(MIPSGCCLIBPATH)) $(MIPSLINKFLAG)
+
+else
+
+    ifeq ($(CPU), arm)
+        # priority is given to the environment setting ARMGCC and ARMGCCLIBPATH
+        ifdef ARMGCC
+            CC = $(ARMGCC)
+            LINK = $(ARMGCC)
+        else
+            # standard ARM compiler
+            LINK = arm_v7_vfp_le-gcc
+        endif
+        # path library default value
+        ARMGCCLIBPATH ?= /opt/toolchains/ToolChain_arm_v7/arm_v7_vfp_le/target/lib/
+
+        ifeq ($(ARMGCC), arm-openwrt-linux-muslgnueabi-gcc)
+            ARMCCFLAGS = -D__TINA_V2__ -I/r16/toolchain/OpenWrt-Toolchain-sunxi_gcc-5.2.0_musl-1.1.12_eabi.Linux-x86_64/toolchain-arm_cortex-a8+vfpv3_gcc-5.2.0_musl-1.1.12_eabi/include
+        else
+            ifeq ($(ARMGCC), aarch64-openwrt-linux-musl-gcc)
+                ARMCCFLAGS = -D__TINA_V2__ -I/r16/toolchain/OpenWrt-Toolchain-arm64_gcc-5.2.0_musl-1.1.12.Linux-x86_64/toolchain-aarch64_armv8-a_gcc-5.2.0_musl-1.1.12/include
+            endif
+        endif
+  
+        CCCPUFLAGS := $(ARMCCFLAGS)
+        LINKCPUFLAGS := $(patsubst %,-L %,$(ARMGCCLIBPATH)) $(ARMLINKFLAG)
+    else
+        ifeq ($(CPU), android)
+        
+            NDK_TOOLCHAIN_ROOT = /project/NDK/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/linux-x86_64/
+            NDK_PLATFORM_ROOT = /project/NDK/android-ndk-r10d/platforms/android-21/arch-arm/
+        
+            CC = $(NDK_TOOLCHAIN_ROOT)bin/arm-linux-androideabi-gcc
+            LINK = $(NDK_TOOLCHAIN_ROOT)bin/arm-linux-androideabi-gcc
+        
+            ARMGCCLIBPATH = $(NDK_PLATFORM_ROOT)usr/lib
+            ARMCCFLAGS = -fPIE -I$(NDK_PLATFORM_ROOT)usr/include
+            ARMLINKFLAG = -fPIE -pie $(NDK_TOOLCHAIN_ROOT)lib/gcc/arm-linux-androideabi/4.8/libgcc.a --sysroot=$(NDK_PLATFORM_ROOT)
+        
+            CCCPUFLAGS := $(ARMCCFLAGS)
+            LINKCPUFLAGS := $(patsubst %,-L%,$(ARMGCCLIBPATH)) $(ARMLINKFLAG)
+        else
+            ifeq ($(CPU), x86)
+                LINK := gcc
+                CC := gcc
+                # -m32 表示生成32位代码
+                CCCPUFLAGS := $(X86CCFLAGS) -m32
+                LINKCPUFLAGS := $(patsubst %,-L %,$(X86GCCLIBPATH)) $(X86LINKFLAG) -m32
+            else
+                ifeq ($(CPU), x86_64)
+
+                    LINK := gcc
+                    CC := gcc
+                    # -m64 表示生成64位代码
+                    CCCPUFLAGS := $(X86_64CCFLAGS) -m64
+                    LINKCPUFLAGS := $(patsubst %,-L %,$(X86_64GCCLIBPATH)) $(X86_64LINKFLAG) -m64
+                else
+                    $(error CPU type not supported: $(CPU))
+                endif
+            endif
+        endif
+    endif
+endif
+
+# CC include flags
+CCINC := $(patsubst %,-I%,$(patsubst /,/,$(incdirs)))
+
+# check if the debug is enabled
+ifeq ($(DEBUG),TRUE)
+    CCDBGFLAGS := -g
+endif
+
+# check if the compilation optimization is enabled
+ifeq ($(OPTIM),TIME)
+    CCOPTIMFLAGS := -O3
+else
+    ifeq ($(OPTIM),SIZE)
+        CCOPTIMFLAGS := -Os
+    else
+        ifeq ($(OPTIM),NONE)
+             CCOPTIMFLAGS := -O0
+        endif
+    endif
+endif
+
+ifeq ($(FORTIFY),TRUE)
+    CCFORTIFYFLAGS := -D_FORTIFY_SOURCE=2
+endif
+
+  
+# Compiler flags
+CCFLAGS = $(CCDBGFLAGS) $(CCOPTIMFLAGS) $(CCCPUFLAGS)  $(CCFORTIFYFLAGS)
+
+CCFLAGS := $(CCFLAGS) -DBUILDCFG -Wall -Wextra -Wno-unused-parameter -c
+
+# LINK flags (command line can specify EXTRALIBS=XXX to include specific libraries)
+LINKFLAGS = $(LINKCPUFLAGS)
+
+LINKLIBS = $(patsubst %,-l%,$(EXTRALIBS)) -lpthread -lrt
+

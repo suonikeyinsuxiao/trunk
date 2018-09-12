@@ -1,0 +1,6 @@
+
+aa := world
+aa ?= hello
+
+all:
+	echo $(aa)

@@ -1,0 +1,10 @@
+本项目是对makefile使用的总结与积累,每一个知识点的介绍都包含一个示例，帮助初学者高效的掌握。
+同时，本项目会持续的加入适应不同项目目录结构的makefile框架。
+
+
+
+
+
+参考:
+https://www.gnu.org/software/make/manual/make.html
+

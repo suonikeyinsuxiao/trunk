@@ -1,0 +1,7 @@
+
+CFLAGS = -Wall -O
+CFLAGS := $(CFLAGS) -O
+CFLAGS := -O2
+
+all:
+	echo $(CFLAGS)
