@@ -21,15 +21,15 @@ vpath %.h $(incdirs)
 
 .PHONY: all clean
 
-objdir:
+all: $(objdir) $(objlist)
+	@echo compile done
+
+$(objdir):
 	@echo "create obj directory"
 	-mkdir $(objdir)
 
 $(objdir)/%.o: %.c 
 	gcc -MD $(INCDIR) -c $< -o $@
-
-all: $(objdir) $(objlist) 
-	@echo compile done
 
 clean:
 	rm $(objdir)/*.o $(objdir)/*.d $(objdir) -rf
