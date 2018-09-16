@@ -1,0 +1,28 @@
+CC=gcc
+PROGRAMS=SERVER 
+
+SERVER_OBJS:=server.o 
+
+CLIENT_OBJS:=client.o 
+
+.PHONY: all
+all: $(PROGRAMS)
+
+#$(1): $(1)_OBJS
+
+define PROGRAM_TEMPLATE
+$(1):$$($(1)_OBJS)
+ALL_OBJS += $$($(1)_OBJS)
+endef
+
+$(info 111$(ALL_OBJS))
+
+$(eval $(call PROGRAM_TEMPLATE,$(PROGRAMS)))
+
+$(info 222$(ALL_OBJS))
+
+$(PROGRAMS):
+	gcc $^ -o $@
+
+clean:
+	rm -f $(ALL_OBJS) $(PROGRAMS)

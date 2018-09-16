@@ -1,0 +1,36 @@
+PROGRAMS=SERVER
+
+SERVER_OBJS:=server.o 
+
+CLIENT_OBJS:=client.o 
+
+#对变量进行引用时，"("和变量名之间不能有空格，否则引用不到该变量
+$(info xxx-$( SERVER_OBJS))
+$(info xxx-$(SERVER_OBJS))
+
+.PHONY: all
+all: $(PROGRAMS)
+
+#构造一个通用规则的模板
+define PROGRAM_TEMPLATE
+$(1):$$($(1)_OBJS)
+ALL_OBJS += $$($(strip $(1)_OBJS))
+endef
+
+$(info 111-$(ALL_OBJS))
+
+#call函数的参数与逗号之间不能有空格,否则15行的依赖展开后变成$( SERVER_OBJS)
+aa=$(call PROGRAM_TEMPLATE, $(PROGRAMS))
+
+$(info 222-$(ALL_OBJS))
+
+$(info 333-$(aa))
+
+$(eval aa)
+
+
+$(PROGRAMS):
+	gcc $^ -o $@
+
+clean:
+	rm -f $(ALL_OBJS) $(PROGRAMS)

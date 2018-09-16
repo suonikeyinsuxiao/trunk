@@ -1,0 +1,4 @@
+override SRCS := A.c B.c C.c
+
+all:
+	@echo "SRCS: " $(SRCS)

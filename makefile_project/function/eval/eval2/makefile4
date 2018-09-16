@@ -1,0 +1,34 @@
+CC=gcc
+PROGRAMS=SERVER  CLIENT
+
+SERVER_OBJS:=server.o 
+
+CLIENT_OBJS:=client.o 
+
+.PHONY: all
+all: $(PROGRAMS)
+
+#define PROGRAM_TEMPLATE
+#$(1):$$($(1)_OBJS)
+#ALL_OBJS += $$($(1)_OBJS)
+#endef
+
+define PROGRAM_TEMPLATE
+$(strip $(1)):$$($(strip $(1))_OBJS)
+ALL_OBJS += $$($(strip $(1))_OBJS)
+endef
+
+#$(info 111$(ALL_OBJS))
+
+#下面两行的区别在于call函数中 逗号和参数[$(prog)]之间的空格.
+#因此,PROGRAM_TEMPLATE更好的写法是去掉参数前面的空格，如果有的话
+$(foreach prog, $(PROGRAMS), $(eval $(call PROGRAM_TEMPLATE, $(prog))))
+#$(foreach prog, $(PROGRAMS), $(eval $(call PROGRAM_TEMPLATE,$(prog))))
+
+#$(info 222-$(ALL_OBJS))
+
+$(PROGRAMS):
+	gcc $^ -o $@
+
+clean:
+	rm -f $(ALL_OBJS) $(PROGRAMS)
