@@ -1,6 +1,69 @@
 本项目是对makefile使用的总结与积累,每一个知识点的介绍都包含一个示例，帮助初学者高效的掌握。
 同时，本项目会持续的加入适应不同项目目录结构的makefile框架。
 
+makefile的规则:
+目标:依赖
+    命令
+
+第一阶段总结:
+.
+├── debug
+│   ├── debug1
+│   └── debug.md
+├── define
+│   ├── define1
+│   └── define.md
+├── FORCE
+│   ├── force1
+│   ├── force2
+│   └── force.md
+├── function
+│   ├── call
+│   ├── eval
+│   ├── findstring
+│   ├── foreach
+│   ├── if
+│   ├── origin
+│   ├── patsubst
+│   ├── shell
+│   ├── sort
+│   ├── trip
+│   └── wildcard
+├── include
+│   └── include.md
+├── override
+│   ├── override1
+│   ├── override2
+│   └── override.md
+├── phony
+│   ├── note.txt
+│   ├── phony1
+│   ├── phony2
+│   └── phony.md
+├── README
+├── template
+│   └── project1
+├── variable
+│   ├── autovar
+│   ├── recursively_expanded_var
+│   ├── var1
+│   ├── var2
+│   └── variable.md
+└── vpath
+    ├── vpath
+    ├── VPATH
+    └── vpath.md
+
+本阶段主要介绍了
+伪目标:避免目标名与文件名冲突，提供执行效率
+强制目标:make总是会执行规则
+变量:变量的定义，变量的类型
+makefile的调试
+自定义函数
+包含引用其他makefile
+通过命令行向makefile传递参数
+makefile怎样指定文件的搜索路径
+常用函数的介绍
 
 
 
