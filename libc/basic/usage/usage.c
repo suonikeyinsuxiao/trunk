@@ -1,120 +1,137 @@
-/***********************************************************************
-*   Copyright (C) 2016 pilot-lab.inc All rights reserved.
-*   
-*   @file:       usage.c
-*   @brief:      
-*   @author:     Pilot labs
-*   @maintainer: frank.fu@pilot-lab.com.cn
-*   @version:    1.0
-*   @date:       2016-02-03
-*   
-***********************************************************************/
-//#include "usage.h"
+/**
+ * Copyright (c) 2019 Semptian.
+ *
+ * Unpublished copyright. All rights reserved. This material contains
+ * proprietary information that should be used or copied only within
+ * Semptian, except with written permission of Semptian.
+ *
+ * @file getopt_long_test.c
+ * @brief
+ * @author fujun@semptian.com
+ * @version 1.0.0
+ * @date 2019-06-06 18:15:17
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+
+
 #include <getopt.h>
+#include <string.h>
 
-static void help(void)
-{
-	int k;
-	printf(
-"Usage: pcm [OPTION]... [FILE]...\n"
-"-h,--help	help\n"
-"-D,--device	playback device\n"
-"-r,--rate	stream rate in Hz\n"
-"-c,--channels	count of channels in stream\n"
-"-f,--frequency	sine wave frequency in Hz\n"
-"-b,--buffer	ring buffer size in us\n"
-"-p,--period	period size in us\n"
-"-m,--method	transfer method\n"
-"-o,--format	sample format\n"
-"-v,--verbose   show the PCM setup parameters\n"
-"-n,--noresample  do not resample\n"
-"-e,--pevent    enable poll event after each period\n"
-"\n");
-}
-
-int main(int argc, char** argv)
-{
-	struct option long_option[] =
-	{
-		{"help", 0, NULL, 'h'},
-		{"device", 1, NULL, 'D'},
-		{"rate", 1, NULL, 'r'},
-		{"channels", 1, NULL, 'c'},
-		{"frequency", 1, NULL, 'f'},
-		{"buffer", 1, NULL, 'b'},
-		{"period", 1, NULL, 'p'},
-		{"method", 1, NULL, 'm'},
-		{"format", 1, NULL, 'o'},
-		{"verbose", 1, NULL, 'v'},
-		{"noresample", 1, NULL, 'n'},
-		{"pevent", 1, NULL, 'e'},
-		{NULL, 0, NULL, 0},
-	};
-
-	while (1) 
-	{
-		int c;
-		if ((c = getopt_long(argc, argv, "hD:r:c:f:b:p:m:o:vne", long_option, NULL)) < 0)
-			break;
-		switch (c) 
-		{
-			case 'h':
-				printf("h\n");	
-				break;
-			case 'D':
-				printf("D\n");	
-				break;
-			case 'r':
-				printf("r\n");	
-				break;
-			case 'c':
-				printf("c\n");	
-				break;
-			case 'f':
-				printf("f\n");	
-				break;
-			case 'b':
-				printf("b\n");	
-				break;
-			case 'p':
-				printf("p\n");	
-				break;
-			case 'm':
-				printf("m\n");	
-				break;
-			case 'o':
-				printf("o\n");	
-				break;
-			case 'v':
-				printf("v\n");	
-				break;
-			case 'n':
-				printf("n\n");	
-				break;
-			case 'e':
-				printf("e\n");	
-				break;
-		}
-	}
-
-	return 0;
-}
+/*
+int getopt_long(int argc, char * const argv[],
+           const char *optstring,
+           const struct option *longopts, int *longindex);
+*/
 
 #if 0
 int main(int argc, char** argv)
 {
-	if (argc < 2)
+    int c;
+    int longindex = 0;
+    int time = -1;
+
+    struct option long_option[] =
 	{
-		printf("usage: %s xxx\n",argv[0]);	
-		return -1;
-	}
+		{"help", 0, NULL, 'h'},
+		{"time", 1, &time, 't'},
+		{"device", 2, NULL, 'd'},
+		{NULL, 0, NULL, 0},
+	};
 
-	printf("w:%d\n", atoi(argv[1]));
-	printf("h:%d\n", atoi(argv[2]));
+    c = getopt_long(argc, argv, "ht:d:", long_option, &longindex);
 
-	return 0;
+    printf("c:%d\n", c);
+    printf("optarg:%s\n", optarg);
+    printf("optind:%d\n", optind);
+    printf("longindex:%d\n", longindex);
+    printf("time=%d\n", time);
+
+    return 0;
 }
 #endif
+
+#if 0
+int main(int argc, char** argv)
+{
+    int ret = -1;
+    int longindex = 0;
+    int flag = -1;
+
+    struct option long_option[] =
+	{
+		{"help", 0, NULL, 'h'},
+		{"time", 1, &flag, 't'},
+		{"device", 2, &flag, 'd'},
+		{NULL, 0, NULL, 0},
+	};
+
+    ret = getopt_long(argc, argv, "ht:d:", long_option, &longindex);
+
+    printf("flag:%d\n", flag);
+    printf("ret:%d\n", ret);
+    printf("optarg:%s\n", optarg);
+    printf("optind:%d\n", optind);
+    printf("longindex:%d\n", longindex);
+
+    return 0;
+}
+#endif
+
+static void help(void)
+{
+	printf(
+        "Usage: ./usage [OPTION]... [FILE]...\n"
+        "-h,--help	help\n"
+        "-d,--device	playback device\n"
+        "-d,--debug	    debug mode\n"
+        "\n");
+}
+
+int main(int argc, char** argv)
+{
+    int ret = -1;
+    int longindex = 0;
+
+    struct option long_option[] =
+	{
+		{"help", 0, NULL, 'h'},
+		{"time", 1, NULL, 't'},
+		{"device", 2, NULL, 'd'},
+		{"debug", 1, NULL, 'd'},
+		{NULL, 0, NULL, 0},
+	};
+
+    while((ret = getopt_long(argc, argv, "ht:d:", long_option, &longindex)) >= 0)
+    {
+        switch(ret)
+        {
+        case 'h':
+            help();
+            break;
+        case 't':
+            printf("optind:%d\n", optind);
+            printf("longindex:%d\n", longindex);
+            printf("time:%s\n", optarg);
+            break;
+        case 'd':
+            printf("optind:%d\n", optind);
+            printf("longindex:%d\n", longindex);
+            if (0 == strcmp("device", long_option[longindex].name))
+            {
+                printf("device:%s\n", optarg); 
+            }
+            else if (0 == strcmp("debug", long_option[longindex].name))
+            {
+                printf("debug:%s\n", optarg); 
+            }
+            break;
+        default:
+            printf("?? getopt returned character code 0x%x ??\n", ret);
+            break;
+        }
+    }
+
+    return 0;
+}
