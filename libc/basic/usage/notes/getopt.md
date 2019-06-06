@@ -13,7 +13,7 @@ extern int optind, opterr, optopt;
 ```
 getopt()函数的作用：解析命令行参数。
 
-当命令行中的元素以"-"开头，那么该元素(argv[i])就是参数选项，其后的字符串就是参数。参数选项列表通过$$optstring$$指定。
+当命令行中的元素以"-"开头，那么该元素(argv[i])就是参数选项，其后的字符串就是参数。参数选项列表通过***optstring***指定。
 
 测试代码如下：
 
@@ -39,18 +39,18 @@ int main(int argc, char** argv)
 
 
 
-> The  variable  $optind$  is the index of the next element to be processed in argv.  The system initializes this value to 1.  The caller can reset it to 1 to restart scanning of the same argv, or when scanning a new argument vector.
+> The  variable  ***optind***  is the index of the next element to be processed in argv.  The system initializes this value to 1.  The caller can reset it to 1 to restart scanning of the same argv, or when scanning a new argument vector.
 
-$$optind$$ 的值为 $$argv$$中下一个待处理参数的索引值。$$optind$$的初始值为1。调用者可以将optind设置为1，来重新扫描$$argv$$。
+***optind*** 的值为 ***argv***中下一个待处理参数的索引值。***optind***的初始值为1。调用者可以将optind设置为1，来重新扫描***argv***。
 
 ![pic1](pic1.png)
 <center>图1</center>
 
 从上图可以看出，optind的值为3，即下一个参数的索引值。
 
->$$optstring$$ is a string containing the legitimate option characters.  If such a character is followed by a colon, the option requires an argument, so getopt() places a pointer to the following text in the same argv-element, or the text of the following argv-element, in optarg.  Two colons mean an option takes an optional arg; if there is text in the current argv-element (i.e., in the  same  word  as  the  option  name  itself,  for  example, "-oarg"),  then  it  is  returned in optarg, otherwise optarg is set to zero.  This is a GNU extension. 
+>***optstringi*** is a string containing the legitimate option characters.  If such a character is followed by a colon, the option requires an argument, so getopt() places a pointer to the following text in the same argv-element, or the text of the following argv-element, in optarg.  Two colons mean an option takes an optional arg; if there is text in the current argv-element (i.e., in the  same  word  as  the  option  name  itself,  for  example, "-oarg"),  then  it  is  returned in optarg, otherwise optarg is set to zero.  This is a GNU extension. 
 
-如果$$optstring$$中的字符后跟了一个冒号，那么该字符表示参数选项，并且必需带上参数（**如果不带参数，会有打印提示**）；同时$$optarg$$指向该参数，如图1所示，$$optarg​$$指向 参数选项(-a)的参数(abc)。
+如果***optstring***中的字符后跟了一个冒号，那么该字符表示参数选项，并且必需带上参数（**如果不带参数，会有打印提示**）；同时***optarg***指向该参数，如图1所示，***optarg***指向 参数选项(-a)的参数(abc)。
 
 ![1559814496216](1559814496216.png)
 
@@ -62,17 +62,17 @@ $$optind$$ 的值为 $$argv$$中下一个待处理参数的索引值。$$optind$
 
 
 
-如果$$optstring$$中的字符后跟了两个冒号，那个该字符表示可选参数选项，若带上参数，那么$$optarg$$指向该参数；若没有带上参数，那么$$optarg$$为NULL；
+如果***optstring***中的字符后跟了两个冒号，那个该字符表示可选参数选项，若带上参数，那么***optarg***指向该参数；若没有带上参数，那么***optarg***为NULL；
 
 ![1559814820735](1559814820735.png)
 
-两冒号的参数选项，选项和参数之间必须连在一起，否则，$$optarg$$获取不到参数值。上图中，-b参数选项是两冒号的，当-b 与参数"qwe"之间有空格时，$$optarg$$为NULL。
+两冒号的参数选项，选项和参数之间必须连在一起，否则，***optarg***获取不到参数值。上图中，-b参数选项是两冒号的，当-b 与参数"qwe"之间有空格时，***optarg***为NULL。
 
-如果$$optstring​$$中的字符后没有跟冒号，那么参数选项不需要带参数。
+如果***optstring***中的字符后没有跟冒号，那么参数选项不需要带参数。
 
 ![1559813994041](1559813994041.png)
 
-上图中，-h 是不带参数选项，所以$$optarg​$$指向NULL。
+上图中，-h 是不带参数选项，所以***optarg***指向NULL。
 
 ![1559815762080](1559815762080.png)
 
@@ -92,7 +92,7 @@ int getopt_long(int argc, char * const argv[],
 
 >The getopt_long() function works like getopt() except that it also accepts long options, started with two dashes.  (If the program accepts only long options, then optstring should be specified as an empty string (""), not NULL.)  Long option names may be abbreviated if the abbreviation is unique or is an exact match for some defined option.  A long option may take a parameter, of the form --arg=param or --arg param.
 
-getopt_long()的参数选项 是使用 two dashed("--")来指定。如果程序支持 长参数选项，需要将$$optstring$$设置为空串("")。长选项参数的目的是为了避免参数产生歧义，只要不产生歧义，也可以只用缩写。
+getopt_long()的参数选项 是使用 two dashed("--")来指定。如果程序支持 长参数选项，需要将***optstring***设置为空串("")。长选项参数的目的是为了避免参数产生歧义，只要不产生歧义，也可以只用缩写。
 
 ![1559822622995](1559822622995.png)
 
