@@ -1,0 +1,9 @@
+
+INSTALL = /usr/bin/install -c
+INSTALL_DATA = $(INSTALL) -m 644
+INSTALL_BIN = $(INSTALL) -m 755
+INSTALL_PROGRAM = $(INSTALL)
+INSTALL_SCRIPT = $(INSTALL)
+
+install:
+	$(INSTALL_BIN) bin/a.out inst/

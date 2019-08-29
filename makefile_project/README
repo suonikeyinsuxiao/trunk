@@ -7,52 +7,55 @@ makefile的规则:
 
 第一阶段总结:
 .
-├── debug
-│   ├── debug1
-│   └── debug.md
-├── define
-│   ├── define1
-│   └── define.md
-├── FORCE
-│   ├── force1
-│   ├── force2
-│   └── force.md
-├── function
-│   ├── call
-│   ├── eval
-│   ├── findstring
-│   ├── foreach
-│   ├── if
-│   ├── origin
-│   ├── patsubst
-│   ├── shell
-│   ├── sort
-│   ├── trip
-│   └── wildcard
-├── include
-│   └── include.md
-├── override
-│   ├── override1
-│   ├── override2
-│   └── override.md
-├── phony
-│   ├── note.txt
-│   ├── phony1
-│   ├── phony2
-│   └── phony.md
-├── README
-├── template
-│   └── project1
-├── variable
-│   ├── autovar
-│   ├── recursively_expanded_var
-│   ├── var1
-│   ├── var2
-│   └── variable.md
-└── vpath
-    ├── vpath
-    ├── VPATH
-    └── vpath.md
+|-- debug
+|   |-- debug1
+|   `-- debug.md
+|-- define
+|   |-- define1
+|   `-- define.md
+|-- FORCE
+|   |-- force1
+|   |-- force2
+|   `-- force.md
+|-- function
+|   |-- call
+|   |-- eval
+|   |-- findstring
+|   |-- foreach
+|   |-- if
+|   |-- origin
+|   |-- patsubst
+|   |-- shell
+|   |-- sort
+|   |-- trip
+|   `-- wildcard
+|-- include
+|   `-- include.md
+|-- install
+|   |-- bin
+|   |-- inst
+|   `-- Makefile
+|-- override
+|   |-- override1
+|   |-- override2
+|   `-- override.md
+|-- phony
+|   |-- note.txt
+|   |-- phony1
+|   |-- phony2
+|   `-- phony.md
+|-- README
+|-- template
+|   `-- project1
+|-- variable
+|   |-- recursively_expanded_var
+|   |-- var1
+|   |-- var2
+|   `-- variable.md
+`-- vpath
+    |-- vpath
+        |-- VPATH
+            `-- vpath.md
 
 本阶段主要介绍了
 伪目标:避免目标名与文件名冲突，提供执行效率
