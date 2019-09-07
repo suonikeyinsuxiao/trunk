@@ -98,7 +98,7 @@ getopt_long()的参数选项 是使用 two dashed("--")来指定。如果程序�
 
 {"device", 2, &flag, 'd'}，由上图可知，--devi 由于不会产生歧义，就作为device处理；
 
->$$longopts$$ is a pointer to the first element of an array of **struct option** declared in <getopt.h> as
+>***longopts*** is a pointer to the first element of an array of **struct option** declared in <getopt.h> as
 >
 >struct option {
 >               const char *name;
